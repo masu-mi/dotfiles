@@ -1,0 +1,10 @@
+[user]
+	name = Kanai Masumi
+	email = masumi.net@gmail.com
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
