@@ -20,7 +20,6 @@ set noimcmdline
 "### フォールディング設定
 set foldmethod=syntax
 set foldlevel=10
-set ambiwidth=double
 source ~/dotfiles/conf-vim/complete.vim
 
 "### インデント
