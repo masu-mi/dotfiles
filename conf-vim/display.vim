@@ -12,6 +12,7 @@ set title
 "### 基本カラーリング関連
 syntax on
 let g:molokai_original=1
+set t_Co=256
 colorscheme molokai
 
 "### カーソル行ハイライト
