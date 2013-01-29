@@ -1,6 +1,6 @@
 "### シフトを押したくない事がある
-noremap ; :
-noremap : ;
+"noremap ; :
+"noremap : ;
 
 " ウィンドウ移動
 nnoremap <C-j> ;<C-w>j

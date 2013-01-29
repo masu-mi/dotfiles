@@ -6,12 +6,13 @@ set cmdheight=1
 set showmode
 set showcmd
 set laststatus=2
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8p
+"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8p
 set title
 
 "### 基本カラーリング関連
 syntax on
 let g:molokai_original=1
+set t_Co=256
 colorscheme molokai
 
 "### カーソル行ハイライト
