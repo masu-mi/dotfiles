@@ -20,7 +20,7 @@ set noimcmdline
 "### フォールディング設定
 set foldmethod=syntax
 set foldlevel=10
-source ~/dotfiles/conf-vim/complete.vim
+source ~/dotfiles/vim/complete.vim
 
 "### インデント
 set autoindent
@@ -51,3 +51,6 @@ if has("autocmd")
     autocmd FileType php :map <C-e> <ESC>:!php %<CR>
     autocmd FileType php :map <C-n> <ESC>:!php -l %<CR>
 endif
+augroup filetypedetect
+        au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+augroup END

@@ -26,7 +26,7 @@ set foldlevel=10
 set ambiwidth=double
 
 "### バックアップ設定
-source ~/dotfiles/conf-vim/backup.vim
+source ~/dotfiles/vim/backup.vim
 
 "### 検索
 set incsearch
