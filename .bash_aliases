@@ -4,14 +4,17 @@ alias svim='sudo vim -u .vimrc'
 alias cd-='cd -'
 alias realcwd='cd -P .'
 
-alias cp='cp -iv'
+alias cp='cp -v'
 alias mv='mv -iv'
-alias cd='cd -iv'
+alias rm='rm -iv'
 
 alias sc='screen'
 alias bc='bc -p'
 
 alias md='mkdir'
+
+
+alias tmux='tmux -2u'
 
 # カレンダー系コマンド
 alias cal='cal -m3'
@@ -35,6 +38,7 @@ alias reload='. ~/.bashrc'
 
 alias vivimrc='vim ~/.vimrc'
 alias viscreen='vim ~/.screenrn'
+alias vitmux='vim ~/.tmux.conf'
 alias vibashrc='vim ~/.bashrc'
 alias vialiases='vim ~/.bash_aliases'
 

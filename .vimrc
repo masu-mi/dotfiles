@@ -1,14 +1,14 @@
 "# Plugin導入
-source ~/dotfiles/conf-vim/bundles.vim
+source ~/dotfiles/vim/bundles.vim
 
 "# 基本設定
-source ~/dotfiles/conf-vim/base.vim
+source ~/dotfiles/vim/base.vim
 
 "# サポート
-source ~/dotfiles/conf-vim/support.vim
+source ~/dotfiles/vim/support.vim
 
 "# 入力時挙動
-source ~/dotfiles/conf-vim/insert.vim
+source ~/dotfiles/vim/insert.vim
 
 "# 表示
-source ~/dotfiles/conf-vim/display.vim
+source ~/dotfiles/vim/display.vim
