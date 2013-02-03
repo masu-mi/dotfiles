@@ -45,9 +45,11 @@ alias vialiases='vim ~/.bash_aliases'
 alias f='pushd'
 alias b='popd'
 
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+# wオプションはosxでの文字化けに関して
+alias ls='ls -w'
+alias ll='ls -lw'
+alias la='ls -aw'
+alias lla='ls -law'
 
 alias sc='screen -U -D -RR'
 
