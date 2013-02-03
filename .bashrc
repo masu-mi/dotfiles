@@ -1,18 +1,11 @@
 bind C-l:clear-screen
 
-
-export RSYNC_RSH=ssh
-
-export CVS_RSH=ssh
-export CVSEDITOR=vim
-
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
 
 export LANG='ja_JP.UTF-8'
 export LC_ALL='C'
@@ -21,6 +14,7 @@ export LC_MESSAGES='jp_JP.UTF-8'
 
 export PATH="/usr/local/bin:${PATH}"
 export PATH="/usr/share/colorgcc:${PATH}"
+export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
@@ -35,11 +29,13 @@ export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
 
+export CVSEDITOR=vim
 export EDITOR='vim'
 export SVN_EDITOR='vim'
+export PAGER='lv -la -c -Ou8'
 
-export PAGER='lv -c'
-
+export RSYNC_RSH=ssh
+export CVS_RSH=ssh
 
 export ESC="$(echo -en '\033')"
 export COLOR_RED="$(echo -en '\033[31m')"
