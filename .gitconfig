@@ -10,3 +10,5 @@
 	br = branch
 	mg = merge --no-ff
 	mgff = merge -ff
+[core]
+	quotepath = false
