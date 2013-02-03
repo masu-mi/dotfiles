@@ -2,6 +2,7 @@
 alias svim='sudo vim -u .vimrc'
 
 alias cd-='cd -'
+alias cdproj='cd ${HOME}/Documents/+project'
 alias realcwd='cd -P .'
 
 alias cp='cp -v'

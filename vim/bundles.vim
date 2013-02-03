@@ -22,6 +22,7 @@ Bundle 'c9s/cascading.vim'
 Bundle 'othree/html5.vim'
 Bundle 'open-browser.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
 

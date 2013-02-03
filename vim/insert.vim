@@ -46,10 +46,13 @@ if has("autocmd")
     "scheme設定
     autocmd FileType scheme :map <C-e> <ESC>:!gosh %<CR>
 
-    "php設定
+    "php
     autocmd FileType php filetype indent off
     autocmd FileType php :map <C-e> <ESC>:!php %<CR>
     autocmd FileType php :map <C-n> <ESC>:!php -l %<CR>
+
+    "Coffee設定
+    autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 endif
 augroup filetypedetect
         au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
