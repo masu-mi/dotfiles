@@ -25,6 +25,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'dag/vim2hs'
+Bundle 'ujihisa/neco-ghc'
 
 " www.vim.orgにあるplugin
 Bundle 'YankRing.vim'
