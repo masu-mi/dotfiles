@@ -10,8 +10,8 @@ class Package:
   def get_name(self):
     if isinstance(self._key, str):
       return self._key
-    else isinstance(self._key, tuple):
+    elif isinstance(self._key, tuple):
       return str(self._key[0])
 
 def generate(pkg_key):
-  return Package(pkg_key):
+  return Package(pkg_key)

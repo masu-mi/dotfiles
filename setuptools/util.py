@@ -6,7 +6,6 @@ import configfiles
 import recipe, menu
 
 
-
 system_name = platform.system()
 
 def set_manager(
@@ -15,14 +14,14 @@ def set_manager(
     command_line,
     install_command):
   recipe.add_manager(key, requires, command_line)
-  menu.add(recipe.generate(key, requires, install_command)
+  menu.add(recipe.generate(key, requires, install_command))
 
 
 
 if __name__ == '__main__':
   # conf fileのリンク作成
   # aliaseの作成
-  if system_name = 'Darwin':
+  if system_name == 'Darwin':
     set_manager(
       'main',
       ('wget', 'perl'),
@@ -31,13 +30,6 @@ if __name__ == '__main__':
   # menu
   # install
   pass
-
-manager_pkg = {
-      'SOUCE':{['nodebrew':], }
-      'MAIN' :[git, vim, lv, ],
-      'npm'  :[]
-      'pip'  :['virtualenv', 'virtualenv-wrapper', 'tox'],
-    }
 
 ## pkgをインストールしたり
 ## 必ず入れるツール

@@ -2,6 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 import shlex, subprocess
+import package
+import requires
 
 _managers = {}
 
@@ -36,7 +38,7 @@ def gen_command(command_line):
 def _gen_manager_command(command_line):
   def _command(obj_pkg):
     print subprocess.Popen(
-        shlex.split(command_line).append(object_pkg.get_name()))
+        shlex.split(command_line).append(obj_pkg.get_name()))
   return _command
 
 def generate_with_manager(pkg_name, manager):
@@ -45,18 +47,18 @@ def generate_with_manager(pkg_name, manager):
                   requires,
                   lambda : command(pkg_name))
 
-def generate(pkg_name, requires, command):
+def generate(pkg_name, input_requires, command):
   return Recipe( package.generate(pkg_name),
-                 requires.generate(requires),
+                 requires.generate(input_requires),
                  command)
 
 
 
 def add_manager(name, requires, command_line):
-  _manager[name] = (requires, _gen_manager_command(command_line))
+  _managers[name] = (requires, _gen_manager_command(command_line))
 
 def init_managers():
-  _manager = {}
+  _managers = {}
 
 def _get_from_managers(name):
-  return _manager[name]
+  return _managers[name]

@@ -14,7 +14,7 @@ def install():
 
 # インストールする候補に追加する
 def add(recipe):
-  installed_list[recipe.get_key] = recipe
+  _menu[recipe.get_key] = recipe
 
 
 
