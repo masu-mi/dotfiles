@@ -3,10 +3,10 @@
 "noremap : ;
 
 " ウィンドウ移動
-nnoremap <C-j> ;<C-w>j
-nnoremap <C-k> ;<C-k>j
-nnoremap <C-l> ;<C-l>j
-nnoremap <C-h> ;<C-h>j
+nnoremap <C-j> :<C-w>j
+nnoremap <C-k> :<C-w>k
+nnoremap <C-l> :<C-w>l
+nnoremap <C-h> :<C-w>h
 
 "### 数値インクリメント
 set nrformats-=octal
@@ -33,7 +33,7 @@ set incsearch
 set hlsearch
 set wrapscan
 "### Escの2回押しで検索ハイライト消去
-nmap <ESC><ESC> ;nohlsearch<CR><ESC>
+noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
 "### 履歴
 set history=1000           " コマンド・検索パターンの履歴数
