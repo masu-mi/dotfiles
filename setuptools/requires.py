@@ -6,6 +6,7 @@ from package import Package
 class Requires:
   def __init__(self, *obj_pkgs):
     self._container = obj_pkgs
+    self._index = 0
   def __iter__(self):
     return self
   def next(self):

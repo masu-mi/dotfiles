@@ -26,7 +26,6 @@ names = [
 
 class TestPackage:
 
-
   def test_get_key(self):
     for key in keys:
       pkg = Package(key)
