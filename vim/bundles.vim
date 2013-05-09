@@ -28,6 +28,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
+NeoBundle 'majutsushi/tagbar'
 
 " www.vim.orgにあるplugin
 NeoBundle 'YankRing.vim'
