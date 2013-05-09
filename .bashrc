@@ -86,6 +86,8 @@ export PIP_RESPECT_VIRTUALENV=true
 
 
 # for ruby
+export PATH="/usr/local//Cellar/ruby/2.0.0-p0/bin:$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 # for Node
 ## nodebrew
 if [ -f ~/.nodebrew/nodebrew ]; then
@@ -96,3 +98,5 @@ fi
 # for Haskell
 # for Scala
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

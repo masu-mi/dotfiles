@@ -1,0 +1,5 @@
+--ignore-dir=bak
+--sort-files
+--nogroup
+--type-add=php=.inc
+--type-set=tags=tags

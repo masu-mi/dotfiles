@@ -1,36 +1,40 @@
 filetype off
 " Vundle利用に関する初期設定
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set rtp+=~/.vim/neobundle.vim.git
+  call neobundle#rc(expand('~/.neobundle'))
+endif
 
 
-"Vundle自体
-Bundle 'gmarik/vundle'
-
+"NeoBundle自体
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 
 " githubにあるplugin
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
-Bundle 'Shougo/neocomplcache'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/zencoding-vim'
-Bundle 'c9s/cascading.vim'
-Bundle 'othree/html5.vim'
-Bundle 'open-browser.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-markdown'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'dag/vim2hs'
-Bundle 'ujihisa/neco-ghc'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'c9s/cascading.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'open-browser.vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'dag/vim2hs'
+NeoBundle 'ujihisa/neco-ghc'
 
 " www.vim.orgにあるplugin
-Bundle 'YankRing.vim'
-Bundle 'JavaScript-syntax'
-Bundle 'bufexplorer.zip'
-Bundle 'errormarker.vim'
-Bundle 'ShowMarks7'
+NeoBundle 'YankRing.vim'
+NeoBundle 'JavaScript-syntax'
+NeoBundle 'bufexplorer.zip'
+NeoBundle 'errormarker.vim'
+NeoBundle 'ShowMarks7'
+
+" color scheme
+NeoBundle 'tomasr/molokai'

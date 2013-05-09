@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-import platform
 import configfiles
-import recipe, menu
-
 
 system_name = platform.system()
 
