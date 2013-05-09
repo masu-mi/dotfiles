@@ -3,6 +3,7 @@ alias svim='sudo vim -u .vimrc'
 
 alias cd-='cd -'
 alias cdproj='cd ${HOME}/Documents/+project'
+alias cd..='cd ..'
 alias realcwd='cd -P .'
 
 alias cp='cp -v'
@@ -61,6 +62,9 @@ alias sudo='sudo -p "sudo"'
 
 # PHP開発を楽にしたいから
 alias lphp='php -d open_basedir=`pwd`'
+
+alias java='java -Dfile.encoding=utf-8'
+alias javac='javac -J-Dfile.encoding=utf-8'
 
 function stvim {
     vim $(which $1)
