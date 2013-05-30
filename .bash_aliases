@@ -65,6 +65,8 @@ alias lphp='php -d open_basedir=`pwd`'
 
 alias java='java -Dfile.encoding=utf-8'
 alias javac='javac -J-Dfile.encoding=utf-8'
+alias jar='jar -J-Dfile.encoding=utf-8'
+alias jdb='jdb -J-Dfile.encoding=utf-8'
 
 function stvim {
     vim $(which $1)
