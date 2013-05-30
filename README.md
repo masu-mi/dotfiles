@@ -8,3 +8,5 @@
 - gnu global
 - tmux
 - lv
+- ack
+- rlwrap
