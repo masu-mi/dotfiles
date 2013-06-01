@@ -2,9 +2,9 @@
 
 # 作業ディレクトリ変更
 localdir=$HOME/local
-cd $tmpdir;
 
 tmpdir=$(mktemp -t -d temp.XXXXXX)
+cd $tmpdir;
 
 vim_ver=7.3
 
