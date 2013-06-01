@@ -12,6 +12,7 @@ info-state() {
   echo `date`"[INFO] current dir:"`pwd`
 }
 
+# http://www.vim.org/
 install-vim() {
   info-state
   wget ftp://ftp.vim.org/pub/vim/unix/vim-${vim_ver}.tar.bz2
@@ -28,25 +29,44 @@ install-vim() {
   && make && make install
 }
 
+# http://beyondgrep.com/
 install-ack() {
   info-state
   # CPAN 前提
   sudo cpan App::Ack
   # 1file版でOKなら以下
-  # curl http://beyondgrep.com/ack-2.04-single-file > ~/bin/ack && chmod 0755 !#:3
+  # curl http://beyondgrep.com/ack-2.04-single-file > ${localdir}/bin/ack && chmod 0755 !#:3
   info-state
 }
 
+# http://www.ff.iij4u.or.jp/~nrt/lv/#install
 install-lv() {
   info-state
+  wget http://www.ff.iij4u.or.jp/~nrt/freeware/lv451.tar.gz
+  tar xvzf lv451.tar.gz
+  cd `ls -1 -d lv* |grep -v tar`
+  info-state
+  ./src/configure --prefin=$localdir && make && make install
 }
 
+# http://git-scm.com/
 install-git() {
   info-state
 }
 
+# http://mxcl.github.io/homebrew/
+install_homebrew() {
+  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+}
+
+# http://utopia.knoware.nl/~hlub/rlwrap/#rlwrap
 install-rlwrap() {
   info-state
+  wget http://utopia.knoware.nl/~hlub/rlwrap/rlwrap-0.37.tar.gz
+  tar xvzf rlwrap-0.37.tar.gz
+  cd `ls -1 -d rlwrap* |grep -v tar`
+  info-state
+  ./configure --prefin=$localdir && make && make install
 }
 
 install-gtags() {
@@ -62,10 +82,13 @@ install-screen() {
 }
 
 
-# full install
-# (
-# install-vim
-# )
+full_install(){
+  install-vim
+  install-lv
+  install-rlwrap
+}
+
+full_install
 
 #mkdir .vim/plugin
 ## install plugin of gnu global
