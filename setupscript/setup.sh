@@ -71,6 +71,9 @@ install-rlwrap() {
 
 install-gtags() {
   info-state
+  #mkdir .vim/plugin
+  ## install plugin of gnu global
+  #find /usr/local/ -name *gtags.vim |xargs -I{} ln -s {} /Users/masumi/dotfiles/.vim/plugin/gtags.vim
 }
 
 install-tmux() {
@@ -88,8 +91,40 @@ full_install(){
   install-rlwrap
 }
 
-full_install
 
-#mkdir .vim/plugin
-## install plugin of gnu global
-#find /usr/local/ -name *gtags.vim |xargs -I{} ln -s {} /Users/masumi/dotfiles/.vim/plugin/gtags.vim
+
+setup_dotfiles() {
+  if [ `grep dotfiles $HOME/.bashrc > wc -l` -eq 0 ]; then
+    echo ". $HOME/dotfiles/.bashrc" >> $HOME/.bashrc
+  else
+    echo ".bashrc include $HOME/dotfiles/.bashrc"
+  fi
+  if [ `grep dotfiles $HOME/.bash_aliases > wc -l` -eq 0 ]; then
+    echo ". $HOME/dotfiles/.bash_aliases" >> $HOME/.bash_aliases
+  else
+    echo ".bash_aliases include $HOME/dotfiles/.bash_aliases"
+  fi
+  if [ ! -e $HOME/.tmux.conf ]; then
+    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+  else
+    echo ".tmux.conf exists"
+  fi
+  if [ ! -e $HOME/.screenrc ]; then
+    ln -s $HOME/dotfiles/.screenrc $HOME/.screenrc
+  else
+    echo ".screenrc exists"
+  fi
+  if [ ! -e $HOME/.gitconfig ]; then
+    ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+  else
+    echo ".gitconfig exists"
+  fi
+  if [ `grep dotfiles $HOME/.vimrc > wc -l` -eq 0 ]; then
+    echo "source $HOME/dotfiles/.vimrc" >> $HOME/.vimrc
+  else
+    echo ".vimrc include $HOME/dotfiles/.vimrc"
+  fi
+}
+
+setup_dotfiles
+full_install
