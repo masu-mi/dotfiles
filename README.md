@@ -3,6 +3,8 @@
 
 ## Install
 - git
+- mercurial
+- iconv
 - vim
     - Neobundle
 - gnu global
