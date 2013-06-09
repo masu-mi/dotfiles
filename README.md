@@ -10,3 +10,8 @@
 - lv
 - ack
 - rlwrap
+- virtualenv
+- virtualenvwrapper
+- pip
+    - pep8
+    - pyflakes
