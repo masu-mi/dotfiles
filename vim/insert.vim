@@ -57,3 +57,8 @@ endif
 augroup filetypedetect
         au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 augroup END
+
+
+augroup staticcheck
+    au BufWritePost *.{py} exe ":!pep8 %; pyflakes %"
+augroup END
