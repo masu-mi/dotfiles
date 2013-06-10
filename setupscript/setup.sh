@@ -3,6 +3,21 @@
 # 作業ディレクトリ変更
 localdir=$HOME/local
 
+if [ ! -d ${localdir} ]; then
+    mkdir ${localdir}
+    if [ ! -d ${localdir}/bin ]; then
+        mkdir ${localdir}/bin
+    fi
+    if [ ! -d ${localdir}/lib ]; then
+        mkdir ${localdir}/lib
+    fi
+fi
+
+install-make(){
+  apt-get install make
+}
+
+
 tmpdir=$(mktemp -t -d temp.XXXXXX)
 cd $tmpdir;
 
@@ -66,7 +81,7 @@ install-rlwrap() {
   tar xvzf rlwrap-0.37.tar.gz
   cd `ls -1 -d rlwrap* |grep -v tar`
   info-state
-  ./configure --prefin=$localdir && make && make install
+  ./configure --prefix=$localdir && make && make install
 }
 
 install-gtags() {
