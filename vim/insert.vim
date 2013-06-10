@@ -61,4 +61,5 @@ augroup END
 
 augroup staticcheck
     au BufWritePost *.{py} exe ":!pep8 %; pyflakes %"
+    au BufWritePost *.{php} exe ":!php -l %"
 augroup END
