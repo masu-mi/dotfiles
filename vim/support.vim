@@ -51,8 +51,19 @@ if has('autocmd')
 "  autocmd BufWritePre * :%s/\t/  /ge
 endif
 
+" ## matchit.vim 利用
+source ${VIMRUNTIME}/macros/matchit.vim
+
 "### ヘルプ
 " Ctrl-iでヘルプ
 nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_python_checkers=['pyflakes', 'pep8']
+
+nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
+cabbrev <silent> bd lclose\|bdelete

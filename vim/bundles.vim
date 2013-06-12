@@ -29,6 +29,10 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'tpope/vim-pathogen'
+execute pathogen#infect()
 
 " www.vim.orgにあるplugin
 NeoBundle 'YankRing.vim'
@@ -36,6 +40,7 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'bufexplorer.zip'
 NeoBundle 'errormarker.vim'
 NeoBundle 'ShowMarks7'
+NeoBundle 'project.tar.gz'
 
 " color scheme
 NeoBundle 'tomasr/molokai'
