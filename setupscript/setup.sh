@@ -1,33 +1,57 @@
 #!/usr/bin/env bash
 
-# 作業ディレクトリ変更
-localdir=$HOME/local
+#####################################
+# 個人の開発環境を構築するスクリプト
+#
+# *前提*
+# - git
+# - Ubuntu|Cent|OSX
+#
+# *インストールする対象*
+# 言語環境
+# python,Ruby,Gauche,Node
+# ツール
+# vim,git,tmux,ack,lv,iconv
+#
+#####################################
 
-if [ ! -d ${localdir} ]; then
-    mkdir ${localdir}
-    if [ ! -d ${localdir}/bin ]; then
-        mkdir ${localdir}/bin
-    fi
-    if [ ! -d ${localdir}/lib ]; then
-        mkdir ${localdir}/lib
-    fi
-fi
-
-install-make(){
-  apt-get install make
-}
-
-
-tmpdir=$(mktemp -t -d temp.XXXXXX)
-cd $tmpdir;
-
-vim_ver=7.3
-
+## debug用
 info-state() {
   echo `date`"[INFO] current dir:"`pwd`
 }
 
-# http://www.vim.org/
+
+# 個人ツールinstall先の準備
+setup-local-dir(){
+  localdir=$HOME/local
+  if [ ! -d ${localdir} ]; then
+    mkdir ${localdir}
+    if [ ! -d ${localdir}/bin ]; then
+      mkdir ${localdir}/bin
+    fi
+    if [ ! -d ${localdir}/lib ]; then
+      mkdir ${localdir}/lib
+    fi
+  fi
+}
+
+
+### ビルドの基本ツール
+install-dev(){
+## Ubuntu
+  sudo aptitude -y update
+  sudo aptitude -y upgrade
+  sudo aptitude -y install build-essential
+}
+
+### makeする場所の確保
+init-workspace(){
+  tmpdir=$(mktemp -t -d ${HOME}/Setup.XXXXXX)
+  cd $tmpdir
+}
+
+vim_ver=7.3
+
 install-vim() {
   info-state
   wget ftp://ftp.vim.org/pub/vim/unix/vim-${vim_ver}.tar.bz2
@@ -35,23 +59,21 @@ install-vim() {
   cd `ls -1 -d vim* |grep -v tar`
   info-state
   ./configure --prefix=$localdir \
-              --enable-multibyte \
-              --enable-fontset \
-              --enable-ctags \
-              --enable-pythoninterp \
-              --with-python-config-dir=/usr/lib/python2.7/config \
-              --enable-rubyinterp \
-  && make && make install
+    --enable-multibyte \
+    --enable-fontset \
+    --enable-ctags \
+    --enable-pythoninterp \
+    --with-python-config-dir=/usr/lib/python2.7/config \
+    --enable-rubyinterp \
+    && make && make install
 }
 
 # http://beyondgrep.com/
 install-ack() {
-  info-state
-  # CPAN 前提
+# CPAN 前提
   sudo cpan App::Ack
-  # 1file版でOKなら以下
+# 1file版でOKなら以下
   # curl http://beyondgrep.com/ack-2.04-single-file > ${localdir}/bin/ack && chmod 0755 !#:3
-  info-state
 }
 
 # http://www.ff.iij4u.or.jp/~nrt/lv/#install
@@ -71,6 +93,7 @@ install-git() {
 
 # http://mxcl.github.io/homebrew/
 install_homebrew() {
+  # OSX専用
   ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 }
 
@@ -98,15 +121,6 @@ install-tmux() {
 install-screen() {
   info-state
 }
-
-
-full_install(){
-  install-vim
-  install-lv
-  install-rlwrap
-}
-
-
 
 setup_dotfiles() {
   if [ `grep dotfiles $HOME/.bashrc > wc -l` -eq 0 ]; then
@@ -142,4 +156,10 @@ setup_dotfiles() {
 }
 
 setup_dotfiles
-full_install
+
+init-workspace
+install-dev
+install-vim
+install-ack
+install-lv
+install-rlwrap
