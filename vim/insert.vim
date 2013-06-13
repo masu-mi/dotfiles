@@ -28,7 +28,7 @@ set cindent
 set smartindent
 
 "### タブ関連
-set tabstop=4 shiftwidth=4 softtabstop=0
+set tabstop=2 shiftwidth=2 softtabstop=0
 set expandtab
 
 "### ファイルタイプ毎
