@@ -63,6 +63,7 @@ alias sudo='sudo -p "sudo"'
 
 # PHP開発を楽にしたいから
 alias lphp='php -d open_basedir=`pwd`'
+alias fphp='php -d open_basedir=/'
 
 alias java='java -Dfile.encoding=utf-8'
 alias javac='javac -J-Dfile.encoding=utf-8'

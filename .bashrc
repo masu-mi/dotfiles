@@ -12,10 +12,18 @@ export LC_ALL='C'
 export LC_CTYPE='C'
 export LC_MESSAGES='jp_JP.UTF-8'
 
-export PATH="/usr/local/bin:${PATH}"
-export PATH="/usr/share/colorgcc:${PATH}"
-export PATH="${HOME}/.cabal/bin:${PATH}"
-export PATH="${HOME}/bin:${PATH}"
+
+function add_path {
+    if test -d $1 && test `echo ${PATH} | grep -v $1` ; then
+      export PATH="$1:${PATH}"
+    fi
+}
+
+add_path "/usr/local/bin"
+add_path "/usr/local/sbin"
+add_path "/usr/share/colorgcc"
+add_path "${HOME}/.cabal/bin"
+add_path "${HOME}/bin"
 
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 ## サブパス
@@ -86,13 +94,12 @@ export PIP_RESPECT_VIRTUALENV=true
 
 
 # for ruby
-export PATH="/usr/local//Cellar/ruby/2.0.0-p0/bin:$HOME/.rbenv/bin:$PATH"
+add_path "/usr/local/Cellar/ruby/2.0.0-p0/bin"
+add_path "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 # for Node
 ## nodebrew
-if [ -f ~/.nodebrew/nodebrew ]; then
-    export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
-fi
+add_path "$HOME/.nodebrew/current/bin"
 # for PHP
 # for Gauche
 # for Haskell
