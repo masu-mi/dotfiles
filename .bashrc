@@ -19,6 +19,7 @@ function add_path {
     fi
 }
 
+add_path "/Users/masumi/pear/bin"
 add_path "/usr/local/bin"
 add_path "/usr/local/sbin"
 add_path "/usr/share/colorgcc"
