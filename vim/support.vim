@@ -1,7 +1,3 @@
-"### シフトを押したくない事がある
-"noremap ; :
-"noremap : ;
-
 " ウィンドウ移動
 nnoremap <C-j> :<C-w>j
 nnoremap <C-k> :<C-w>k
@@ -67,3 +63,21 @@ let g:syntastic_python_checkers=['pyflakes', 'pep8']
 
 nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd lclose\|bdelete
+
+"for gnu global
+nnoremap <Space>gd :Gtags<Space>
+nnoremap <Space>gr :Gtags -r
+nnoremap <Space>gf :Gtags -f
+nnoremap <Space>gg :Gtags -g
+nnoremap <Space>gc :GtagsCursor<Enter>
+nnoremap <Space>gu :GtagsUpdate<Enter>
+
+"for Quickfix
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
+
+nnoremap <Space>vs :VimShell<Enter>
+nnoremap <Space>vf :VimFilerExplorer<Enter>
+
+" for file
+nnoremap <Space>of :vs<Space>

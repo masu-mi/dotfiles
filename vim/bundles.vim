@@ -10,7 +10,14 @@ endif
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 
 " githubにあるplugin
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -41,6 +48,7 @@ NeoBundle 'bufexplorer.zip'
 NeoBundle 'errormarker.vim'
 NeoBundle 'ShowMarks7'
 NeoBundle 'project.tar.gz'
+NeoBundle 'xml.vim'
 
 " color scheme
 NeoBundle 'tomasr/molokai'
