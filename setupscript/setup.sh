@@ -91,12 +91,6 @@ install-git() {
   info-state
 }
 
-# http://mxcl.github.io/homebrew/
-install_homebrew() {
-  # OSX専用
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-}
-
 # http://utopia.knoware.nl/~hlub/rlwrap/#rlwrap
 install-rlwrap() {
   info-state
@@ -107,12 +101,6 @@ install-rlwrap() {
   ./configure --prefix=$localdir && make && make install
 }
 
-install-gtags() {
-  info-state
-  #mkdir .vim/plugin
-  ## install plugin of gnu global
-  #find /usr/local/ -name *gtags.vim |xargs -I{} ln -s {} /Users/masumi/dotfiles/.vim/plugin/gtags.vim
-}
 
 install-tmux() {
   info-state
