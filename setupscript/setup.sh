@@ -76,43 +76,11 @@ install-ack() {
   # curl http://beyondgrep.com/ack-2.04-single-file > ${localdir}/bin/ack && chmod 0755 !#:3
 }
 
-# http://www.ff.iij4u.or.jp/~nrt/lv/#install
-install-lv() {
-  info-state
-  wget http://www.ff.iij4u.or.jp/~nrt/freeware/lv451.tar.gz
-  tar xvzf lv451.tar.gz
-  cd `ls -1 -d lv* |grep -v tar`
-  info-state
-  ./src/configure --prefin=$localdir && make && make install
-}
-
 # http://git-scm.com/
 install-git() {
   info-state
 }
 
-# http://mxcl.github.io/homebrew/
-install_homebrew() {
-  # OSX専用
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-}
-
-# http://utopia.knoware.nl/~hlub/rlwrap/#rlwrap
-install-rlwrap() {
-  info-state
-  wget http://utopia.knoware.nl/~hlub/rlwrap/rlwrap-0.37.tar.gz
-  tar xvzf rlwrap-0.37.tar.gz
-  cd `ls -1 -d rlwrap* |grep -v tar`
-  info-state
-  ./configure --prefix=$localdir && make && make install
-}
-
-install-gtags() {
-  info-state
-  #mkdir .vim/plugin
-  ## install plugin of gnu global
-  #find /usr/local/ -name *gtags.vim |xargs -I{} ln -s {} /Users/masumi/dotfiles/.vim/plugin/gtags.vim
-}
 
 install-tmux() {
   info-state
@@ -161,5 +129,3 @@ init-workspace
 install-dev
 install-vim
 install-ack
-install-lv
-install-rlwrap

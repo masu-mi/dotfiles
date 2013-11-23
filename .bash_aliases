@@ -73,3 +73,5 @@ alias jdb='jdb -J-Dfile.encoding=utf-8'
 function stvim {
     vim $(which $1)
 }
+
+alias pdots='pushd ~/dotfiles'
