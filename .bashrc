@@ -100,8 +100,10 @@ add_path "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 # for Node
 ## nodebrew
-add_path "$HOME/.nodebrew/current/bin"
+add_path "${HOME}/.nodebrew/current/bin"
 # for PHP
+add_path "${HOME}/.phpenv/bin"
+eval "$(phpenv init -)"
 # for Gauche
 # for Haskell
 # for Scala
