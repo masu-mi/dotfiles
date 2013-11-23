@@ -1,5 +1,8 @@
 bind C-l:clear-screen
 
+# 2回/etc/profile読み込むのを避ける
+[ -f /etc/profile ] && PATH="" && source /etc/profile
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -95,6 +98,7 @@ export PIP_RESPECT_VIRTUALENV=true
 add_path "/usr/local/Cellar/ruby/2.0.0-p0/bin"
 add_path "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # for Node
 ## nodebrew
 add_path "${HOME}/.nodebrew/current/bin"
@@ -106,4 +110,3 @@ eval "$(phpenv init -)"
 # for Scala
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
