@@ -28,6 +28,8 @@ alias yesterday='date -d1day+ago'
 alias g++='g++ -Wall'
 alias gcc='gcc -Wall'
 
+alias g='git'
+
 # 文字コード変換
 alias euc2sjis='iconv -f euc-jp -t sjis'
 alias euc2utf='iconv -f euc-jp -t utf-8'
@@ -56,8 +58,8 @@ alias lla='ls -law'
 
 alias sc='screen -U -D -RR'
 
-export SSH_AUTH_SOCK=${HOME}/.ssh/auth.sock
-alias sa='eval $(ssh-agent -a ${SSH_AUTH_SOCK}) && ssh-add'
+#export SSH_AUTH_SOCK=${HOME}/.ssh/auth.sock
+#alias sa='eval $(ssh-agent -a ${SSH_AUTH_SOCK}) && ssh-add'
 
 alias sudo='sudo -p "sudo"'
 
