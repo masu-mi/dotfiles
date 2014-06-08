@@ -12,6 +12,15 @@ export LC_ALL='C'
 export LC_CTYPE='C'
 export LC_MESSAGES='jp_JP.UTF-8'
 
+# boot2docker
+export DOCKER_HOST=tcp://localhost:4243
+
+# brew の補完を有効にする
+for bash_completion_file in $(ls $(brew --prefix)/etc/bash_completion.d/*); do
+  if [ -f $bash_completion_file -a $bash_completion_file != "R" ]; then
+    . $bash_completion_file
+  fi
+done
 
 function add_path {
     if test -d $1 && test `echo ${PATH} | grep -v $1` ; then
