@@ -30,6 +30,8 @@ alias gcc='gcc -Wall'
 
 alias g='git'
 
+alias lsdrafts='head -n 1 `ls drafts/*.rst`'
+
 # 文字コード変換
 alias euc2sjis='iconv -f euc-jp -t sjis'
 alias euc2utf='iconv -f euc-jp -t utf-8'
