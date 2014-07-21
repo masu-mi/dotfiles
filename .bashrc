@@ -39,6 +39,7 @@ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 ## サブパス
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
+export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
@@ -104,7 +105,6 @@ export PIP_RESPECT_VIRTUALENV=true
 
 
 # for ruby
-add_path "/usr/local/Cellar/ruby/2.0.0-p0/bin"
 add_path "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
