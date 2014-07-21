@@ -27,8 +27,8 @@ function add_path {
       export PATH="$1:${PATH}"
     fi
 }
-
-add_path "/Users/masumi/pear/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+add_path "${HOME}/pear/bin"
 add_path "/usr/local/bin"
 add_path "/usr/local/sbin"
 add_path "/usr/share/colorgcc"
