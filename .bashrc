@@ -29,7 +29,7 @@ add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
 
 # for different option
-. ~/dotfiles/.bashrc.$(os_type)
+. ~/dotfiles/.bashrc.$(uname)
 
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"

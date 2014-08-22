@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # for different option
-. ~/dotfiles/.bash_aliases.$(os_type)
+. ~/dotfiles/.bash_aliases.$(uname)
 
 alias svim='sudo vim -u .vimrc'
 
