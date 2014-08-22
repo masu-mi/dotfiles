@@ -34,23 +34,6 @@ set expandtab
 "### ファイルタイプ毎
 if has("autocmd")
 
-" これらのftではインデントを無効に
-"    autocmd FileType html :set indentexpr=
-"    autocmd FileType xhtml :set indentexpr=
-
-    "python設定
-    autocmd FileType python setl autoindent
-    autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-    autocmd FileType python setl tabstop=2 shiftwidth=2 softtabstop=0
-
-    "scheme設定
-    autocmd FileType scheme :map <C-e> <ESC>:!gosh %<CR>
-
-    "php
-    autocmd FileType php filetype indent off
-    autocmd FileType php :map <C-e> <ESC>:!php %<CR>
-    autocmd FileType php :map <C-n> <ESC>:!php -l %<CR>
-
     "Coffee設定
     autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 endif

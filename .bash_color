@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+export ESC="$(echo -en '\033')"
+
+export COLOR_RED="${ESC}[31m"
+export COLOR_GREEN="${ESC}[32m"
+export COLOR_YELLOW="${ESC}[33m"
+export COLOR_BLUE="${ESC}[34m"
+export COLOR_CYAN="${ESC}[35m"
+export COLOR_MAGENTA="${ESC}[36m"
+export COLOR_WHITE="${ESC}[37m"
+
+export COLOR_HEIGHLIGHT_RED="${ESC}[31;1m"
+export COLOR_HEIGHLIGHT_GREEN="${ESC}[32;1m"
+export COLOR_HEIGHLIGHT_YELLOw="${ESC}[33;1m"
+export COLOR_HEIGHLIGHT_BLUE="${ESC}[34;1m"
+export COLOR_HEIGHLIGHT_CYAN="${ESC}[35;1m"
+export COLOR_HEIGHLIGHT_MAGENta="${ESC}[36;1m"
+export COLOR_HEIGHLIGHT_WHITE="${ESC}[37;1m"
+export COLOR_DEFAULT="${ESC}[m"
