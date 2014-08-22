@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+function add_path {
+    if test -d $1 && test `echo ${PATH} | /usr/bin/grep -v $1` ; then
+      export PATH="$1:${PATH}"
+    fi
+}
+function os_type {
+    uname -a | awk '{print $1}'
+}

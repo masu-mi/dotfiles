@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# for different option
+. ~/dotfiles/.bash_aliases.$(os_type)
+
 alias svim='sudo vim -u .vimrc'
 
 alias cd-='cd -'
@@ -15,14 +19,10 @@ alias sc='screen'
 alias bc='bc -p'
 
 alias md='mkdir'
-
-
-alias tmux='tmux -2u'
+alias ftmux='tmux -2u'
 
 # カレンダー系コマンド
 alias cal='cal -m3'
-alias tomorrow='date -d1day'
-alias yesterday='date -d1day+ago'
 
 # 開発系
 alias g++='g++ -Wall'
@@ -52,16 +52,9 @@ alias vialiases='vim ~/.bash_aliases'
 alias f='pushd'
 alias b='popd'
 
-# wオプションはosxでの文字化けに関して
-alias ls='ls -w'
-alias ll='ls -lw'
-alias la='ls -aw'
-alias lla='ls -law'
+alias lv='lv -c'
 
 alias sc='screen -U -D -RR'
-
-#export SSH_AUTH_SOCK=${HOME}/.ssh/auth.sock
-#alias sa='eval $(ssh-agent -a ${SSH_AUTH_SOCK}) && ssh-add'
 
 alias sudo='sudo -p "sudo"'
 

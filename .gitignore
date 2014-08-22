@@ -1,2 +1,3 @@
 *.pyc
 .vim/plugin/*.vim
+*.swp

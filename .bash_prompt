@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+. $HOME/dotfiles/.bash_color
+
+export CH_COLOR_RED="\[${ESC}[31m\]"
+export CH_COLOR_GREEN="\[${ESC}[32m\]"
+export CH_COLOR_YELLOW="\[${ESC}[33m\]"
+export CH_COLOR_BLUE="\[${ESC}[34m\]"
+export CH_COLOR_CYAN="\[${ESC}[35m\]"
+export CH_COLOR_MAGENTA="\[${ESC}[36m\]"
+export CH_COLOR_WHITE="\[${ESC}[37m\]"
+
+export CH_COLOR_HEIGHLIGHT_RED="\[${ESC}[31;1m\]"
+export CH_COLOR_HEIGHLIGHT_GREEN="\[${ESC}[32;1m\]"
+export CH_COLOR_HEIGHLIGHT_YELLOw="\[${ESC}[33;1m\]"
+export CH_COLOR_HEIGHLIGHT_BLUE="\[${ESC}[34;1m\]"
+export CH_COLOR_HEIGHLIGHT_CYAN="\[${ESC}[35;1m\]"
+export CH_COLOR_HEIGHLIGHT_MAGENta="\[${ESC}[36;1m\]"
+export CH_COLOR_HEIGHLIGHT_WHITE="\[${ESC}[37;1m\]"
+export CH_COLOR_DEFAULT="\[${ESC}[m\]"
+
+PS_USER="${CH_COLOR_YELLOW}\u${CH_COLOR_DEFAULT}"
+PS_HOST="${CH_COLOR_GREEN}\h${CH_COLOR_DEFAULT}"
+PS_WORK="${CH_COLOR_HEIGHLIGHT_WHITE}\W${CH_COLOR_DEFAULT}"
+PS_SCREEN=""
+PS_TMUX=""
+PS_SSH=""
+
+if [ -n "${WINDOW}" ] ; then
+    PS_SCREEN="(${CH_COLOR_CYAN}${WINDOW}${CH_COLOR_DEFAULT})"
+fi
+if [ -n "${TMUX_PANE}" ] ; then
+    PS_TMUX="(${CH_COLOR_CYAN}${TMUX_PANE}${CH_COLOR_DEFAULT})"
+fi
+if [ -n "${SSH_CLIENT}" ] ; then
+    PS_SSH="(${CH_COLOR_MAGENTA}`echo ${SSH_CLIENT} | sed 's/ [0-9]\+ [0-9]\+$//g'`\[\e[0m\])"
+fi
+export PS1="[${PS_USER}${PS_SCREEN}${PS_TMUX}@${PS_HOST}${PS_SSH} $PS_WORK]\$ "
