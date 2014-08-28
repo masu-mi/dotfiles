@@ -20,6 +20,10 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'hewes/unite-gtags'
+NeoBundle 'taka84u9/unite-git'
+NeoBundle 'osyo-manga/unite-filetype'
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'

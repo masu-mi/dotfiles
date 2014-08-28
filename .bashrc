@@ -57,6 +57,7 @@ export CVS_RSH=ssh
 
 export HISTSIZE=2000
 
+
 # for python
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source $(which virtualenvwrapper.sh)
@@ -65,18 +66,13 @@ WORKON_HOME=${HOME}/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
 
 
-# for ruby
+# for Ruby, PHP
+add_path "${HOME}/.phpenv/bin"
 add_path "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
-# for Node
-## nodebrew
-add_path "${HOME}/.nodebrew/current/bin"
-# for PHP
-add_path "${HOME}/.phpenv/bin"
 eval "$(phpenv init -)"
-# for Gauche
-# for Haskell
-# for Scala
+# for Node.js
+add_path "${HOME}/.nodebrew/current/bin"
 
 ### Added by the Heroku Toolbelt
 add_path "/usr/local/heroku/bin"
