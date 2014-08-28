@@ -102,6 +102,12 @@ nnoremap sp gT
 nnoremap sT :Unite tab<CR>
 nnoremap sb :Unite buffer_tab
 nnoremap sB :Unite buffer
+nnoremap <Space>le :Unite git_modified<CR>
+nnoremap <Space>lu :Unite git_untracked<CR>
+nnoremap <Space>lc :Unite git_cached<CR>
+nnoremap <Space>ld :Unite gtags/def<CR>
+
+nnoremap <Space>cf :Unite filetype<CR>
 
 nnoremap sq :q
 nnoremap sQ :bd
