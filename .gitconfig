@@ -23,3 +23,5 @@
 	trustExitCode = true
 [merge]
 	ff = false
+[push]
+	default = simple
