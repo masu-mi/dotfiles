@@ -20,6 +20,8 @@ export LANG='ja_JP.UTF-8'
 # export LC_CTYPE='C'
 # export LC_MESSAGES='jp_JP.UTF-8'
 
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/go
 
 add_path "/opt/X11/bin"
 add_path "${HOME}/pear/bin"
@@ -29,6 +31,8 @@ add_path "/usr/share/colorgcc"
 add_path "${HOME}/.cabal/bin"
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
+add_path "$GOROOT/bin"
+add_path "$GOPATH/bin"
 
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
