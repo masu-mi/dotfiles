@@ -127,3 +127,13 @@ nnoremap <Space>vf :VimFilerExplorer<Enter>
 
 " for file
 nnoremap <Space>of :vs<Space>
+
+" for go
+" todo
+filetype off
+filetype plugin indent off
+set rtp+=$GOROOT/misc/vim
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+filetype plugin indent on
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
