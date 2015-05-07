@@ -1,20 +1,24 @@
-私の設定ファイルたち
-=================
+dotfiles
+==========
+
+Configuration files for editors and other UNIX tools.
 
 ## Install
-- git
-- mercurial
-- iconv
-- make
-- vim
-    - Neobundle
-- gnu global
-- tmux
-- lv
-- ack
-- rlwrap
-- virtualenv
-- virtualenvwrapper
-- pip
-    - pep8
-    - pyflakes
+
+Two ways exits for using this repository.
+
+### First way
+
+Run this:
+```
+$ git clone git@github.com:masu-mi/dotfiles.git ~/dotfiles
+$ cd ~/dotfiles/setupscript
+$ ./setup.sh
+```
+
+### Second way
+
+Run this:
+```
+sh -c $(curl -fsSL https://raw.githubusercontent.com/masu-mi/dotfiles/master/setupscript/setup.sh)
+```
