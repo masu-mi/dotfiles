@@ -20,5 +20,5 @@ $ ./setup.sh
 
 Run this:
 ```
-sh -c $(curl -fsSL https://raw.githubusercontent.com/masu-mi/dotfiles/master/setupscript/setup.sh)
+$ sh -c $(curl -fsSL https://raw.githubusercontent.com/masu-mi/dotfiles/master/setupscript/setup.sh)
 ```
