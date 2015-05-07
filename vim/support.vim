@@ -31,6 +31,9 @@ set wrapscan
 "### Escの2回押しで検索ハイライト消去
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
+noremap <Space>p :set paste<CR>
+noremap <Space>n :set nopaste<CR>
+
 "### 履歴
 set history=1000           " コマンド・検索パターンの履歴数
 
@@ -40,12 +43,12 @@ set encoding=utf-8
 set fileformats=unix,dos,mac
 
 "## 自動修正
-if has('autocmd')
-  " 保存時に行末の空白を除去する
-  autocmd BufWritePre * :%s/\s\+$//ge
-  " 保存時にtabをスペースに変換する
-"  autocmd BufWritePre * :%s/\t/  /ge
-endif
+"if has('autocmd')
+"  " 保存時に行末の空白を除去する
+""  autocmd BufWritePre * :%s/\s\+$//ge
+"  " 保存時にtabをスペースに変換する
+""  autocmd BufWritePre * :%s/\t/  /ge
+"endif
 
 " ## matchit.vim 利用
 source ${VIMRUNTIME}/macros/matchit.vim
@@ -137,3 +140,5 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 filetype plugin indent on
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+
+autocmd QuickFixCmdPost *grep* cwindow

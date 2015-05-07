@@ -33,6 +33,7 @@ add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
 add_path "$GOROOT/bin"
 add_path "$GOPATH/bin"
+add_path "/Applications/Mozart2.app/Contents/Resources/bin"
 
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
@@ -43,8 +44,8 @@ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib:/usr/lib"
+#export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
 
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
@@ -73,10 +74,11 @@ export PIP_RESPECT_VIRTUALENV=true
 # for Ruby, PHP
 add_path "${HOME}/.phpenv/bin"
 add_path "$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-eval "$(phpenv init -)"
-# for Node.js
-add_path "${HOME}/.nodebrew/current/bin"
+add_path "$HOME/.plenv/bin"
+if which rbenv > /dev/null;then eval "$(rbenv init -)"; fi
+if which phpenv > /dev/null;then eval "$(phpenv init -)"; fi
+if which plenv > /dev/null;then eval "$(plenv init -)"; fi
+if which nodebrew > /dev/null;then add_path "${HOME}/.nodebrew/current/bin"; fi
 
 ### Added by the Heroku Toolbelt
 add_path "/usr/local/heroku/bin"
