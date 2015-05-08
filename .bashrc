@@ -22,8 +22,7 @@ export LANG='C'
 # export LC_CTYPE='C'
 # export LC_MESSAGES='jp_JP.UTF-8'
 
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/go
+export GOPATH=${HOME}/go
 
 add_path "/opt/X11/bin"
 add_path "${HOME}/pear/bin"
