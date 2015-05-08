@@ -12,6 +12,7 @@
       - ansible
       - curl
       - cmake
+      - ctags
       - make
       - gist
       - git

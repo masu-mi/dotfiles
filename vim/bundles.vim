@@ -20,9 +20,12 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neossh'
 NeoBundle 'hewes/unite-gtags'
 NeoBundle 'taka84u9/unite-git'
 NeoBundle 'osyo-manga/unite-filetype'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'jceb/vim-orgmode'
 
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
@@ -42,6 +45,7 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'
+NeoBundle 'fatih/vim-go'
 
 NeoBundle 'tpope/vim-pathogen'
 execute pathogen#infect()

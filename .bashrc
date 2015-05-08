@@ -15,7 +15,9 @@ if [ -f ~/dotfiles/.bash_aliases ]; then
     . ~/dotfiles/.bash_aliases
 fi
 
-export LANG='ja_JP.UTF-8'
+# export LANG='ja_JP.UTF-8'
+export LANG='C'
+
 # export LC_ALL='C'
 # export LC_CTYPE='C'
 # export LC_MESSAGES='jp_JP.UTF-8'
@@ -32,8 +34,10 @@ add_path "${HOME}/.cabal/bin"
 add_path "${HOME}/.local/bin"
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
-add_path "$GOROOT/bin"
-add_path "$GOPATH/bin"
+add_path "${HOME}/.cabal/bin"
+add_path "${GOPATH}/src/go/bin"
+add_path "${GOROOT}/bin"
+add_path "${GOPATH}/bin"
 
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
@@ -69,12 +73,14 @@ source $(which virtualenvwrapper.sh)
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
 
-
 # for Ruby, PHP
 add_path "${HOME}/.phpenv/bin"
+if which phpenv > /dev/null; then eval "$(phpenv init -)"; fi
 add_path "$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-eval "$(phpenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+
 # for Node.js
 add_path "${HOME}/.nodebrew/current/bin"
 

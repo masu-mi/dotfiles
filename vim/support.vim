@@ -1,3 +1,5 @@
+let mapleader = ","
+
 " ウィンドウ移動
 nnoremap <C-j> :<C-w>j
 nnoremap <C-k> :<C-w>k
@@ -98,6 +100,8 @@ nnoremap s= <C-w>=
 nnoremap st :tabnew<CR>
 nnoremap sn gt
 nnoremap sp gT
+
+nnoremap <F8> :Tagbar<CR>
 
 nnoremap sT :Unite tab<CR>
 nnoremap sb :Unite buffer_tab
