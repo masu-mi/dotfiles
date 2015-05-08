@@ -66,6 +66,7 @@
       - google-drive
       # - evernote
       # - skitch
+    goroot: /usr/local/go
   tasks:
     - name: 基本的なdirを作る
       file: path={{ item }} state=directory
@@ -128,11 +129,14 @@
         creates: ~/.local/venvs/{{ item }}
       with_items: [ vim-vint ]
     - name: Go言語のインストール準備
-      git: repo=https://go.googlesource.com/go dest=~/go version=go1.4.1
+      git: repo=https://go.googlesource.com/go dest={{ goroot }} version=go1.4.1
     - name: Go言語のインストールを実施
       shell: ./all.bash
       args:
-        chdir: ~/go/src
-        creates: ~/go/bin/go
+        chdir: '{{ goroot }}/src'
+        creates: '{{ goroot }}/bin/go'
+    - name: Goツール類のインストール
+      shell: {{ goroot }}/bin/go get -u {{ item }}
+      with_items: [ github.com/dinedal/textql ]
     - name: OSXのFinderの設定を変更する
       shell: defaults write com.apple.finder AppleShowAllFiles TRUE
