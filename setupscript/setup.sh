@@ -7,10 +7,12 @@ fi
 setup_darwin() {
   # install homebrew
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  . ~/dotfiles/.bash_lib
+  add_path "/usr/local/bin"
   # install ansible
   brew install ansible
   # do ansible
-  ansible-playbook -i ./macbook.hosts -vv ./setup-mac.yml
+  ansible-playbook -i ./setup.hosts -vv ./setup-mac.yml
   # setup vim
   vim -s ./setup.vim
   ./mk-virtualenv.sh

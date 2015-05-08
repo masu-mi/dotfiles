@@ -66,8 +66,7 @@ export HISTSIZE=2000
 # for python
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source $(which virtualenvwrapper.sh)
-WORKON_HOME=${HOME}/.virtualenvs
-#パッケージをvirtualenv環境下にインストール
+export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
 
 
