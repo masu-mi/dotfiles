@@ -6,6 +6,7 @@
     homebrew_taps:
       - homebrew/binary
       - homebrew/dupes
+      - homebrew/science
       - {name: caskroom/homebrew-versions, state: absent}
       - caskroom/cask
     homebrew_packages:
@@ -24,6 +25,7 @@
       - {name: openssl, state: linked, install_options: force }
       - peco
       - pssh
+      - r
       - readline
       - rlwrap
       - screen
@@ -49,6 +51,7 @@
       - iterm2
       - xquartz
       - wireshark
+      - rstudio
 
       - atom
       - sublime-text
