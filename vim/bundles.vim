@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 filetype off
 " Vundle利用に関する初期設定
 if has('vim_starting')

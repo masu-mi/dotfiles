@@ -9,6 +9,7 @@
       - {name: caskroom/homebrew-versions, state: absent}
       - caskroom/cask
     homebrew_packages:
+      - ag
       - ansible
       - curl
       - cmake

@@ -1,4 +1,6 @@
-let mapleader = ","
+scriptencoding utf-8
+
+let mapleader = ','
 
 " ウィンドウ移動
 nnoremap <C-j> :<C-w>j
@@ -36,17 +38,14 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 "### 履歴
 set history=1000           " コマンド・検索パターンの履歴数
 
-"#### 文字コード自動判別
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,sjis,cp932,euc-jp,cp20932
-set encoding=utf-8
-set fileformats=unix,dos,mac
-
 "## 自動修正
+" todo 素朴なので修正する
 if has('autocmd')
-  " 保存時に行末の空白を除去する
-  autocmd BufWritePre * :%s/\s\+$//ge
-  " 保存時にtabをスペースに変換する
-"  autocmd BufWritePre * :%s/\t/  /ge
+  augroup vimrc
+    autocmd!
+    " 保存時に行末の空白を除去する
+    autocmd BufWritePre * :%s/\s\+$//ge
+  augroup END
 endif
 
 " ## matchit.vim 利用
@@ -134,10 +133,10 @@ nnoremap <Space>of :vs<Space>
 
 " for go
 " todo
-filetype off
-filetype plugin indent off
-set rtp+=$GOROOT/misc/vim
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-filetype plugin indent on
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-set completeopt=menu,preview
+" filetype off
+" filetype plugin indent off
+" set rtp+=$GOROOT/misc/vim
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" filetype plugin indent on
+" exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+" set completeopt=menu,preview

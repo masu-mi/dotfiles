@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 "### 画面表示項目
 set number
 set nowrap
@@ -8,7 +10,7 @@ set showcmd
 set laststatus=2
 "set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8p
 
-let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let g:showmarks_include='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 set title
 
 "### 基本カラーリング関連
