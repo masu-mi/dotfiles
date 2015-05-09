@@ -18,6 +18,7 @@
       - make
       - gist
       - git
+      - hg
       - git-flow
       - libxml2
       - lv
@@ -43,6 +44,7 @@
     homebrew_cask_packages:
       # - alfred
       # - clamxav
+      - java
       - firefox-ja
       - google-chrome
       - google-hangouts
