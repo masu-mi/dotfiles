@@ -167,6 +167,13 @@
       shell: '{{ goroot }}/bin/go get -u {{ item }}'
       args:
         creates: ~/go/src/{{ item }}
-      with_items: [ github.com/dinedal/textql ]
+      with_items: [
+        code.google.com/p/go.tools/cmd/goimports,
+        golang.org/x/tools/cmd/gorename,
+        github.com/jstemmer/gotags,
+        github.com/golang/lint,
+
+        github.com/dinedal/textql,
+      ]
     - name: OSXのFinderの設定を変更する
       shell: defaults write com.apple.finder AppleShowAllFiles TRUE

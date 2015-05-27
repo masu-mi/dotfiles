@@ -164,3 +164,26 @@ nnoremap <Space>of :vs<Space>
 " filetype plugin indent on
 " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " set completeopt=menu,preview
+
+let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_CursorHold_enable = 1
+let g:quickrun_config = {
+      \   '_' : {
+      \       'runner' : 'vimproc',
+      \       'runner/vimproc/updatetime' : 20,
+      \   },
+      \   'go/watchdogs_checker' : {
+      \     'type' : 'watchdogs_checker/golint',
+      \   },
+      \   'watchdogs_checker/go_build' : {
+      \     'command' : 'go',
+      \     'exec' : '%c build %s:p',
+      \     'errorformat' : '%f:%l: %m,%-G%.%#',
+      \   },
+      \   'watchdogs_checker/golint' : {
+      \     'command' :     'golint',
+      \     'exec' :        '%c %o %s:p',
+      \     'errorformat' : '%f:%l:%c: %m,%-G%.%#',
+      \   },
+      \ }
+call watchdogs#setup(g:quickrun_config)

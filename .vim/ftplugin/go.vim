@@ -1,6 +1,6 @@
 let g:go_fmt_command = "goimports"
 
-s>au BufWritePre *.go :GoFmt
+au BufWritePre *.go :GoFmt
 
 
 " gotags {{{

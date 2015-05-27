@@ -31,6 +31,10 @@ NeoBundle 'jceb/vim-orgmode'
 
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle "osyo-manga/shabadou.vim"
+NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle "jceb/vim-hier"
+
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'tpope/vim-surround'
@@ -45,7 +49,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'
 NeoBundle 'fatih/vim-go'
 
