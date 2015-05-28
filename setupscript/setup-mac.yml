@@ -140,7 +140,7 @@
       shell: find $(brew info ghc | awk '/\/usr\/local\/Cellar/{print $1}') -name settings
       register: ghc_settings
     - name: Haskell開発環境構築用コンパイラ特定
-      shell : find $(brew info gcc | awk '/\/usr\/local\/Cellar/{print $1}') -name gcc* | grep gcc | head -n 1
+      shell : find $(brew info gcc | awk '/\/usr\/local\/Cellar/{print $1}' | grep '*') -name gcc* | grep gcc | head -n 1
       register: gcc_for_ghc
     - name: Haskell開発環境準備
       lineinfile:
