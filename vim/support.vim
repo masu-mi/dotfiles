@@ -131,14 +131,6 @@ nnoremap ]q :cnext<CR>        " 次へ
 nnoremap [Q :<C-u>cfirst<CR>  " 最初へ
 nnoremap ]Q :<C-u>clast<CR>   " 最後へ
 
-" syntastic 用
-nnoremap lo :Errors<CR>
-nnoremap lc :lclose<CR>
-nnoremap [l :lprevious<CR>    " 前へ
-nnoremap ]l :lnext<CR>        " 次へ
-nnoremap [L :<C-u>lfirst<CR>  " 最初へ
-nnoremap ]L :<C-u>llast<CR>   " 最後へ
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
