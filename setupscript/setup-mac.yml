@@ -25,6 +25,9 @@
       - cmake
       - {name: global, install_options: with-pygments}
       - libiconv
+      - gcc
+      - binutils
+      - gdb
 
       - ag
       - lv
@@ -46,9 +49,11 @@
       - cabal-install
       - lua
       - r
+      - xhyve
 
       - graphviz
       - plantuml
+      - sqlite
     homebrew_cask_packages:
       # - alfred
       # - clamxav
@@ -155,7 +160,7 @@
       shell: pipsi install {{ item }}
       args:
         creates: ~/.local/venvs/{{ item }}
-      with_items: [ vim-vint, seqdiag ]
+      with_items: [ vim-vint, seqdiag, blockdiag ]
     - name: Go言語のインストール準備
       git: repo=https://go.googlesource.com/go dest={{ goroot }} version=go1.4.1
     - name: Go言語のインストールを実施
@@ -171,7 +176,9 @@
         code.google.com/p/go.tools/cmd/goimports,
         golang.org/x/tools/cmd/gorename,
         github.com/jstemmer/gotags,
-        github.com/golang/lint,
+        github.com/golang/lint/golint,
+        code.google.com/p/rog-go/exp/cmd/godef,
+        github.com/spf13/hugo,
 
         github.com/dinedal/textql,
       ]

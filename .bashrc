@@ -39,6 +39,9 @@ add_path "${GOPATH}/src/go/bin"
 add_path "${GOROOT}/bin"
 add_path "${GOPATH}/bin"
 
+# for gae
+add_path "${HOME}/local/go_appengine"
+
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
 
@@ -49,7 +52,7 @@ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
+# export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
 
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"

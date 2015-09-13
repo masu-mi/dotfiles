@@ -1,5 +1,4 @@
-let g:go_fmt_command = "goimports"
-
+let g:go_fmt_command = 'goimports'
 au BufWritePre *.go :GoFmt
 
 

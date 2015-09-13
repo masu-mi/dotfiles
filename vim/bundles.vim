@@ -52,6 +52,7 @@ NeoBundle 'majutsushi/tagbar'
 " NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'dgryski/vim-godef'
 
 NeoBundle 'tpope/vim-pathogen'
 execute pathogen#infect()

@@ -146,6 +146,7 @@ nnoremap <Space>vf :VimFilerExplorer<Enter>
 
 " for file
 nnoremap <Space>of :vs<Space>
+nnoremap zz :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 
 " for go
 " todo
@@ -162,7 +163,7 @@ let g:watchdogs_check_CursorHold_enable = 1
 let g:quickrun_config = {
       \   '_' : {
       \       'runner' : 'vimproc',
-      \       'runner/vimproc/updatetime' : 20,
+      \       'runner/vimproc/updatetime' : 10,
       \   },
       \   'go/watchdogs_checker' : {
       \     'type' : 'watchdogs_checker/golint',
