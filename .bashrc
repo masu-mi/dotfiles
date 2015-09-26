@@ -72,17 +72,18 @@ export HISTSIZE=2000
 
 # for python
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-source $(which virtualenvwrapper.sh)
-export WORKON_HOME=${HOME}/.virtualenvs
-export PIP_RESPECT_VIRTUALENV=true
+if which virtualenvwrapper.sh >& /dev/null; then
+  source $(which virtualenvwrapper.sh)
+  export WORKON_HOME=${HOME}/.virtualenvs
+  export PIP_RESPECT_VIRTUALENV=true
+fi
 
 # for Ruby, PHP
 add_path "${HOME}/.phpenv/bin"
-if which phpenv > /dev/null; then eval "$(phpenv init -)"; fi
+if which phpenv >& /dev/null; then eval "$(phpenv init -)"; fi
 add_path "$HOME/.rbenv/bin"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+if which rbenv >& /dev/null; then eval "$(rbenv init -)"; fi
+if which plenv >& /dev/null; then eval "$(plenv init -)"; fi
 
 # for Node.js
 add_path "${HOME}/.nodebrew/current/bin"
