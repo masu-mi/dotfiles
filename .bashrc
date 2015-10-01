@@ -97,3 +97,7 @@ export DOCKER_HOST=tcp://localhost:4243
 if [ -f ~/.bash_tokens ]; then
   . ~/.bash_tokens
 fi
+for file in $(test -d ~/.bashrcs && find ~/.bashrcs -depth 1 -type f);
+do
+  . ${file}
+done
