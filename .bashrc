@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-bind C-l:clear-screen
-
 # 2回/etc/profile読み込むのを避ける
 [ -f /etc/profile ] && source /etc/profile
 if [ -f /etc/bashrc ]; then
