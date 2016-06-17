@@ -24,5 +24,6 @@
 	trustExitCode = true
 [merge]
 	ff = false
+	tool = vimdiff
 [push]
 	default = simple
