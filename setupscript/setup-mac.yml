@@ -53,37 +53,8 @@
 
       - graphviz
       - plantuml
+      - doxygen
       - sqlite
-    homebrew_cask_packages:
-      # - alfred
-      # - clamxav
-      - java
-      - firefox-ja
-      - google-chrome
-      - google-hangouts
-      - google-web-designer
-      - xtrafinder
-
-      - virtualbox
-      - vagrant
-      - iterm2
-      - xquartz
-      - wireshark
-      - rstudio
-
-      - atom
-      - sublime-text
-      - visual-studio-code
-      - lighttable
-      - kobito
-
-      - skype
-      # - limechat
-      - cyberduck
-      - dropbox
-      - google-drive
-      # - evernote
-      # - skitch
     goroot: /usr/local/go
   tasks:
     - name: 基本的なdirを作る

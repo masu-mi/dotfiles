@@ -22,7 +22,7 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neossh'
+NeoBundle 'Shougo/neossh.vim'
 NeoBundle 'hewes/unite-gtags'
 NeoBundle 'taka84u9/unite-git'
 NeoBundle 'osyo-manga/unite-filetype'

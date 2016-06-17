@@ -11,7 +11,8 @@
 	br = branch
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	mg = merge --no-ff
-	mgff = merge -ff
+	mgff = merge --ff
+	df = diff
 [core]
 	quotepath = false
 	excludesfile = /Users/masumi/.gitignore_global
