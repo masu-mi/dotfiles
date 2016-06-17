@@ -7,7 +7,7 @@ alias svim='sudo vim -u .vimrc'
 
 alias cd-='cd -'
 alias cdproj='cd ${HOME}/Documents/+project'
-alias cdwork='cd ${HOME}/work'
+alias cdwork='cd ${HOME}/works'
 alias cd..='cd ..'
 alias realcwd='cd -P .'
 
@@ -29,7 +29,7 @@ alias g++='g++ -Wall'
 alias gcc='gcc -Wall'
 
 alias g='git'
-
+alias ls='ls -G'
 alias lsdrafts='head -n 1 `ls drafts/*.rst`| awk '\''!/^$/{print $0}'\'
 
 # 文字コード変換
@@ -72,3 +72,5 @@ function stvim {
 }
 
 alias pdots='pushd ~/dotfiles'
+alias gohome="pushd $GOPATH/src/github.com/masu-mi"
+alias gobit="$GOPATH/src/bitbucket.org/masu_mi"

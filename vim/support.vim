@@ -1,3 +1,7 @@
+scriptencoding utf-8
+
+let mapleader = ','
+
 " ウィンドウ移動
 nnoremap <C-j> :<C-w>j
 nnoremap <C-k> :<C-w>k
@@ -36,11 +40,6 @@ noremap <Space>n :set nopaste<CR>
 
 "### 履歴
 set history=1000           " コマンド・検索パターンの履歴数
-
-"#### 文字コード自動判別
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,sjis,cp932,euc-jp,cp20932
-set encoding=utf-8
-set fileformats=unix,dos,mac
 
 "## 自動修正
 "if has('autocmd')
@@ -102,6 +101,8 @@ nnoremap st :tabnew<CR>
 nnoremap sn gt
 nnoremap sp gT
 
+nnoremap <F8> :Tagbar<CR>
+
 nnoremap sT :Unite tab<CR>
 nnoremap sb :Unite buffer_tab
 nnoremap sB :Unite buffer
@@ -125,20 +126,59 @@ call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 
+" Quickfix 用
+nnoremap [q :cprevious<CR>    " 前へ
+nnoremap ]q :cnext<CR>        " 次へ
+nnoremap [Q :<C-u>cfirst<CR>  " 最初へ
+nnoremap ]Q :<C-u>clast<CR>   " 最後へ
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 nnoremap <Space>vs :VimShell<Enter>
 nnoremap <Space>vf :VimFilerExplorer<Enter>
 
 " for file
 nnoremap <Space>of :vs<Space>
+nnoremap zz :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 
 " for go
 " todo
-filetype off
-filetype plugin indent off
-set rtp+=$GOROOT/misc/vim
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-filetype plugin indent on
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-set completeopt=menu,preview
+" filetype off
+" filetype plugin indent off
+" set rtp+=$GOROOT/misc/vim
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" filetype plugin indent on
+" exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+" set completeopt=menu,preview
 
+let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_CursorHold_enable = 1
+let g:quickrun_config = {
+      \   '_' : {
+      \       'runner' : 'vimproc',
+      \       'runner/vimproc/updatetime' : 10,
+      \   },
+      \   'go/watchdogs_checker' : {
+      \     'type' : 'watchdogs_checker/golint',
+      \   },
+      \   'watchdogs_checker/go_build' : {
+      \     'command' : 'go',
+      \     'exec' : '%c build %s:p',
+      \     'errorformat' : '%f:%l: %m,%-G%.%#',
+      \   },
+      \   'watchdogs_checker/golint' : {
+      \     'command' :     'golint',
+      \     'exec' :        '%c %o %s:p',
+      \     'errorformat' : '%f:%l:%c: %m,%-G%.%#',
+      \   },
+      \ }
+call watchdogs#setup(g:quickrun_config)
 autocmd QuickFixCmdPost *grep* cwindow

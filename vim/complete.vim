@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 "### 補完
 set wildmenu               " コマンド補完を強化
 set wildchar=<tab>         " コマンド補完を開始するキー
