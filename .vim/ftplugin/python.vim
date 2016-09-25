@@ -1,3 +1,5 @@
+let g:syntastic_python_checkers = ['flake8']
+
 setlocal textwidth=80
 setlocal smarttab
 setlocal expandtab

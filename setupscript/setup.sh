@@ -1,40 +1,41 @@
 #!/usr/bin/env bash
 
-#####################################
-# 個人の開発環境を構築するスクリプト
-#
-# *前提*
-# - git
-# - Ubuntu|Cent|OSX
-#
-# *インストールする対象*
-# 言語環境
-# python,Ruby,Gauche,Node
-# ツール
-# vim,git,tmux,ack,lv,iconv
-#
-#####################################
-
-## debug用
-info-state() {
-  echo `date`"[INFO] current dir:"`pwd`
+if [ `uname` != Darwin ] ; then
+  echo '[WARN] This script is for Darwin.'
+  exit
+fi
+setup_darwin() {
+  # install homebrew
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  . ~/dotfiles/.bash_lib
+  add_path "/usr/local/bin"
+  # install ansible
+  brew install ansible
+  # do ansible
+  ansible-playbook -i ./setup.hosts -vv ./setup-mac.yml
+  # setup vim
+  vim -s ./setup.vim
+  ./mk-virtualenv.sh
 }
-
-
-# 個人ツールinstall先の準備
-setup-local-dir(){
-  localdir=$HOME/local
-  if [ ! -d ${localdir} ]; then
-    mkdir ${localdir}
-    if [ ! -d ${localdir}/bin ]; then
-      mkdir ${localdir}/bin
-    fi
-    if [ ! -d ${localdir}/lib ]; then
-      mkdir ${localdir}/lib
-    fi
+pre_work() {
+  if [ ! -d ~/dotfiles ]; then
+    echo '[INFO] git clone git@github.com:masu-mi/dotfiles.git ~/dotfiles'
+    git clone git@github.com:masu-mi/dotfiles.git ~/dotfiles
+    git submodule update --init
   fi
+  if [ ! -d ~/dotfiles/setupscript ]; then
+    echo "[FATAL] Dir ~/dotfiles/setupscript don't exists."
+    exit 1
+  fi
+  echo '[INFO] cd ~/dotfiles/setupscript'
+  cd ~/dotfiles/setupscript
 }
-
+if [ `pwd` == /Users/masumi/dotfiles/setupscript ]; then
+  setup_darwin
+else
+  pre_work
+  setup_darwin
+fi
 
 ### ビルドの基本ツール
 install-dev(){
@@ -43,14 +44,6 @@ install-dev(){
   sudo aptitude -y upgrade
   sudo aptitude -y install build-essential
 }
-
-### makeする場所の確保
-init-workspace(){
-  tmpdir=$(mktemp -t -d ${HOME}/Setup.XXXXXX)
-  cd $tmpdir
-}
-
-vim_ver=7.3
 
 install-vim() {
   info-state
@@ -67,65 +60,3 @@ install-vim() {
     --enable-rubyinterp \
     && make && make install
 }
-
-# http://beyondgrep.com/
-install-ack() {
-# CPAN 前提
-  sudo cpan App::Ack
-# 1file版でOKなら以下
-  # curl http://beyondgrep.com/ack-2.04-single-file > ${localdir}/bin/ack && chmod 0755 !#:3
-}
-
-# http://git-scm.com/
-install-git() {
-  info-state
-}
-
-
-install-tmux() {
-  info-state
-}
-
-install-screen() {
-  info-state
-}
-
-setup_dotfiles() {
-  if [ `grep dotfiles $HOME/.bashrc > wc -l` -eq 0 ]; then
-    echo ". $HOME/dotfiles/.bashrc" >> $HOME/.bashrc
-  else
-    echo ".bashrc include $HOME/dotfiles/.bashrc"
-  fi
-  if [ `grep dotfiles $HOME/.bash_aliases > wc -l` -eq 0 ]; then
-    echo ". $HOME/dotfiles/.bash_aliases" >> $HOME/.bash_aliases
-  else
-    echo ".bash_aliases include $HOME/dotfiles/.bash_aliases"
-  fi
-  if [ ! -e $HOME/.tmux.conf ]; then
-    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
-  else
-    echo ".tmux.conf exists"
-  fi
-  if [ ! -e $HOME/.screenrc ]; then
-    ln -s $HOME/dotfiles/.screenrc $HOME/.screenrc
-  else
-    echo ".screenrc exists"
-  fi
-  if [ ! -e $HOME/.gitconfig ]; then
-    ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
-  else
-    echo ".gitconfig exists"
-  fi
-  if [ `grep dotfiles $HOME/.vimrc > wc -l` -eq 0 ]; then
-    echo "source $HOME/dotfiles/.vimrc" >> $HOME/.vimrc
-  else
-    echo ".vimrc include $HOME/dotfiles/.vimrc"
-  fi
-}
-
-setup_dotfiles
-
-init-workspace
-install-dev
-install-vim
-install-ack

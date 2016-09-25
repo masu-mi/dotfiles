@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 filetype off
 " Vundle利用に関する初期設定
 if has('vim_starting')
@@ -20,12 +22,20 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neossh.vim'
 NeoBundle 'hewes/unite-gtags'
 NeoBundle 'taka84u9/unite-git'
 NeoBundle 'osyo-manga/unite-filetype'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'jceb/vim-orgmode'
 
+NeoBundle 'dag/vim2hs'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle "osyo-manga/shabadou.vim"
+NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle "jceb/vim-hier"
+
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'tpope/vim-surround'
@@ -38,10 +48,15 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dag/vim2hs'
+NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'eagletmt/neco-ghc'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'dgryski/vim-godef'
 
 NeoBundle 'tpope/vim-pathogen'
 execute pathogen#infect()

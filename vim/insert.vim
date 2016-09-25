@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 "### キーマップ
 imap ( ()<LEFT>
 imap [ []<LEFT>
@@ -31,18 +33,12 @@ set smartindent
 set tabstop=2 shiftwidth=2 softtabstop=0
 set expandtab
 
-"### ファイルタイプ毎
-if has("autocmd")
-
-    "Coffee設定
-    autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
-endif
 augroup filetypedetect
         au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 augroup END
 
-
 augroup staticcheck
-    au BufWritePost *.{py} exe ":!pep8 %; pyflakes %"
-    au BufWritePost *.{php} exe ":!php -l %"
+  au!
+  au BufWritePost *.{py} exe ":!pep8 %; pyflakes %"
+  au BufWritePost *.{php} exe ":!php -l %"
 augroup END
