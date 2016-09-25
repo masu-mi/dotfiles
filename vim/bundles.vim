@@ -4,9 +4,9 @@ filetype off
 " Vundle利用に関する初期設定
 if has('vim_starting')
   set rtp+=~/.vim/neobundle.vim.git
-  call neobundle#rc(expand('~/.neobundle'))
 endif
 
+call neobundle#rc(expand('~/.neobundle'))
 
 "NeoBundle自体
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
@@ -51,7 +51,6 @@ NeoBundle 'dag/vim2hs'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'fatih/vim-go'
-NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'majutsushi/tagbar'
 " NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'
