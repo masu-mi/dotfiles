@@ -29,8 +29,8 @@ alias g++='g++ -Wall'
 alias gcc='gcc -Wall'
 
 alias g='git'
-
-alias lsdrafts='head -n 1 `ls drafts/*.rst`'
+alias ls='ls -G'
+alias lsdrafts='head -n 1 `ls drafts/*.rst`| awk '\''!/^$/{print $0}'\'
 
 # 文字コード変換
 alias euc2sjis='iconv -f euc-jp -t sjis'
@@ -72,3 +72,5 @@ function stvim {
 }
 
 alias pdots='pushd ~/dotfiles'
+alias gohome="pushd $GOPATH/src/github.com/masu-mi"
+alias gobit="$GOPATH/src/bitbucket.org/masu_mi"

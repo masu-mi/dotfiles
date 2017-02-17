@@ -35,18 +35,19 @@ set wrapscan
 "### Escの2回押しで検索ハイライト消去
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
+noremap <Space>p :set paste<CR>
+noremap <Space>n :set nopaste<CR>
+
 "### 履歴
 set history=1000           " コマンド・検索パターンの履歴数
 
 "## 自動修正
-" todo 素朴なので修正する
-if has('autocmd')
-  augroup vimrc
-    autocmd!
-    " 保存時に行末の空白を除去する
-    autocmd BufWritePre * :%s/\s\+$//ge
-  augroup END
-endif
+"if has('autocmd')
+"  " 保存時に行末の空白を除去する
+""  autocmd BufWritePre * :%s/\s\+$//ge
+"  " 保存時にtabをスペースに変換する
+""  autocmd BufWritePre * :%s/\t/  /ge
+"endif
 
 " ## matchit.vim 利用
 source ${VIMRUNTIME}/macros/matchit.vim
@@ -180,3 +181,4 @@ let g:quickrun_config = {
       \   },
       \ }
 call watchdogs#setup(g:quickrun_config)
+autocmd QuickFixCmdPost *grep* cwindow
