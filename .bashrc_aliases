@@ -1,5 +1,5 @@
 # for different option
-. ~/dotfiles/.bash_aliases.$(uname)
+. ~/dotfiles/.bashrc_aliases.$(uname)
 
 alias reload='. ~/.bashrc'
 

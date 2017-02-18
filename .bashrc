@@ -1,6 +1,6 @@
 [ -f /etc/profile ] && . /etc/profile
 [ -f /etc/bashrc ]  && . /etc/bashrc
-[ -f ~/dotfiles/.bash_aliases ] && . ~/dotfiles/.bash_aliases
+[ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 
 function pathmunge () {
   case ":${PATH}:" in
@@ -24,7 +24,7 @@ export LANG='C'
 export HISTSIZE=2000
 
 ## setup bash_prompt
-. $HOME/dotfiles/.bash_prompt
+. $HOME/dotfiles/.bashrc_prompt
 
 ## basic tools
 EDITOR=vim

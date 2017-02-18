@@ -1,4 +1,4 @@
-. $HOME/dotfiles/.bash_color
+. $HOME/dotfiles/.bashrc_color
 
 export CH_COLOR_RED="\[${COLOR_RED}\]"
 export CH_COLOR_GREEN="\[${COLOR_GREEN}\]"
