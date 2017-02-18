@@ -1,9 +1,6 @@
-#!/usr/bin/env bash
-
 alias tomorrow='date -d1day'
 alias yesterday='date -d1day+ago'
 
-# wオプションはosxでの文字化けに関して
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'

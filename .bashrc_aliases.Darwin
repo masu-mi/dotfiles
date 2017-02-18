@@ -1,9 +1,7 @@
-#!/usr/bin/env bash
-
 alias tomorrow='date -v+1d'
 alias yesterday='date -v-1d'
 
-# wオプションはosxでの文字化けに関して
+# w flag is for Garbled characters.
 alias ls='ls -w'
 alias ll='ls -lw'
 alias la='ls -aw'

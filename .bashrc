@@ -1,103 +1,94 @@
-#!/usr/bin/env bash
+[ -f /etc/profile ] && . /etc/profile
+[ -f /etc/bashrc ]  && . /etc/bashrc
+[ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 
-# 2回/etc/profile読み込むのを避ける
-[ -f /etc/profile ] && source /etc/profile
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+function pathmunge () {
+  case ":${PATH}:" in
+    *:"$1":*)
+      ;;
+    *)
+      if [ "$2" = "after" ] ; then
+        PATH=$PATH:$1
+      else
+        PATH=$1:$PATH
+      fi
+  esac
+}
+function add_path {
+  if test -d $1; then
+    pathmunge $1 $2
+  fi
+}
 
-if [ -f ~/dotfiles/.bash_lib ]; then
-    . ~/dotfiles/.bash_lib
-fi
-if [ -f ~/dotfiles/.bash_aliases ]; then
-    . ~/dotfiles/.bash_aliases
-fi
-
-# export LANG='ja_JP.UTF-8'
 export LANG='C'
+export HISTSIZE=2000
 
-# export LC_ALL='C'
-# export LC_CTYPE='C'
-# export LC_MESSAGES='jp_JP.UTF-8'
+## setup bash_prompt
+. $HOME/dotfiles/.bashrc_prompt
 
-export GOROOT="/usr/local/go"
-export GOPATH="${HOME}/go"
+## basic tools
+EDITOR=vim
+SVN_EDITOR=vim
+CVSEDITOR=vim
+CVS_RSH=ssh
+RSYNC_RSH=ssh
+PAGER='lv -la -c -Ou8'
 
+## add paths
 add_path "/opt/X11/bin"
-add_path "${HOME}/pear/bin"
 add_path "/usr/local/sbin"
 add_path "/usr/local/bin"
 add_path "/usr/share/colorgcc"
-add_path "${HOME}/.cabal/bin"
-add_path "${HOME}/.local/bin"
+### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
+### specific langages
+if [ -d /usr/local/go ]; then
+  GOROOT="/usr/local/go"
+  add_path "${GOROOT}/bin"
+fi
+if [ -d /usr/local/go ]; then
+  GOPATH="${HOME}/go"
+  add_path "${GOPATH}/bin"
+  alias gohome="pushd $GOPATH/src/github.com/masu-mi"
+  alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
+fi
+if [ -f VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python ]; then
+  if which virtualenvwrapper.sh >& /dev/null; then
+    source $(which virtualenvwrapper.sh)
+    export WORKON_HOME=${HOME}/.virtualenvs
+    export PIP_RESPECT_VIRTUALENV=true
+  fi
+fi
+add_path "${HOME}/.nodebrew/current/bin"
+add_path "${HOME}/.phpenv/bin"
+if which phpenv >& /dev/null; then eval "$(phpenv init -)"; fi
+add_path "${HOME}/.rbenv/bin"
+if which rbenv >& /dev/null; then eval "$(rbenv init -)"; fi
+add_path "${HOME}/pear/bin"
+add_path "${HOME}/.plenv/bin"
+if which plenv >& /dev/null; then eval "$(plenv init -)"; fi
 add_path "${HOME}/.cabal/bin"
-add_path "${GOPATH}/src/go/bin"
-add_path "${GOROOT}/bin"
-add_path "${GOPATH}/bin"
-add_path "/Applications/Mozart2.app/Contents/Resources/bin"
 
-# for gae
+### cloud services
 add_path "${HOME}/local/go_appengine"
+add_path "/usr/local/heroku/bin"
 
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
 
-export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
-export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
-export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
-export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
-
-export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib:/usr/lib"
-#export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
-
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
-export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
-
-export CVSEDITOR=vim
-export EDITOR='vim'
-export SVN_EDITOR='vim'
-export PAGER='lv -la -c -Ou8'
-
-export RSYNC_RSH=ssh
-export CVS_RSH=ssh
-
-. $HOME/dotfiles/.bash_prompt
-
-export HISTSIZE=2000
-
-
-# for python
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-if which virtualenvwrapper.sh >& /dev/null; then
-  source $(which virtualenvwrapper.sh)
-  export WORKON_HOME=${HOME}/.virtualenvs
-  export PIP_RESPECT_VIRTUALENV=true
-fi
-
-# for Ruby, PHP
-add_path "${HOME}/.phpenv/bin"
-if which phpenv >& /dev/null; then eval "$(phpenv init -)"; fi
-add_path "$HOME/.rbenv/bin"
-add_path "$HOME/.plenv/bin"
-if which rbenv >& /dev/null; then eval "$(rbenv init -)"; fi
-if which plenv >& /dev/null; then eval "$(plenv init -)"; fi
-
-# for Node.js
-if which nodebrew >& /dev/null;then add_path "${HOME}/.nodebrew/current/bin"; fi
-
-### Added by the Heroku Toolbelt
-add_path "/usr/local/heroku/bin"
-
-# boot2docker
-export DOCKER_HOST=tcp://localhost:4243
-
-if [ -f ~/.bash_tokens ]; then
-  . ~/.bash_tokens
-fi
 for file in $(test -d ~/.bashrcs && find ~/.bashrcs -type f);
 do
   . ${file}
 done
+
+export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
+export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
+
+# TODO delete sentence below
+export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
+export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
+export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
+export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
