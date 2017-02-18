@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 ESC="$(echo -en '\033')"
 export COLOR_RED="${ESC}[31m"
 export COLOR_GREEN="${ESC}[32m"

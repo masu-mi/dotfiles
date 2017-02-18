@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 . $HOME/dotfiles/.bash_color
 
 export CH_COLOR_RED="\[${COLOR_RED}\]"
