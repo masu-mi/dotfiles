@@ -10,8 +10,8 @@
 	st = status -sb
 	br = branch
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-	mg = merge --no-ff
-	mgff = merge --ff
+	mg = merge --ff
+	mgnf = merge --no-ff
 	df = diff
 [core]
 	quotepath = false
@@ -27,3 +27,5 @@
 	tool = vimdiff
 [push]
 	default = simple
+[pull]
+	ff = only
