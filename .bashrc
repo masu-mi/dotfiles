@@ -8,9 +8,9 @@ function pathmunge () {
       ;;
     *)
       if [ "$2" = "after" ] ; then
-        PATH=$PATH:$1
+        export PATH=$PATH:$1
       else
-        PATH=$1:$PATH
+        export PATH=$1:$PATH
       fi
   esac
 }
@@ -27,12 +27,12 @@ export HISTSIZE=2000
 . $HOME/dotfiles/.bashrc_prompt
 
 ## basic tools
-EDITOR=vim
-SVN_EDITOR=vim
-CVSEDITOR=vim
-CVS_RSH=ssh
-RSYNC_RSH=ssh
-PAGER='lv -la -c -Ou8'
+export EDITOR=vim
+export SVN_EDITOR=vim
+export CVSEDITOR=vim
+export CVS_RSH=ssh
+export RSYNC_RSH=ssh
+export PAGER='lv -la -c -Ou8'
 
 ## add paths
 add_path "/opt/X11/bin"
@@ -43,12 +43,12 @@ add_path "/usr/share/colorgcc"
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
 ### specific langages
-if [ -d /usr/local/go ]; then
-  GOROOT="/usr/local/go"
+if [ -d "/usr/local/go" ]; then
+  export GOROOT="/usr/local/go"
   add_path "${GOROOT}/bin"
 fi
-if [ -d /usr/local/go ]; then
-  GOPATH="${HOME}/go"
+if [ -d "${HOME}/go" ]; then
+  export GOPATH="${HOME}/go"
   add_path "${GOPATH}/bin"
   alias gohome="pushd $GOPATH/src/github.com/masu-mi"
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
