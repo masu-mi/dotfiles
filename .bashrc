@@ -53,12 +53,10 @@ if [ -d "${HOME}/go" ]; then
   alias gohome="pushd $GOPATH/src/github.com/masu-mi"
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
 fi
-if [ -f VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python ]; then
-  if which virtualenvwrapper.sh >& /dev/null; then
-    source $(which virtualenvwrapper.sh)
-    export WORKON_HOME=${HOME}/.virtualenvs
-    export PIP_RESPECT_VIRTUALENV=true
-  fi
+if which virtualenvwrapper.sh >& /dev/null; then
+  export WORKON_HOME=${HOME}/.virtualenvs
+  export PIP_RESPECT_VIRTUALENV=true
+  source $(which virtualenvwrapper.sh)
 fi
 add_path "${HOME}/.nodebrew/current/bin"
 add_path "${HOME}/.phpenv/bin"
