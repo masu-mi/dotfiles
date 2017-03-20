@@ -47,8 +47,8 @@ if [ -d "/usr/local/go" ]; then
   export GOROOT="/usr/local/go"
   add_path "${GOROOT}/bin"
 fi
-if [ -d "${HOME}/go" ]; then
-  export GOPATH="${HOME}/go"
+if [ -d "${HOME}/dev" ]; then
+  export GOPATH="${HOME}/dev"
   add_path "${GOPATH}/bin"
   alias gohome="pushd $GOPATH/src/github.com/masu-mi"
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
