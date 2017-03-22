@@ -38,6 +38,21 @@ alias svim='sudo vim -u .vimrc'
 function stvim {
     vim $(which $1)
 }
+function sshp() {
+  local host=$(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config |sort|peco|awk '{print $2}')
+  if [ -n "$host" ]; then
+    echo "[ssh]: $host"
+    ssh $@ $host
+  fi
+}
+function push-src() {
+  local src=$(ghq list --full-path | peco --query "${LBUFFER}")
+  if [ -n "$src" ]; then
+    echo -n '[pushd]:'
+    pushd $src
+  fi
+}
+
 alias pdots='pushd ~/dotfiles'
 alias lsdrafts='head -n 1 `ls drafts/*.rst`| awk '\''!/^$/{print $0}'\'
 

@@ -33,3 +33,5 @@
 	default = simple
 [pull]
 	ff = only
+[ghq]
+	root = /Users/masumi/dev/src
