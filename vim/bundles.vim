@@ -1,73 +1,80 @@
 scriptencoding utf-8
 
-filetype off
-" Vundle利用に関する初期設定
-if has('vim_starting')
-  set rtp+=~/.vim/neobundle.vim.git
+if !&compatible
+  set nocompatible
 endif
 
-call neobundle#rc(expand('~/.neobundle'))
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
-"NeoBundle自体
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+" dein settings {{{
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
+" プラグイン読み込み＆キャッシュ作成
+let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file)
+  call dein#end()
+  call dein#save_state()
+endif
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
+" }}}
 
-" githubにあるplugin
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neossh.vim'
-NeoBundle 'hewes/unite-gtags'
-NeoBundle 'taka84u9/unite-git'
-NeoBundle 'osyo-manga/unite-filetype'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'jceb/vim-orgmode'
-
-NeoBundle 'dag/vim2hs'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle "osyo-manga/shabadou.vim"
-NeoBundle "osyo-manga/vim-watchdogs"
-NeoBundle "jceb/vim-hier"
-
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'c9s/cascading.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'dag/vim2hs'
-NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'eagletmt/neco-ghc'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'majutsushi/tagbar'
-" NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'dgryski/vim-godef'
-
-NeoBundle 'tpope/vim-pathogen'
-execute pathogen#infect()
-
-" www.vim.orgにあるplugin
-NeoBundle 'YankRing.vim'
-NeoBundle 'JavaScript-syntax'
-NeoBundle 'bufexplorer.zip'
-NeoBundle 'errormarker.vim'
-NeoBundle 'ShowMarks7'
-NeoBundle 'project.tar.gz'
-NeoBundle 'xml.vim'
-
-" color scheme
-NeoBundle 'tomasr/molokai'
+"     " NeoBundle 'Shougo/vimshell'
+"     NeoBundle 'Shougo/unite.vim'
+"     " NeoBundle 'Shougo/neossh.vim'
+"     NeoBundle 'hewes/unite-gtags'
+"     " NeoBundle 'taka84u9/unite-git'
+"     " NeoBundle 'osyo-manga/unite-filetype'
+"     " NeoBundle 'Shougo/unite-outline'
+"     " NeoBundle 'jceb/vim-orgmode'
+"     " 
+"     " NeoBundle 'dag/vim2hs'
+"     " NeoBundle 'thinca/vim-quickrun'
+"     " NeoBundle "osyo-manga/vim-watchdogs"
+"     " call watchdogs#setup(g:quickrun_config)
+"     " NeoBundle "osyo-manga/shabadou.vim"
+"     " NeoBundle "jceb/vim-hier"
+"     " 
+"     " NeoBundle 'thinca/vim-ref'
+"     " NeoBundle 'Shougo/neocomplcache'
+"     " NeoBundle 'othree/html5.vim'
+"     " NeoBundle 'open-browser.vim'
+"     " NeoBundle 'pangloss/vim-javascript'
+"     " NeoBundle 'kchmck/vim-coffee-script'
+"     " NeoBundle 'tpope/vim-markdown'
+"     NeoBundle 'Lokaltog/vim-powerline'
+"     " NeoBundle 'eagletmt/ghcmod-vim'
+"     " NeoBundle 'eagletmt/neco-ghc'
+"     " " NeoBundle 'scrooloose/syntastic'
+"     " NeoBundle 'kana/vim-submode'
+"     " 
+"     " NeoBundle 'tpope/vim-pathogen'
+"     " execute pathogen#infect()
+"     " 
+"     " " www.vim.orgにあるplugin
+"     " NeoBundle 'YankRing.vim'
+"     " NeoBundle 'JavaScript-syntax'
+"     " NeoBundle 'bufexplorer.zip'
+"     " NeoBundle 'errormarker.vim'
+"     " NeoBundle 'project.tar.gz'
+"     " NeoBundle 'xml.vim'
+"     " 
+"     " call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+"     " call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+"     " call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+"     " call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+"     " call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+"     " call submode#map('bufmove', 'n', '', '<', '<C-w><')
+"     " call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+"     " call submode#map('bufmove', 'n', '', '-', '<C-w>-')

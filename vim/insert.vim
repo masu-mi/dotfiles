@@ -8,10 +8,6 @@ imap { {}<LEFT>
 "### バックスペース挙動
 set backspace=indent,start,eol
 
-"### 括弧ハイライト
-set showmatch
-set matchtime=3
-set matchpairs+=<:>
 
 "### insertモードを抜けるとIMEオフ
 set noimdisable

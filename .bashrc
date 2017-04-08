@@ -81,7 +81,7 @@ do
 done
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
 
