@@ -1,55 +1,37 @@
 scriptencoding utf-8
 
-let mapleader = ','
-
-" ウィンドウ移動
-nnoremap <C-j> :<C-w>j
-nnoremap <C-k> :<C-w>k
-nnoremap <C-l> :<C-w>l
-nnoremap <C-h> :<C-w>h
-
-"### 数値インクリメント
-set nrformats-=octal
-
-"### タグ機能
-set tags=./tags,../tags,~/tags
-
-"### mkviewコマンド
-set viewdir=~/.backup/view
-
-"### ファイラー
-let g:netrw_liststyle=1
-
-"### フォールディング設定
+" バックアップ
+source ~/dotfiles/vim/backup.vim
+" folding
 set foldmethod=syntax
 set foldlevel=10
 set ambiwidth=double
-
-"### バックアップ設定
-source ~/dotfiles/vim/backup.vim
-
-"### 検索
+" 検索
 set incsearch
 set hlsearch
 set wrapscan
-"### Escの2回押しで検索ハイライト消去
-noremap <ESC><ESC> :nohlsearch<CR><ESC>
+" increment
+set nrformats-=octal
 
+let mapleader = ','
+" Escの2回押しで検索ハイライト消去
+noremap <Leader><Leader> :nohlsearch<CR><ESC>
+noremap <Space>cap :mkview<CR>
 noremap <Space>p :set paste<CR>
 noremap <Space>n :set nopaste<CR>
 
-"### 履歴
+" 履歴
 set history=1000           " コマンド・検索パターンの履歴数
 
-"## 自動修正
-"if has('autocmd')
-"  " 保存時に行末の空白を除去する
-""  autocmd BufWritePre * :%s/\s\+$//ge
-"  " 保存時にtabをスペースに変換する
-""  autocmd BufWritePre * :%s/\t/  /ge
-"endif
+" 行末スペース削除
+noremap <Space>rmsp :%s/\s\+$//ge<CR>
 
+" 括弧ハイライト
+set showmatch
+set matchtime=3
+set matchpairs+=<:>
 " ## matchit.vim 利用
+" デフォルトで含まれてるけど無効化されている
 source ${VIMRUNTIME}/macros/matchit.vim
 
 "### ヘルプ
@@ -60,25 +42,39 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': ['ruby', 'javascript','vim'] }
 let g:syntastic_python_checkers=['pyflakes', 'pep8']
-
-nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
-cabbrev <silent> bd lclose\|bdelete
+let g:syntastic_ruby_checkers = ['rubocop'] " or ['rubocop', 'mri']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+hi SyntasticErrorSign ctermfg=160
+hi SyntasticWarningSign ctermfg=220
 
 "for gnu global
+set tags=./tags,../tags,~/tags
 nnoremap <Space>gd :Gtags<Space>
 nnoremap <Space>gr :Gtags -r
 nnoremap <Space>gf :Gtags -f
 nnoremap <Space>gg :Gtags -g
 nnoremap <Space>gc :GtagsCursor<Enter>
 nnoremap <Space>gu :GtagsUpdate<Enter>
+" tagbar
+nnoremap <F8> :Tagbar<CR>
+"for Quickfix: jump to error
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprevious<CR>
+nnoremap <C-h> :clast<CR>
+nnoremap <C-l> :cfirst<CR>
+" filer
+let g:netrw_liststyle=1 " 不要なら消す
+nnoremap zz :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 
-"for Quickfix
-nnoremap <C-j> :cn<CR>
-nnoremap <C-k> :cp<CR>
-
-" for window, buffer, tab page
+" for window, buffer
 nnoremap s <Nop>
 nnoremap ss :sp<CR>
 nnoremap sv :vs<CR>
@@ -92,17 +88,19 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sr <C-w>r
-
+" tab
+nnoremap tt :tabnew<CR>
+nnoremap sn gt
+nnoremap sp gT
+" close
+nnoremap sq :q
+nnoremap sQ :bd
+nnoremap <C-d> :bd<CR>
+" サイズ調整
 nnoremap so <C-w>_
 nnoremap sO <C-w>=
 nnoremap s= <C-w>=
-
-nnoremap st :tabnew<CR>
-nnoremap sn gt
-nnoremap sp gT
-
-nnoremap <F8> :Tagbar<CR>
-
+" Unite
 nnoremap sT :Unite tab<CR>
 nnoremap sb :Unite buffer_tab
 nnoremap sB :Unite buffer
@@ -110,44 +108,10 @@ nnoremap <Space>le :Unite git_modified<CR>
 nnoremap <Space>lu :Unite git_untracked<CR>
 nnoremap <Space>lc :Unite git_cached<CR>
 nnoremap <Space>ld :Unite gtags/def<CR>
-
 nnoremap <Space>cf :Unite filetype<CR>
-
-nnoremap sq :q
-nnoremap sQ :bd
-
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-
-
-" Quickfix 用
-nnoremap [q :cprevious<CR>    " 前へ
-nnoremap ]q :cnext<CR>        " 次へ
-nnoremap [Q :<C-u>cfirst<CR>  " 最初へ
-nnoremap ]Q :<C-u>clast<CR>   " 最後へ
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-
+" shell
 nnoremap <Space>vs :VimShell<Enter>
 nnoremap <Space>vf :VimFilerExplorer<Enter>
-
-" for file
-nnoremap <Space>of :vs<Space>
-nnoremap zz :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 
 " for go
 " todo
@@ -159,26 +123,33 @@ nnoremap zz :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " set completeopt=menu,preview
 
-let g:watchdogs_check_BufWritePost_enable = 1
-let g:watchdogs_check_CursorHold_enable = 1
-let g:quickrun_config = {
-      \   '_' : {
-      \       'runner' : 'vimproc',
-      \       'runner/vimproc/updatetime' : 10,
-      \   },
-      \   'go/watchdogs_checker' : {
-      \     'type' : 'watchdogs_checker/golint',
-      \   },
-      \   'watchdogs_checker/go_build' : {
-      \     'command' : 'go',
-      \     'exec' : '%c build %s:p',
-      \     'errorformat' : '%f:%l: %m,%-G%.%#',
-      \   },
-      \   'watchdogs_checker/golint' : {
-      \     'command' :     'golint',
-      \     'exec' :        '%c %o %s:p',
-      \     'errorformat' : '%f:%l:%c: %m,%-G%.%#',
-      \   },
-      \ }
-call watchdogs#setup(g:quickrun_config)
-autocmd QuickFixCmdPost *grep* cwindow
+" for watchdogs
+" let g:watchdogs_check_BufWritePost_enable = 1
+" let g:watchdogs_check_CursorHold_enable = 1
+" let g:quickrun_config = {
+"       \   '_' : {
+"       \       'runner' : 'vimproc',
+"       \       'runner/vimproc/updatetime' : 10,
+"       \   },
+"       \   'go/watchdogs_checker' : {
+"       \     'type' : 'watchdogs_checker/golint',
+"       \   },
+"       \   'watchdogs_checker/go_build' : {
+"       \     'command' : 'go',
+"       \     'exec' : '%c build %s:p',
+"       \     'errorformat' : '%f:%l: %m,%-G%.%#',
+"       \   },
+"       \   'watchdogs_checker/golint' : {
+"       \     'command' :     'golint',
+"       \     'exec' :        '%c %o %s:p',
+"       \     'errorformat' : '%f:%l:%c: %m,%-G%.%#',
+"       \   },
+"       \ }
+" autocmd QuickFixCmdPost *grep* cwindow
+" カーソル下の呼び出し元一覧を出力
+nnoremap <silent> ,tr  :<C-u>Unite gtags/ref:<CR>
+" " カーソル下の定義元を出力
+nnoremap <silent> ,td  :<C-u>Unite gtags/def:<CR>
+" " タグファイル内grep
+nnoremap <silent> ,tg  :<C-u>Unite gtags/grep:<CR>
+
