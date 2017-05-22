@@ -62,9 +62,6 @@ alias vitmux='vim ~/.tmux.conf'
 alias vibashrc='vim ~/.bashrc'
 alias vialiases='vim ~/.bash_aliases'
 
-# for dev
-alias g++='g++ -W -Wall'
-alias gcc='gcc -W -Wall'
 ## to make easy check php script
 alias lphp='php -d open_basedir=`pwd`'
 alias fphp='php -d open_basedir=/'

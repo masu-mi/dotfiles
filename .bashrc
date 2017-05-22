@@ -32,7 +32,9 @@ export SVN_EDITOR=vim
 export CVSEDITOR=vim
 export CVS_RSH=ssh
 export RSYNC_RSH=ssh
-export PAGER='lv -la -c -Ou8'
+if [ -x lv ]; then
+  export PAGER='lv -la -c -Ou8'
+fi
 
 ## add paths
 add_path "/opt/X11/bin"
@@ -42,11 +44,17 @@ add_path "/usr/share/colorgcc"
 ### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
+
 ### specific langages
-if [ -d "/usr/local/go" ]; then
+if [ -d "${HOME}/go" ]; then
+  export GOROOT="${HOME}/go"
+elif [ -d "/usr/local/go" ]; then
   export GOROOT="/usr/local/go"
+fi
+if [ "${GOROOT}" != "" ]; then
   add_path "${GOROOT}/bin"
 fi
+
 if [ -d "${HOME}/dev" ]; then
   export GOPATH="${HOME}/dev"
   add_path "${GOPATH}/bin"
