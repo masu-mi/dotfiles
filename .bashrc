@@ -46,10 +46,10 @@ add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
 
 ### specific langages
-if [ -d "${HOME}/go" ]; then
-  export GOROOT="${HOME}/go"
-elif [ -d "/usr/local/go" ]; then
+if [ -d "/usr/local/go" ]; then
   export GOROOT="/usr/local/go"
+elif [ -d "${HOME}/go" ]; then
+  export GOROOT="${HOME}/go"
 fi
 if [ "${GOROOT}" != "" ]; then
   add_path "${GOROOT}/bin"
@@ -57,10 +57,15 @@ fi
 
 if [ -d "${HOME}/dev" ]; then
   export GOPATH="${HOME}/dev"
+elif [ -d "${HOME}/go" -a "$GOROOT" != "${HOME}/go" ]; then
+  export GOPATH="${HOME}/go"
+fi
+if [ "${GOPATH}" != "" ]; then
   add_path "${GOPATH}/bin"
   alias gohome="pushd $GOPATH/src/github.com/masu-mi"
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
 fi
+
 if which virtualenvwrapper.sh >& /dev/null; then
   export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_RESPECT_VIRTUALENV=true
