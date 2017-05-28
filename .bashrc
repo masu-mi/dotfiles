@@ -20,7 +20,7 @@ function add_path {
   fi
 }
 
-export LANG='C'
+export LANG='ja_JP.UTF-8'
 export HISTSIZE=2000
 
 ## setup bash_prompt

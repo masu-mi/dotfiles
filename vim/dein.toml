@@ -2,6 +2,11 @@
 repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'vim-scripts/ShowMarks7'
+hook_add = '''
+let showmarks_enable = 1
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let showmarks_ignore_type = "hqm"
+'''
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -25,12 +30,43 @@ repo = 'tpope/vim-surround'
 repo = 'c9s/cascading.vim'
 [[plugins]]
 repo = 'fatih/vim-go'
-on_ft = 'go'
+on_ft = ['go']
 [[plugins]]
 repo = 'dgryski/vim-godef'
-on_ft = 'go'
+on_ft = ['go']
+hook_source = '''
+let g:godef_split=2
+let g:godef_same_file_in_same_window=1
+'''
 [[plugins]] # toml syntax
 repo = 'cespare/vim-toml'
-on_ft = 'toml'
+on_ft = ['toml']
 [[plugins]]
 repo = 'mattn/emmet-vim'
+
+# [[plugins]]
+# repo = 'nsf/gocode'
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+let g:indent_guides_enable_on_vim_startup = 1
+'''
+
+[[plugins]]
+repo = 'vim-scripts/errormarker.vim'
+hook_add = '''
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+'''
+[[plugins]]
+repo = 'Shougo/neosnippet'
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depents = ['Shougo/context_filetype.vim']
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'ekalinin/Dockerfile.vim'
