@@ -38,6 +38,7 @@ NeoBundle "jceb/vim-hier"
 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'c9s/cascading.vim'
