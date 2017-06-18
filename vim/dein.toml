@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
-repo = 'ShowMarks7'
+repo = 'vim-scripts/ShowMarks7'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
