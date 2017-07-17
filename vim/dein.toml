@@ -70,3 +70,6 @@ repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'
+
+[[plugins]]
+repo = 'vim-utils/vim-man'
