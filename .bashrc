@@ -56,6 +56,7 @@ fi
 if which virtualenvwrapper.sh >& /dev/null; then
   export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_RESPECT_VIRTUALENV=true
+  export VIRTUALENVWRAPPER_PYTHON=$(command \which python3 || command \which python)
   source $(which virtualenvwrapper.sh)
 fi
 add_path "${HOME}/.nodebrew/current/bin"
