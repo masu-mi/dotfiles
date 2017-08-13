@@ -1,6 +1,6 @@
+scriptencoding utf-8
 let g:go_fmt_command = 'goimports'
-au BufWritePre *.go :GoFmt
-
+" au BufWritePre *.go :GoFmt
 
 " gotags {{{
 let g:tagbar_type_go = {
@@ -37,7 +37,6 @@ let g:tagbar_type_go = {
 " filetype plugin indent off
 " set rtp+=${GOROOT}/misc/vim
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
-" filetype plugin indent on
 " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " set completeopt=menu,preview
 nmap <Leader>i <Plug>(go-info)
@@ -45,12 +44,13 @@ nmap <Leader>gd <Plug>(go-doc)
 nmap <Leader>gv <Plug>(go-doc-vertical)
 nmap <Leader>gb <Plug>(go-doc-browser)
 
-nmap <leader>r <Plug>(go-run)
-nmap <leader>b <Plug>(go-build)
-nmap <leader>t <Plug>(go-test)
-nmap <leader>c <Plug>(go-coverage)
+nmap <Leader>r <Plug>(go-run)
+nmap <Leader>b <Plug>(go-build)
+nmap <Leader>t <Plug>(go-test)
+nmap <Leader>c <Plug>(go-coverage)
 
 nmap gd <Plug>(go-def)
 nmap <Leader>ds <Plug>(go-def-split)
 nmap <Leader>dv <Plug>(go-def-vertical)
 nmap <Leader>dt <Plug>(go-def-tab)
+
