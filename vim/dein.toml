@@ -44,6 +44,9 @@ on_ft = ['toml']
 [[plugins]]
 repo = 'mattn/emmet-vim'
 
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+
 # [[plugins]]
 # repo = 'nsf/gocode'
 [[plugins]]
