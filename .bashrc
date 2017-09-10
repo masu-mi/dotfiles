@@ -41,6 +41,7 @@ add_path "/opt/X11/bin"
 add_path "/usr/local/sbin"
 add_path "/usr/local/bin"
 add_path "/usr/share/colorgcc"
+add_path "${HOME}/.cargo/bin"
 ### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
