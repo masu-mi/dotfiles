@@ -22,6 +22,7 @@ function add_path {
 
 export LANG='ja_JP.UTF-8'
 export HISTSIZE=2000
+export XDG_CONFIG_HOME=$HOME/.config
 
 ## setup bash_prompt
 . $HOME/dotfiles/.bashrc_prompt

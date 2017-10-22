@@ -8,6 +8,7 @@ set fileformats=unix,dos,mac
 " Plugin導入
 source ~/dotfiles/vim/bundles.vim
 
+
 " 基本設定
 set shortmess+=I
 set vb t_vb=
@@ -55,3 +56,8 @@ syntax on
 let g:molokai_original=1
 set t_Co=256
 colorscheme molokai
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
