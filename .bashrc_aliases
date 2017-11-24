@@ -34,6 +34,7 @@ alias sjis2utf='iconv -f sjis   -t utf-8'
 alias utf2euc='iconv -f utf-8  -t euc-jp'
 alias utf2sjis='iconv -f utf-8  -t sjis'
 
+alias vim=nvim
 alias svim='sudo vim -u .vimrc'
 function stvim {
     vim $(which $1)
