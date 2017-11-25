@@ -16,12 +16,14 @@ set hidden
 set laststatus=2
 set lazyredraw
 set ttyfast
+set history=1000
 " ファイルタイプ
 filetype plugin on
 filetype indent on
 
 " サポート
-source ~/dotfiles/vim/support.vim
+set nrformats-=octal
+source ~/dotfiles/vim/keymap.vim
 " 入力時挙動
 source ~/dotfiles/vim/insert.vim
 
@@ -34,6 +36,19 @@ set cmdheight=1
 set showmode
 set showcmd
 set title
+
+let g:netrw_liststyle=1
+" folding
+set foldmethod=syntax
+set foldlevel=10
+set ambiwidth=double
+" 検索
+set incsearch
+set hlsearch
+set wrapscan
+set showmatch
+set matchtime=3
+set matchpairs+=<:>
 
 " let g:showmarks_include='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 " カレントウィンドウにのみ罫線を引く
