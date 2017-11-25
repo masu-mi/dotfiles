@@ -1,69 +1,11 @@
 [[plugins]]
 repo = 'tomasr/molokai'
-[[plugins]]
-repo = 'vim-scripts/ShowMarks7'
-hook_add = '''
-let showmarks_enable = 1
-let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-let showmarks_ignore_type = "hqm"
-'''
 
-[[plugins]]
-repo = 'Shougo/unite.vim'
-[[plugins]]
-repo = 'Shougo/vimfiler'
-depends = ['Shougo/unite.vim']
-[[plugins]]
-repo = 'taka84u9/unite-git'
-depends = ['Shougo/unite.vim']
-[[plugins]]
-repo = 'majutsushi/tagbar'
-[[plugins]]
-repo = 'thinca/vim-ref'
-[[plugins]]
-repo = 'yuku-t/vim-ref-ri'
-depends = ['thinca/vim-ref']
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-[[plugins]]
-repo = 'c9s/cascading.vim'
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
-[[plugins]]
-repo = 'dgryski/vim-godef'
-on_ft = ['go']
-hook_source = '''
-let g:godef_split=2
-let g:godef_same_file_in_same_window=1
-'''
-[[plugins]] # toml syntax
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
-[[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'mattn/sonictemplate-vim'
-
-# [[plugins]]
-# repo = 'nsf/gocode'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
 let g:indent_guides_enable_on_vim_startup = 1
 '''
-
-[[plugins]]
-repo = 'vim-scripts/errormarker.vim'
-hook_add = '''
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-'''
-[[plugins]]
-repo = 'Shougo/neosnippet'
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -72,12 +14,144 @@ depents = ['Shougo/context_filetype.vim']
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+
+nnoremap <silent> <C-u>f :<C-u>DeniteBufferDir file_rec<CR>
+nnoremap <silent> <C-u>F :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-u>b :<C-u>Denite buffer<CR>
+nnoremap <silent> <C-u>w :<C-u>Denite line<CR>
+nnoremap <silent> <C-u>c :<C-u>DeniteCursorWord line<CR>
+nnoremap <silent> <C-u>g :<C-u>Denite grep<CR>
+nnoremap <silent> <C-u>G :<C-u>DeniteBufferDir grep<CR>
+nnoremap <silent> <C-u>l :<C-u>DeniteCursorWord grep<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'jacquesbh/vim-showmarks'
+hook_add = '''
+aug show-marks-sync
+  au!
+  au BufReadPost * sil! DoShowMarks
+aug END
+
+nnoremap [Mark] <Nop>
+nmap     m [Mark]
+
+if !exists('g:markrement_char')
+  let g:markrement_char = [
+    \   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    \ ]
+endif
+nnoremap <silent>[Mark]m :<C-u>call <SID>AutoMarkrement()<CR>:DoShowMarks<CR>
+function! s:AutoMarkrement()
+  if !exists('b:markrement_pos')
+    let b:markrement_pos = 0
+  else
+    let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+  endif
+  execute 'mark' g:markrement_char[b:markrement_pos]
+  echo 'marked' g:markrement_char[b:markrement_pos]
+endfunction
+command! -nargs=? SetNextMarkChar call s:set_next_mark_char(<f-args>)
+function! s:set_next_mark_char(...)
+  if a:0 >= 1
+    let b:markrement_pos=index(g:markrement_char,a:1)-1
+  else
+    echo "Next:".g:markrement_char[b:markrement_pos+1]
+  end
+endfunction
+for m in g:markrement_char
+  execute 'nnoremap [Mark]s'.m ':SetNextMarkChar '.m.'<CR>'
+  execute 'nnoremap [Mark]f'.m ':SetNextMarkChar '.m.'<CR>:<C-u>call <SID>AutoMarkrement()<CR>:DoShowMarks<CR>'
+endfor
+
+nnoremap [Mark]n ]`
+nnoremap [Mark]p [`
+" show mark list
+nnoremap [Mark]l :<C-u>PreviewMarks<CR>
+" delete all marks
+command! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :DoShowMarks
+nnoremap <silent>[Mark]d :MarksDelete<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+nnoremap <silent> <Leader>gf   :Gfetch<CR>
+nnoremap <silent> <Leader>diff :Gdiff<CR>
+'''
+
+[[plugins]]
 repo = 'ekalinin/Dockerfile.vim'
 
 [[plugins]]
-repo = 'vim-utils/vim-man'
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
 
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-[[plugins]]
-repo = 'racer-rust/vim-racer'
+# 
+# [[plugins]]
+# repo = 'Shougo/vimfiler'
+# depends = ['Shougo/unite.vim']
+## [[plugins]]
+## repo = 'unite-giti'
+## depends = ['Shougo/denite.nvim']
+## hook_add = '''
+## """ nnoremap <Leader>le :Denite git_modified<CR>
+## """ nnoremap <Leader>lu :Denite git_untracked<CR>
+## """ nnoremap <Leader>lc :Denite git_cached<CR>
+## """ nnoremap <Leader>ld :Denite gtags/def<CR>
+## """ nnoremap <Leader>cf :Denite filetype<CR>
+## '''
+# [[plugins]]
+# repo = 'majutsushi/tagbar'
+# [[plugins]]
+# repo = 'thinca/vim-ref'
+# [[plugins]]
+# repo = 'yuku-t/vim-ref-ri'
+# depends = ['thinca/vim-ref']
+# [[plugins]]
+# repo = 'fatih/vim-go'
+# on_ft = ['go']
+# [[plugins]]
+# repo = 'dgryski/vim-godef'
+# on_ft = ['go']
+# hook_source = '''
+# let g:godef_split=2
+# let g:godef_same_file_in_same_window=1
+# '''
+
+# [[plugins]]
+# repo = 'mattn/emmet-vim'
+# 
+# [[plugins]]
+# repo = 'mattn/sonictemplate-vim'
+# 
+# # [[plugins]]
+# # repo = 'nsf/gocode'
+# 
+# [[plugins]]
+# repo = 'vim-scripts/errormarker.vim'
+# hook_add = '''
+# let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+# '''
+# [[plugins]]
+# repo = 'Shougo/neosnippet'
+# [[plugins]]
+# repo = 'Shougo/neosnippet-snippets'
+# 
+# 
+# 
+# [[plugins]]
+# repo = 'vim-utils/vim-man'
+# 
+# [[plugins]]
+# repo = 'rust-lang/rust.vim'
+# [[plugins]]
+# repo = 'racer-rust/vim-racer'

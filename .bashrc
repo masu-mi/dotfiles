@@ -28,9 +28,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 . $HOME/dotfiles/.bashrc_prompt
 
 ## basic tools
-export EDITOR=nvim
-export SVN_EDITOR=nvim
-export CVSEDITOR=nvim
+export EDITOR=vim
+export SVN_EDITOR=vim
+export CVSEDITOR=vim
 export CVS_RSH=ssh
 export RSYNC_RSH=ssh
 if [ -x lv ]; then

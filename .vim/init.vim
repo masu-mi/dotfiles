@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let mapleader = "\<Space>"
+
 " 文字コード自動判別
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,sjis,cp932,euc-jp,cp20932
@@ -29,6 +31,7 @@ source ~/dotfiles/vim/insert.vim
 
 " 画面表示項目
 set number
+set relativenumber
 set nowrap
 set ruler
 set laststatus=2
@@ -71,21 +74,10 @@ syntax on
 let g:molokai_original=1
 colorscheme molokai
 
+nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 
-" Unite
-nnoremap <silent> <Leader>uf :<C-u>DeniteWithBufferDir -buffer-name=files file file/new<CR>
-nnoremap <silent> <Leader>ut :<C-u>Denite tab<CR>
-nnoremap <silent> <Leader>ub :<C-u>Denite buffer_tab
-nnoremap <silent> <Leader>uB :<C-u>Denite buffer
-
-""" nnoremap <Leader>le :Unite git_modified<CR>
-""" nnoremap <Leader>lu :Unite git_untracked<CR>
-""" nnoremap <Leader>lc :Unite git_cached<CR>
-""" nnoremap <Leader>ld :Unite gtags/def<CR>
-""" nnoremap <Leader>cf :Unite filetype<CR>
-
+call has('python3')
 """ noremap <Leader>ff :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
 """ noremap <Leader>cap :mkview<CR>
-
