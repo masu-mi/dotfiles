@@ -69,13 +69,23 @@ match ZenkakuSpace /　/
 " 基本カラーリング関連
 syntax on
 let g:molokai_original=1
-set t_Co=256
 colorscheme molokai
-
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
+
+" Unite
+nnoremap <silent> <Leader>uf :<C-u>DeniteWithBufferDir -buffer-name=files file file/new<CR>
+nnoremap <silent> <Leader>ut :<C-u>Denite tab<CR>
+nnoremap <silent> <Leader>ub :<C-u>Denite buffer_tab
+nnoremap <silent> <Leader>uB :<C-u>Denite buffer
+
+""" nnoremap <Leader>le :Unite git_modified<CR>
+""" nnoremap <Leader>lu :Unite git_untracked<CR>
+""" nnoremap <Leader>lc :Unite git_cached<CR>
+""" nnoremap <Leader>ld :Unite gtags/def<CR>
+""" nnoremap <Leader>cf :Unite filetype<CR>
+
+""" noremap <Leader>ff :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
+""" noremap <Leader>cap :mkview<CR>
+

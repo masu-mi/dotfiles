@@ -1,37 +1,34 @@
 scriptencoding utf-8
 
 let mapleader = "\<Space>"
-" Escの2回押しで検索ハイライト消去
+" 検索ハイライト消去
 noremap <Leader><Leader> :nohlsearch<CR><ESC>
-noremap <Leader>cap :mkview<CR>
-noremap <Leader>p :set paste<CR>
-noremap <Leader>n :set nopaste<CR>
-noremap <Leader>ff :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
-noremap <Leader>rmsp :%s/\s\+$//ge<CR>
+" for NVIM v0.2.0(?) 本来とは逆の挙動をしている気がする
+noremap <Leader>p :set nopaste<CR>
+noremap <Leader>n :set paste<CR>
 
-source ${VIMRUNTIME}/macros/matchit.vim
+noremap <Leader>rmsp :%s/\s\+$//ge<CR>
 
 noremap <C-i>  :<C-u>help<Space>
 noremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
-" for window, buffer
-nnoremap s <Nop>
-nnoremap ss :sp<CR>
-nnoremap sv :vs<CR>
-nnoremap sh <C-w>h
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sw <C-w>w
-nnoremap sH <C-w>H
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sr <C-w>r
+source ${VIMRUNTIME}/macros/matchit.vim
 
-nnoremap tt :tabnew<CR>
-nnoremap sn gT
-nnoremap sp gt
+" for window, buffer
+nnoremap <silent> s <Nop>
+nnoremap <silent> ss :sp<CR>
+nnoremap <silent> sv :vs<CR>
+nnoremap <silent> sh <C-w>h
+nnoremap <silent> sj <C-w>j
+nnoremap <silent> sk <C-w>k
+nnoremap <silent> sl <C-w>l
+nnoremap <silent> sw <C-w>w
+nnoremap <silent> sH <C-w>H
+nnoremap <silent> sJ <C-w>J
+nnoremap <silent> sK <C-w>K
+nnoremap <silent> sL <C-w>L
+nnoremap <silent> sr <C-w>r
+
 " close
 nnoremap sq :q
 nnoremap sQ :bd
@@ -44,6 +41,41 @@ nnoremap sf <C-w>_<C-w>\|
 nnoremap s0 <C-w>=
 nnoremap s= <C-w>=
 
+
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+function! s:my_tabline()  "{{{
+	let s = ''
+	for i in range(1, tabpagenr('$'))
+		let bufnrs = tabpagebuflist(i)
+		let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first
+		let no = i  " display 0-origin tabpagenr.
+		let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+		let title = fnamemodify(bufname(bufnr), ':t')
+		let title = '[' . title . ']'
+		let s .= '%'.i.'T'
+		let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+		let s .= no . ':' . title
+		let s .= mod
+		let s .= '%#TabLineFill# '
+	endfor
+	let s .= '%#TabLineFill#%T%=%#TabLine#'
+	return s
+endfunction "}}}
+
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2
+nnoremap [Tag]  <Nop>
+nmap     t [Tag]
+nnoremap <silent> [Tag]c :tabnew<CR>
+nnoremap <silent> [Tag]n :tabnext<CR>
+nnoremap <silent> [Tag]p :tabprevious<CR>
+for n in range(1, 9)
+	execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+
+
 """ "for gnu global
 """ set tags=./tags,../tags,~/tags
 """ nnoremap <Leader>gd :Gtags<Space>
@@ -52,17 +84,6 @@ nnoremap s= <C-w>=
 """ nnoremap <Leader>gg :Gtags -g
 """ nnoremap <Leader>gc :GtagsCursor<Enter>
 """ nnoremap <Leader>gu :GtagsUpdate<Enter>
-
-" Unite
-""" nnoremap sT :Unite tab<CR>
-""" nnoremap sb :Unite buffer_tab
-""" nnoremap sB :Unite buffer
-
-""" nnoremap <Leader>le :Unite git_modified<CR>
-""" nnoremap <Leader>lu :Unite git_untracked<CR>
-""" nnoremap <Leader>lc :Unite git_cached<CR>
-""" nnoremap <Leader>ld :Unite gtags/def<CR>
-""" nnoremap <Leader>cf :Unite filetype<CR>
 
 """ " shell
 """ nnoremap <Leader>vs :VimShell<Enter>
@@ -97,3 +118,8 @@ nnoremap <C-l> :cfirst<CR>
 """ nnoremap <silent> <Leader>td  :<C-u>Unite gtags/def:<CR>
 """ " タグファイル内grep
 """ nnoremap <silent> <Leader>tg  :<C-u>Unite gtags/grep:<CR>
+
+""" au FileType rust nmap gd <Plug>(rust-def)
+""" au FileType rust nmap gs <Plug>(rust-def-split)
+""" au FileType rust nmap gx <Plug>(rust-def-vertical)
+""" au FileType rust nmap <leader>gd <Plug>(rust-doc)
