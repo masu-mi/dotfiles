@@ -124,8 +124,10 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 ## """ nnoremap <Leader>ld :Denite gtags/def<CR>
 ## """ nnoremap <Leader>cf :Denite filetype<CR>
 ## '''
-# [[plugins]]
-# repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
 # [[plugins]]
 # repo = 'thinca/vim-ref'
 # [[plugins]]
