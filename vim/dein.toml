@@ -245,6 +245,21 @@ repo = 'zchee/deoplete-go'
 build = 'make'
 depends = [ 'Shougo/deoplete.nvim' ]
 
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+depends = [ 'Shougo/deoplete.nvim' ]
+
+[[plugins]]
+repo = 'vim-scripts/pydoc.vim'
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+depends = [ 'Shougo/deoplete.nvim' ]
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+depends = [ 'Shougo/deoplete.nvim' ]
+
 # [[plugins]]
 # repo = 'mattn/emmet-vim'
 # 
