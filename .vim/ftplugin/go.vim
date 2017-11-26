@@ -12,13 +12,5 @@ nmap <buffer><nowait> <Leader>b <Plug>(go-build)
 nmap <buffer><nowait> <Leader>t <Plug>(go-test)
 nmap <buffer><nowait> <Leader>c <Plug>(go-coverage)
 
-nmap <buffer><nowait> <Leader>a :GoAddTags 
-nmap <buffer><nowait> <Leader>p :GoImport 
-
-" for go
-" filetype off
-" filetype plugin indent off
-" set rtp+=${GOROOT}/misc/vim
-" autocmd FileType go autocmd BufWritePre <buffer> Fmt
-" exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-" set completeopt=menu,preview
+nmap <buffer><nowait> <Leader>a :GoAddTags<Space>
+nmap <buffer><nowait> <Leader>p :GoImport<Space>
