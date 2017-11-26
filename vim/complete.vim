@@ -1,14 +1,14 @@
 scriptencoding utf-8
 
 "### 補完
-set wildmenu               " コマンド補完を強化
-set wildchar=<tab>         " コマンド補完を開始するキー
-set wildmode=list:full     " リスト表示，最長マッチ
-set complete+=k            " 補完に辞書ファイル追加
+" set wildmenu               " コマンド補完を強化
+" set wildchar=<tab>         " コマンド補完を開始するキー
+" set wildmode=list:full     " リスト表示，最長マッチ
+" set complete+=k            " 補完に辞書ファイル追加
 
 "### neocomplcache
 " 補完ウィンドウの設定
-set completeopt=menuone
+" set completeopt=menuone
 " 起動時に有効化
 "  let g:neocomplcache_enable_at_startup=1
 "  " 大文字が入力されるまで大文字小文字の区別を無視する
@@ -39,11 +39,11 @@ set completeopt=menuone
 "  " 改行で補完ウィンドウを閉じる
 "  inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 "  "tabで補完候補の選択を行う
-inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+" inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 "  " 現在選択している候補を確定します
-inoremap <expr><C-y> neocomplcache#close_popup()
+" inoremap <expr><C-y> neocomplcache#close_popup()
 "  " 現在選択している候補をキャンセルし、ポップアップを閉じます
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+" inoremap <expr><C-e> neocomplcache#cancel_popup()
 "  " <C-h>や<BS>を押したときに確実にポップアップを削除します
 "  inoremap <expr><C-h> neocomplcache#smart_close_popup().”\<C-h>”

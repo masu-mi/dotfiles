@@ -118,11 +118,11 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 ## repo = 'unite-giti'
 ## depends = ['Shougo/denite.nvim']
 ## hook_add = '''
-## """ nnoremap <Leader>le :Denite git_modified<CR>
-## """ nnoremap <Leader>lu :Denite git_untracked<CR>
-## """ nnoremap <Leader>lc :Denite git_cached<CR>
-## """ nnoremap <Leader>ld :Denite gtags/def<CR>
-## """ nnoremap <Leader>cf :Denite filetype<CR>
+## """ nnoremap <Leader>le :Denite unite:git_modified<CR>
+## """ nnoremap <Leader>lu :Denite unite:git_untracked<CR>
+## """ nnoremap <Leader>lc :Denite unite:git_cached<CR>
+## """ nnoremap <Leader>ld :Denite unite:gtags/def<CR>
+## """ nnoremap <Leader>cf :Denite unite:filetype<CR>
 ## '''
 
 [[plugins]]
@@ -155,7 +155,7 @@ let g:lightline = {
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-nmap <silent> <C-a> <Plug>(ale_toggle)
+nmap <silent> <C-n> <Plug>(ale_toggle)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-l> <Plug>(ale_first)
@@ -177,11 +177,14 @@ let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimp
 
 [[plugins]]
 repo = 'fatih/vim-go'
-on_ft = ['go']
+# on_ft = ['go']
 hook_add = '''
 let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 1
+let g:go_template_file = "hello_world.go"
 
-let g:go_auto_type_info = 1
+let g:go_auto_sameids = 0   " too heavy
+let g:go_auto_type_info = 0 " too heavy
 let g:go_info_mode = 'gocode'
 let g:go_updatetime = 200
 
@@ -190,10 +193,10 @@ let g:go_doc_max_height = 20
 let g:go_autodetect_gopath = 1 " 迷ってる, _vendor, vendor共に対応できるか検証してから
 
 let g:go_list_type = "quickfix"
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 let g:go_fmt_command = 'goimports'
-let g:go_metalinter_autosave = 0
-let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 let g:go_addtags_transform = 'snakecase'
 
@@ -212,15 +215,21 @@ let g:godef_split=1
 let g:godef_same_file_in_same_window=0
 '''
 
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
+hook_add = '''
+nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
+let g:sonictemplate_vim_template_dir = [
+  \ '$HOME/.vim/template',
+  \]
+'''
+
 # [[plugins]]
 # repo = 'mattn/emmet-vim'
 # 
-# [[plugins]]
-# repo = 'mattn/sonictemplate-vim'
 # 
-# # [[plugins]]
-# # repo = 'nsf/gocode'
-# 
+
 # [[plugins]]
 # repo = 'vim-scripts/errormarker.vim'
 # hook_add = '''

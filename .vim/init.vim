@@ -79,5 +79,3 @@ nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 
 call has('python3')
-""" noremap <Leader>ff :VimFiler -split -toggle -no-quit -winwidth=40 -simple<CR>
-""" noremap <Leader>cap :mkview<CR>
