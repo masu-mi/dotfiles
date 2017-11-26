@@ -77,5 +77,6 @@ colorscheme molokai
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
+nnoremap <F8> :Tagbar<CR>
 
 call has('python3')
