@@ -105,10 +105,15 @@ repo = 'ekalinin/Dockerfile.vim'
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
 
-# 
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+hook_add = '''
+nnoremap <Leader>ff :vs +Vaffle<CR>
+'''
 # [[plugins]]
 # repo = 'Shougo/vimfiler'
 # depends = ['Shougo/unite.vim']
+
 ## [[plugins]]
 ## repo = 'unite-giti'
 ## depends = ['Shougo/denite.nvim']
