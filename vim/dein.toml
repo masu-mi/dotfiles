@@ -161,6 +161,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-l> <Plug>(ale_first)
 nmap <silent> <C-h> <Plug>(ale_last)
 
+let g:ale_enabled = 0
+let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error   = '✗'
 let g:ale_sign_warning = '⚠'
@@ -171,7 +173,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 0
 
-let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gometalinter']}
+let g:ale_linters = {'go': ['gofmt', 'goimports', 'golint', 'go vet', 'gometalinter']}
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
@@ -195,8 +197,7 @@ let g:go_autodetect_gopath = 1 " 迷ってる, _vendor, vendor共に対応でき
 let g:go_list_type = "quickfix"
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = 'goimports'
-let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 0
 
 let g:go_addtags_transform = 'snakecase'
 
@@ -224,6 +225,25 @@ let g:sonictemplate_vim_template_dir = [
   \ '$HOME/.vim/template',
   \]
 '''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+on_if = ''' !has('nvim') '''
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+on_if = ''' !has('nvim') '''
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+build = 'make'
+depends = [ 'Shougo/deoplete.nvim' ]
 
 # [[plugins]]
 # repo = 'mattn/emmet-vim'
