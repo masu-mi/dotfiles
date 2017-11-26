@@ -122,6 +122,7 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 ## """ nnoremap <Leader>lu :Denite unite:git_untracked<CR>
 ## """ nnoremap <Leader>lc :Denite unite:git_cached<CR>
 ## """ nnoremap <Leader>ld :Denite unite:gtags/def<CR>
+
 ## """ nnoremap <Leader>cf :Denite unite:filetype<CR>
 ## '''
 
@@ -160,6 +161,19 @@ let g:lightline = {
   \   'ale': 'ALEGetStatusLine'
   \ }
   \ }
+'''
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
 
 [[plugins]]
