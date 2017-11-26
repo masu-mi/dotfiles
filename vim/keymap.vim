@@ -5,6 +5,7 @@ noremap <Leader><Leader> :nohlsearch<CR><ESC>
 " for NVIM v0.2.0(?) 本来とは逆の挙動をしている気がする
 noremap <Leader>p :set nopaste<CR>
 noremap <Leader>n :set paste<CR>
+noremap <Leader>i :a!<CR>
 
 noremap <Leader>rmsp :%s/\s\+$//ge<CR>
 
