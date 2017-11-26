@@ -127,6 +127,21 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
+hook_add = '''
+ let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits',
+        \'i:impls,trait implementations',
+    \ ]
+    \ }
+'''
 
 # [[plugins]]
 # repo = 'thinca/vim-ref'

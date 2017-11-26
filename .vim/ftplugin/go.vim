@@ -1,11 +1,10 @@
 scriptencoding utf-8
 
-nmap <buffer><nowait> <Leader>gd <Plug>(go-def-split)
-nmap <buffer><nowait> <Leader>dt <Plug>(go-def-tab)
+nmap <buffer><nowait> <Leader>ds <Plug>(go-def-split)
 nmap <buffer><nowait> <Leader>dv <Plug>(go-def-vertical)
 nmap <buffer><nowait> <Leader>i <Plug>(go-info)
-
-nmap <buffer><nowait> <Leader>gb <Plug>(go-doc-browser)
+nmap <buffer><nowait> <Leader>dt <Plug>(go-def-tab)
+nmap <buffer><nowait> <Leader>db <Plug>(go-doc-browser)
 
 nmap <buffer><nowait> <Leader>r <Plug>(go-run)
 nmap <buffer><nowait> <Leader>b <Plug>(go-build)
