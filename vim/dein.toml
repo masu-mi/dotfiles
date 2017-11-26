@@ -30,6 +30,16 @@ nnoremap <silent> <C-u>l :<C-u>DeniteCursorWord grep<CR>
 '''
 
 [[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
+hook_add = '''
+nnoremap <silent> <C-u>o :<C-u>Denite unite:outline<CR>
+'''
+
+[[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
@@ -116,16 +126,84 @@ on_ft = ['toml']
 # [[plugins]]
 # repo = 'yuku-t/vim-ref-ri'
 # depends = ['thinca/vim-ref']
-# [[plugins]]
-# repo = 'fatih/vim-go'
-# on_ft = ['go']
-# [[plugins]]
-# repo = 'dgryski/vim-godef'
-# on_ft = ['go']
-# hook_source = '''
-# let g:godef_split=2
-# let g:godef_same_file_in_same_window=1
-# '''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+" jellybeans, wombat, molokai
+let g:lightline = {
+  \ 'colorscheme': 'jellybeans',
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['readonly', 'filename', 'modified', 'ale'],
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'ale': 'ALEGetStatusLine'
+  \ }
+  \ }
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+nmap <silent> <C-a> <Plug>(ale_toggle)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-l> <Plug>(ale_first)
+nmap <silent> <C-h> <Plug>(ale_last)
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error   = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_statusline_format = ['✗ %d', '⚠ %d', '⬥ ok']
+let g:ale_echo_msg_error_str   = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_open_list = 1
+let g:ale_set_quickfix = 0
+
+let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gometalinter']}
+let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+'''
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+hook_add = '''
+let g:go_def_mapping_enabled = 0
+
+let g:go_auto_type_info = 1
+let g:go_info_mode = 'gocode'
+let g:go_updatetime = 200
+
+let g:go_doc_keywordprg_enabled = 1 "change K(keywordprg) to :GoDoc
+let g:go_doc_max_height = 20
+let g:go_autodetect_gopath = 1 " 迷ってる, _vendor, vendor共に対応できるか検証してから
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = 'goimports'
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+
+let g:go_addtags_transform = 'snakecase'
+
+" 迷ってる, or neosnippet
+let g:go_snippet_engine = "ultisnips"
+
+let g:go_textobj_enabled = 1
+let g:go_textobj_include_function_doc = 1
+'''
+
+[[plugins]]
+repo = 'dgryski/vim-godef'
+on_ft = ['go']
+hook_source = '''
+let g:godef_split=1
+let g:godef_same_file_in_same_window=0
+'''
 
 # [[plugins]]
 # repo = 'mattn/emmet-vim'
