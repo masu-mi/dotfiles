@@ -311,6 +311,18 @@ let g:racer_cmd = '$HOME/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 '''
 
+[[plugins]]
+repo = 'vim-utils/vim-man'
+hook_add = '''
+augroup cursor_man
+  autocmd!
+  autocmd WinEnter,BufRead,FileType * if &filetype == 'man' | IndentGuidesDisable | else | IndentGuidesEnable | endif
+augroup END
+'''
+
 # [[plugins]]
-# repo = 'vim-utils/vim-man'
-# 
+# repo = 'thinca/vim-ref'
+# [[plugins]]
+# repo = 'yuku-t/vim-ref-ri'
+# depends = ['thinca/vim-ref']
+
