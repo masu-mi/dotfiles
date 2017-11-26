@@ -12,39 +12,8 @@ nmap <buffer><nowait> <Leader>b <Plug>(go-build)
 nmap <buffer><nowait> <Leader>t <Plug>(go-test)
 nmap <buffer><nowait> <Leader>c <Plug>(go-coverage)
 
-nmap <buffer><nowait> <Leader>at :GoAddTags
-
-""" " au BufWritePre *.go :GoFmt
-""" 
-""" " gotags {{{
-""" let g:tagbar_type_go = {
-"""     \ 'ctagstype' : 'go',
-"""     \ 'kinds'     : [
-"""         \ 'p:package',
-"""         \ 'i:imports:1',
-"""         \ 'c:constants',
-"""         \ 'v:variables',
-"""         \ 't:types',
-"""         \ 'n:interfaces',
-"""         \ 'w:fields',
-"""         \ 'e:embedded',
-"""         \ 'm:methods',
-"""         \ 'r:constructor',
-"""         \ 'f:functions'
-"""     \ ],
-"""     \ 'sro' : '.',
-"""     \ 'kind2scope' : {
-"""         \ 't' : 'ctype',
-"""         \ 'n' : 'ntype'
-"""     \ },
-"""     \ 'scope2kind' : {
-"""         \ 'ctype' : 't',
-"""         \ 'ntype' : 'n'
-"""     \ },
-"""     \ 'ctagsbin'  : 'gotags',
-"""     \ 'ctagsargs' : '-sort -silent'
-""" \ }
-""" " }}}
+nmap <buffer><nowait> <Leader>a :GoAddTags 
+nmap <buffer><nowait> <Leader>p :GoImport 
 
 " for go
 " filetype off

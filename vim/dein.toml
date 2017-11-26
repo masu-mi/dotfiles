@@ -200,9 +200,7 @@ let g:go_fmt_command = 'goimports'
 let g:go_metalinter_autosave = 0
 
 let g:go_addtags_transform = 'snakecase'
-
-" 迷ってる, or neosnippet
-let g:go_snippet_engine = "ultisnips"
+let g:go_snippet_engine = "neosnippet"
 
 let g:go_textobj_enabled = 1
 let g:go_textobj_include_function_doc = 1
@@ -230,6 +228,11 @@ let g:sonictemplate_vim_template_dir = [
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
+imap <expr><tab> pumvisible() ? "\<C-n>" :
+  \ neosnippet#expandable_or_jumpable() ?
+  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+call deoplete#custom#set('_', 'converters', ['converter_auto_paren'])
+imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
 '''
 
 [[plugins]]
@@ -270,10 +273,21 @@ depends = [ 'Shougo/deoplete.nvim' ]
 # hook_add = '''
 # let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 # '''
-# [[plugins]]
-# repo = 'Shougo/neosnippet'
-# [[plugins]]
-# repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_add = '''
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+'''
+depends = [ 'neosnippet-snippets' ]
+
 # 
 # 
 # 

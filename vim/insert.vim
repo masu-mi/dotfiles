@@ -1,9 +1,10 @@
 scriptencoding utf-8
 
 "### キーマップ
-imap ( ()<LEFT>
-imap [ []<LEFT>
-imap { {}<LEFT>
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>
+inoremap <C-l> <RIGHT>
 
 "### バックスペース挙動
 set backspace=indent,start,eol
