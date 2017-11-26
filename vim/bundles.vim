@@ -22,7 +22,7 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file)
+  call dein#load_toml(s:toml_file, {'lasy': 0})
   call dein#end()
   call dein#save_state()
 endif
