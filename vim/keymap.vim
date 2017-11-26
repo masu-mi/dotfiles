@@ -64,32 +64,9 @@ endfor
 """ nnoremap <Leader>vs :VimShell<Enter>
 """ nnoremap <Leader>vf :VimFilerExplorer<Enter>
 
-" tagbar
-nnoremap <F8> :Tagbar<CR>
-
-""" let g:syntastic_check_on_open=1
-""" let g:syntastic_enable_signs=1
-""" let g:syntastic_auto_loc_list=1
-""" let g:syntastic_mode_map = { 'mode': 'passive',
-"""             \ 'active_filetypes': ['ruby', 'javascript','vim'] }
-""" let g:syntastic_python_checkers=['pyflakes', 'pep8']
-""" let g:syntastic_ruby_checkers = ['rubocop'] " or ['rubocop', 'mri']
-""" let g:syntastic_always_populate_loc_list = 1
-""" let g:syntastic_error_symbol='✗'
-""" let g:syntastic_warning_symbol='⚠'
-""" let g:syntastic_style_error_symbol = '✗'
-""" let g:syntastic_style_warning_symbol = '⚠'
-""" hi SyntasticErrorSign ctermfg=160
-""" hi SyntasticWarningSign ctermfg=220
-
 """ " カーソル下の呼び出し元一覧を出力
 """ nnoremap <silent> <Leader>tr  :<C-u>Unite gtags/ref:<CR>
 """ " カーソル下の定義元を出力
 """ nnoremap <silent> <Leader>td  :<C-u>Unite gtags/def:<CR>
 """ " タグファイル内grep
 """ nnoremap <silent> <Leader>tg  :<C-u>Unite gtags/grep:<CR>
-
-""" au FileType rust nmap gd <Plug>(rust-def)
-""" au FileType rust nmap gs <Plug>(rust-def-split)
-""" au FileType rust nmap gx <Plug>(rust-def-vertical)
-""" au FileType rust nmap <leader>gd <Plug>(rust-doc)

@@ -143,11 +143,6 @@ hook_add = '''
     \ }
 '''
 
-# [[plugins]]
-# repo = 'thinca/vim-ref'
-# [[plugins]]
-# repo = 'yuku-t/vim-ref-ri'
-# depends = ['thinca/vim-ref']
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -280,8 +275,6 @@ depends = [ 'Shougo/deoplete.nvim' ]
 
 # [[plugins]]
 # repo = 'mattn/emmet-vim'
-# 
-# 
 
 # [[plugins]]
 # repo = 'vim-scripts/errormarker.vim'
