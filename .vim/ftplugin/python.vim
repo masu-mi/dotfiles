@@ -1,6 +1,5 @@
-let g:syntastic_python_checkers = ['flake8']
-
 setlocal textwidth=80
+" setlocal iskeyword+=.
 setlocal smarttab
 setlocal expandtab
 setlocal nosmartindent

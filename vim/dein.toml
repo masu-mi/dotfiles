@@ -129,7 +129,8 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 [[plugins]]
 repo = 'majutsushi/tagbar'
 hook_add = '''
- let g:tagbar_type_rust = {
+let g:tagbar_ctags_bin = '~/local/bin/ctags'
+let g:tagbar_type_rust = {
     \ 'ctagstype' : 'rust',
     \ 'kinds' : [
         \'T:types,type definitions',
@@ -197,7 +198,10 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 0
 
-let g:ale_linters = {'go': ['gofmt', 'goimports', 'golint', 'go vet', 'gometalinter']}
+let g:ale_linters = {
+      \ 'go': ['gofmt', 'goimports', 'golint', 'go vet', 'gometalinter'],
+      \ 'python': ['flake8', 'mypy', 'pylint'],
+      \ }
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
@@ -244,8 +248,8 @@ depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
 hook_add = '''
 nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
 let g:sonictemplate_vim_template_dir = [
-  \ '$HOME/.vim/template',
-  \]
+      \ '$HOME/.vim/template',
+      \]
 '''
 
 [[plugins]]
@@ -253,8 +257,8 @@ repo = 'Shougo/deoplete.nvim'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
 imap <expr><tab> pumvisible() ? "\<C-n>" :
-  \ neosnippet#expandable_or_jumpable() ?
-  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+      \ neosnippet#expandable_or_jumpable() ?
+      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 call deoplete#custom#set('_', 'converters', ['converter_auto_paren'])
 imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
 '''

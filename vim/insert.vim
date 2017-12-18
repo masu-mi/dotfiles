@@ -33,9 +33,3 @@ set expandtab
 augroup filetypedetect
         au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 augroup END
-
-augroup staticcheck
-  au!
-  au BufWritePost *.{py} exe ":!pep8 %; pyflakes %"
-  au BufWritePost *.{php} exe ":!php -l %"
-augroup END
