@@ -330,6 +330,9 @@ let g:racer_experimental_completer = 1
 '''
 
 [[plugins]]
+repo = 'elixir-editors/vim-elixir'
+
+[[plugins]]
 repo = 'vim-utils/vim-man'
 hook_add = '''
 augroup cursor_man
