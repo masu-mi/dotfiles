@@ -24,8 +24,8 @@ nnoremap <silent> <C-u>F :<C-u>Denite file_rec<CR>
 nnoremap <silent> <C-u>b :<C-u>Denite buffer<CR>
 nnoremap <silent> <C-u>w :<C-u>Denite line<CR>
 nnoremap <silent> <C-u>c :<C-u>DeniteCursorWord line<CR>
-nnoremap <silent> <C-u>g :<C-u>Denite grep<CR>
-nnoremap <silent> <C-u>G :<C-u>DeniteBufferDir grep<CR>
+nnoremap <silent> <C-u>gr :<C-u>Denite grep<CR>
+nnoremap <silent> <C-u>gg :<C-u>DeniteBufferDir grep<CR>
 nnoremap <silent> <C-u>l :<C-u>DeniteCursorWord grep<CR>
 '''
 
@@ -114,17 +114,14 @@ nnoremap <Leader>ff :vs +Vaffle<CR>
 # repo = 'Shougo/vimfiler'
 # depends = ['Shougo/unite.vim']
 
-## [[plugins]]
-## repo = 'unite-giti'
-## depends = ['Shougo/denite.nvim']
-## hook_add = '''
-## """ nnoremap <Leader>le :Denite unite:git_modified<CR>
-## """ nnoremap <Leader>lu :Denite unite:git_untracked<CR>
-## """ nnoremap <Leader>lc :Denite unite:git_cached<CR>
-## """ nnoremap <Leader>ld :Denite unite:gtags/def<CR>
-
-## """ nnoremap <Leader>cf :Denite unite:filetype<CR>
-## '''
+[[plugins]]
+repo = 'kmnk/vim-unite-giti'
+depends = ['Shougo/denite.nvim']
+hook_add = '''
+nnoremap <silent> <C-u>gs <C-u>:Denite unite:giti/status<CR>
+nnoremap <silent> <C-u>gb <C-u>:Denite unite:giti/branch<CR>
+nnoremap <silent> <C-u>gl <C-u>:Denite unite:giti/log<CR>
+'''
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
