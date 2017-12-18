@@ -13,7 +13,7 @@ alias cdwork='cd ${HOME}/works'
 alias cd..='cd ..'
 alias realcwd='cd -P .'
 
-alias ls='ls -G'
+alias ls='ls --color -F'
 alias md='mkdir'
 alias cp='cp -v'
 alias mv='mv -i'
