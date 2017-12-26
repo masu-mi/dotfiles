@@ -278,7 +278,7 @@ repo = 'zchee/deoplete-jedi'
 depends = [ 'Shougo/deoplete.nvim' ]
 
 [[plugins]]
-repo = 'vim-scripts/pydoc.vim'
+repo = 'fs111/pydoc.vim'
 
 [[plugins]]
 repo = 'fishbullet/deoplete-ruby'
