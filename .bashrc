@@ -83,6 +83,9 @@ add_path "${HOME}/pear/bin"
 add_path "${HOME}/.plenv/bin"
 if which plenv >& /dev/null; then eval "$(plenv init -)"; fi
 add_path "${HOME}/.cabal/bin"
+# for asdf
+if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
+if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
 
 ### cloud services
 add_path "${HOME}/local/go_appengine"
