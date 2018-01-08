@@ -296,8 +296,8 @@ depends = [ 'Shougo/deoplete.nvim' ]
 repo = 'Shougo/neco-vim'
 depends = [ 'Shougo/deoplete.nvim' ]
 
-# [[plugins]]
-# repo = 'mattn/emmet-vim'
+[[plugins]]
+repo = 'mattn/emmet-vim'
 
 # [[plugins]]
 # repo = 'vim-scripts/errormarker.vim'
