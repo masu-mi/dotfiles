@@ -346,6 +346,9 @@ augroup cursor_man
 augroup END
 '''
 
+[[plugins]]
+repo = 'tfnico/vim-gradle'
+
 # [[plugins]]
 # repo = 'thinca/vim-ref'
 # [[plugins]]
