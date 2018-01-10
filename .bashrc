@@ -105,6 +105,12 @@ export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
 
+## TODO dynamical `openjdk-9-jdk`
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+add_path "${JAVA_HOME}/bin"
+## TODO dynamical
+add_path ${HOME}/.apache-maven-3.5.2/bin
+
 # TODO delete sentence below
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
@@ -124,3 +130,7 @@ if [ -f "/home/masumi/google-cloud-sdk/completion.bash.inc" ];then
   . "/home/masumi/google-cloud-sdk/completion.bash.inc"
 fi
 export PATH="$HOME/.embulk/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/masumi/.sdkman"
+[[ -s "/home/masumi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/masumi/.sdkman/bin/sdkman-init.sh"
