@@ -30,11 +30,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 ## basic tools
 export EDITOR=vim
 export SVN_EDITOR=vim
-export CVSEDITOR=vim
-export CVS_RSH=ssh
 export RSYNC_RSH=ssh
-if [ -x lv ]; then
-  export PAGER='lv -la -c -Ou8'
+export LESSCHARSET=utf-8
+if [ -x less ]; then
+  export PAGER='less -R'
 fi
 
 ## add paths

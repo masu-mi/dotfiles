@@ -3,7 +3,6 @@
 
 alias reload='. ~/.bashrc'
 
-alias sudo='sudo -p "sudo"'
 alias g='git'
 
 alias f='pushd'
@@ -22,7 +21,6 @@ alias rm='rm -i'
 alias bc='bc -p'
 alias cal='cal -m3'
 
-alias lv='lv -c'
 alias sc='screen -U -D -RR'
 alias ftmux='tmux -2u'
 
