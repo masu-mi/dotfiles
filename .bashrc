@@ -21,6 +21,8 @@ function add_path {
 }
 
 export LANG='ja_JP.UTF-8'
+export LC_ALL='C.UTF-8'
+
 export HISTSIZE=2000
 export XDG_CONFIG_HOME=$HOME/.config
 
@@ -30,11 +32,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 ## basic tools
 export EDITOR=vim
 export SVN_EDITOR=vim
-export CVSEDITOR=vim
-export CVS_RSH=ssh
 export RSYNC_RSH=ssh
-if [ -x lv ]; then
-  export PAGER='lv -la -c -Ou8'
+export LESSCHARSET=utf-8
+if [ -x less ]; then
+  export PAGER='less -R'
 fi
 
 ## add paths
@@ -86,6 +87,7 @@ add_path "${HOME}/.cabal/bin"
 # for asdf
 if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
+add_path "${HOME}/.asdf/bin/"
 
 ### cloud services
 add_path "${HOME}/local/go_appengine"
@@ -104,6 +106,12 @@ export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
 
+## TODO dynamical `openjdk-9-jdk`
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+add_path "${JAVA_HOME}/bin"
+## TODO dynamical
+add_path ${HOME}/.apache-maven-3.5.2/bin
+
 # TODO delete sentence below
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
@@ -113,3 +121,18 @@ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+add_path ${HOME}/.nodebrew/current/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "/home/masumi/google-cloud-sdk/path.bash.inc" ];then
+  . "/home/masumi/google-cloud-sdk/path.bash.inc"
+fi
+# The next line enables shell command completion for gcloud.
+if [ -f "/home/masumi/google-cloud-sdk/completion.bash.inc" ];then
+  . "/home/masumi/google-cloud-sdk/completion.bash.inc"
+fi
+export PATH="$HOME/.embulk/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/masumi/.sdkman"
+[[ -s "/home/masumi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/masumi/.sdkman/bin/sdkman-init.sh"

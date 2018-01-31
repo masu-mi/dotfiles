@@ -46,6 +46,8 @@ set foldmethod=syntax
 set foldlevel=10
 set ambiwidth=double
 " 検索
+set ignorecase
+set smartcase
 set incsearch
 set hlsearch
 set wrapscan
