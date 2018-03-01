@@ -89,6 +89,7 @@ add_path "${HOME}/.cabal/bin"
 if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
 add_path "${HOME}/.asdf/bin/"
+if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
 ### cloud services
 add_path "${HOME}/local/go_appengine"

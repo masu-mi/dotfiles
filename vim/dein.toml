@@ -346,7 +346,7 @@ let g:racer_experimental_completer = 1
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
-let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident']
+let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
 '''
 
 [[plugins]]
