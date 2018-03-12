@@ -50,6 +50,7 @@ function push-src() {
     pushd $src
   fi
 }
+alias gco='git checkout $(git branch | peco)'
 
 alias pdots='pushd ~/dotfiles'
 alias lsdrafts='head -n 1 `ls drafts/*.rst`| awk '\''!/^$/{print $0}'\'
