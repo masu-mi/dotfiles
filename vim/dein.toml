@@ -220,6 +220,27 @@ let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimp
 '''
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_add = '''
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+'''
+depends = [ 'neosnippet-snippets' ]
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build= 'make'
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+depends = [ 'Shougo/vimproc.vim' ]
+
+[[plugins]]
 repo = 'fatih/vim-go'
 # on_ft = ['go']
 hook_add = '''
@@ -313,20 +334,6 @@ repo = 'mattn/emmet-vim'
 # hook_add = '''
 # let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 # '''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-[[plugins]]
-repo = 'Shougo/neosnippet'
-hook_add = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-'''
-depends = [ 'neosnippet-snippets' ]
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
