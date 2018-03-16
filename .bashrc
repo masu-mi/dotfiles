@@ -91,17 +91,10 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf
 add_path "${HOME}/.asdf/bin/"
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
-### cloud services
-add_path "${HOME}/local/go_appengine"
-add_path "/usr/local/heroku/bin"
+if [ -f ~/.fzf.bash ]; then . $HOME/.fzf.bash; fi
 
-# for different option
-. ~/dotfiles/.bashrc.$(uname)
-
-for file in $(test -d ~/.bashrcs && find ~/.bashrcs -type f);
-do
-  . ${file}
-done
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 # export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
@@ -114,16 +107,18 @@ add_path "${JAVA_HOME}/bin"
 ## TODO dynamical
 add_path ${HOME}/.apache-maven-3.5.2/bin
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+add_path ${HOME}/.nodebrew/current/bin
+
+export PATH="$HOME/.embulk/bin:$PATH"
+
 # TODO delete sentence below
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/ImageMagick"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-add_path ${HOME}/.nodebrew/current/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "/home/masumi/google-cloud-sdk/path.bash.inc" ];then
@@ -133,7 +128,16 @@ fi
 if [ -f "/home/masumi/google-cloud-sdk/completion.bash.inc" ];then
   . "/home/masumi/google-cloud-sdk/completion.bash.inc"
 fi
-export PATH="$HOME/.embulk/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+### cloud services
+add_path "${HOME}/local/go_appengine"
+add_path "/usr/local/heroku/bin"
+
+# for different option
+. ~/dotfiles/.bashrc.$(uname)
+
+for file in $(test -d ~/.bashrcs && find ~/.bashrcs -type f);
+do
+  . ${file}
+done
