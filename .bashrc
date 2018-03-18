@@ -40,6 +40,7 @@ if [ -x less ]; then
 fi
 
 ## add paths
+add_path "/usr/local/opt/llvm/bin"
 add_path "/opt/X11/bin"
 add_path "/usr/local/sbin"
 add_path "/usr/local/bin"
