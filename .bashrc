@@ -130,6 +130,7 @@ if [ -f "/home/masumi/google-cloud-sdk/completion.bash.inc" ];then
   . "/home/masumi/google-cloud-sdk/completion.bash.inc"
 fi
 
+alias s3cmdl='s3cmd -c ./.s3cfg'
 
 ### cloud services
 add_path "${HOME}/local/go_appengine"
