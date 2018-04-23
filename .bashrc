@@ -92,7 +92,7 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf
 add_path "${HOME}/.asdf/bin/"
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
-if [ -f ~/.fzf.bash ]; then . $HOME/.fzf.bash; fi
+if [ -f ~/dotfiles/.fzf.bash ]; then . $HOME/dotfiles/.fzf.bash; fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
