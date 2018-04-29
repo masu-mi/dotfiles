@@ -122,12 +122,12 @@ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/mysql"
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include/freetype"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "/home/masumi/google-cloud-sdk/path.bash.inc" ];then
-  . "/home/masumi/google-cloud-sdk/path.bash.inc"
+if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ];then
+  . "$HOME/google-cloud-sdk/path.bash.inc"
 fi
 # The next line enables shell command completion for gcloud.
-if [ -f "/home/masumi/google-cloud-sdk/completion.bash.inc" ];then
-  . "/home/masumi/google-cloud-sdk/completion.bash.inc"
+if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ];then
+  . "$HOME/google-cloud-sdk/completion.bash.inc"
 fi
 
 alias s3cmdl='s3cmd -c ./.s3cfg'
