@@ -92,7 +92,7 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf
 add_path "${HOME}/.asdf/bin/"
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
-if [ -f ~/dotfiles/.fzf.bash ]; then . $HOME/dotfiles/.fzf.bash; fi
+if [ -f $HOME/dotfiles/.fzf.bash -a -d $HOME/.fzf ]; then . $HOME/dotfiles/.fzf.bash; fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
@@ -100,10 +100,14 @@ if [ -f ~/dotfiles/.fzf.bash ]; then . $HOME/dotfiles/.fzf.bash; fi
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 # export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
+
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 export CLASSPATH=".:/usr/java/default/lib/:/usr/share/java/junit.jar"
 
 ## TODO dynamical `openjdk-9-jdk`
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+if [ -d '/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/' ]; then export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/; fi
+if [ -d '/usr/lib/jvm/java-8-openjdk-amd64' ]; then export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64; fi
+
 add_path "${JAVA_HOME}/bin"
 ## TODO dynamical
 add_path ${HOME}/.apache-maven-3.5.2/bin
