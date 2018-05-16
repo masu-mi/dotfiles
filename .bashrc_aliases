@@ -73,3 +73,4 @@ alias jdb='jdb -J-Dfile.encoding=utf-8'
 function select-stash () {
   git stash list | fzf --preview 'git show --color $(echo {} | awk -F: "{print \$1}")' | awk 'BEGIN{FS=":"}{print $1}'
 }
+function swagger-editor() { docker run -p ${1:-80}:8080 swaggerapi/swagger-editor; }
