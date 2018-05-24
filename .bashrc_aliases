@@ -70,6 +70,10 @@ alias javac='javac -J-Dfile.encoding=utf-8'
 alias jar='jar -J-Dfile.encoding=utf-8'
 alias jdb='jdb -J-Dfile.encoding=utf-8'
 
+function lsbucket() {
+  s3cmdl ls s3://${SRC_BUCKET}/
+}
+
 function select-stash () {
   git stash list | fzf --preview 'git show --color $(echo {} | awk -F: "{print \$1}")' | awk 'BEGIN{FS=":"}{print $1}'
 }
