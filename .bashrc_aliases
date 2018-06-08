@@ -99,3 +99,46 @@ function select-stash () {
   git stash list | fzf --preview 'git show --color $(echo {} | awk -F: "{print \$1}")' | awk 'BEGIN{FS=":"}{print $1}'
 }
 function swagger-editor() { docker run -p ${1:-80}:8080 swaggerapi/swagger-editor; }
+
+loop_date() {
+  start=$1
+  end=$2
+  format=${3:-%Y-%m-%d}
+  step=${4:-1day}
+
+  idx="$(date -d "$start" "+$format")"
+  __internal_format='%Y-%m-%d %H:%M:%S'
+  __idx="$(date -d "$start" "+$__internal_format")"
+  if [ "$?" != "0" ];
+  then
+    echo "invalid format(\$start:$start)" >&2
+    return 1
+  fi
+  __end="$(date -d "$end" "+$__internal_format")"
+  if [ "$?" != "0" ];
+  then
+    echo "invalid format(\$end:$end)" >&2
+    return 1
+  fi
+  while [ 1 ] ; do
+    echo $idx
+    if [ "$__idx" = "$__end" ] ; then
+      break
+    fi
+    idx="$(date -d "$__idx   $step" "+$format")"
+    __idx="$(date -d "$__idx $step" "+$__internal_format")"
+  done
+}
+
+first_date() {
+  date -d "$1" '+%Y-%m-01'
+}
+last_date() {
+  date -d "$(date -d "(date -d "$1" '+%Y-%m-15') 1month" '+%Y-%m-01') -1day" '+%Y-%m-%d'
+}
+loop_first_date() {
+  s=$1
+  e=$2
+  f=${3:-%Y%m01}
+  loop_date $(date -d "$s" '+%Y-%m-01') $(date -d "$e" '+%Y-%m-01') "$f" '1month'
+}
