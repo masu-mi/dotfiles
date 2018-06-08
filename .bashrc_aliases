@@ -70,6 +70,27 @@ alias javac='javac -J-Dfile.encoding=utf-8'
 alias jar='jar -J-Dfile.encoding=utf-8'
 alias jdb='jdb -J-Dfile.encoding=utf-8'
 
+function s3cmdl() {
+  s3cmd -c ./.s3cfg $@
+}
+
+function make-s3-workspace() {
+  if [ "$1" = "" ];
+  then
+    echo "${FUNCNAME[0]} requires space name" >&2
+    return 1
+  fi
+  space=$1
+  if [ -d "$space" ]; then
+    echo "space are required not conflict existing dir!!"
+    return 1
+  fi
+  mkdir $space
+  pushd $space
+  s3cmdl --configure
+  popd
+}
+
 function lsbucket() {
   s3cmdl ls s3://${SRC_BUCKET}/
 }
