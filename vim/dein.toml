@@ -357,6 +357,9 @@ let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 
 '''
 
 [[plugins]]
+repo = 'robertbasic/vim-hugo-helper'
+
+[[plugins]]
 repo = 'elixir-editors/vim-elixir'
 
 [[plugins]]
