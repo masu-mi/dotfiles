@@ -363,6 +363,9 @@ repo = 'robertbasic/vim-hugo-helper'
 repo = 'elixir-editors/vim-elixir'
 
 [[plugins]]
+repo = 'slashmili/alchemist.vim'
+
+[[plugins]]
 repo = 'vim-utils/vim-man'
 hook_add = '''
 augroup cursor_man
