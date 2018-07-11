@@ -36,7 +36,12 @@ function stvim {
     vim $(which $1)
 }
 function sshp() {
-  local host=$(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config |sort|peco|awk '{print $2}')
+  local host=$(
+    grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config |\
+      xargs -n 1 | grep -v Host | sort -u | \
+      xargs -I{} echo 'Host {}' | peco | \
+      awk '{print $2}'
+  )
   if [ -n "$host" ]; then
     echo "[ssh]: $host"
     ssh $@ $host
