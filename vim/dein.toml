@@ -139,6 +139,23 @@ let g:tagbar_type_rust = {
         \'i:impls,trait implementations',
     \ ]
     \ }
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records',
+        \ 't:tests'
+    \ ]
+    \ }
 let g:tagbar_type_xml = {
     \ 'ctagstype' : 'WSDL',
     \ 'kinds'     : [
@@ -222,6 +239,7 @@ let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimp
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+
 [[plugins]]
 repo = 'Shougo/neosnippet'
 hook_add = '''
@@ -362,6 +380,9 @@ repo = 'robertbasic/vim-hugo-helper'
 
 [[plugins]]
 repo = 'elixir-editors/vim-elixir'
+
+[[plugins]]
+repo = 'mattreduce/vim-mix'
 
 [[plugins]]
 repo = 'slashmili/alchemist.vim'
