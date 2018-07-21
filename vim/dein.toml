@@ -237,20 +237,20 @@ let g:ale_linters = {
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+# [[plugins]]
+# repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]]
-repo = 'Shougo/neosnippet'
-hook_add = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-'''
-depends = [ 'neosnippet-snippets' ]
+# [[plugins]]
+# repo = 'Shougo/neosnippet'
+# hook_add = '''
+# imap <C-k> <Plug>(neosnippet_expand_or_jump)
+# smap <C-k> <Plug>(neosnippet_expand_or_jump)
+# xmap <C-k> <Plug>(neosnippet_expand_target)
+# if has('conceal')
+#   set conceallevel=2 concealcursor=niv
+# endif
+# '''
+# depends = [ 'neosnippet-snippets' ]
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -282,7 +282,7 @@ let g:go_fmt_command = 'goimports'
 let g:go_metalinter_autosave = 0
 
 let g:go_addtags_transform = 'snakecase'
-let g:go_snippet_engine = "neosnippet"
+" let g:go_snippet_engine = "neosnippet"
 
 let g:go_textobj_enabled = 1
 let g:go_textobj_include_function_doc = 1
@@ -306,16 +306,16 @@ let g:sonictemplate_vim_template_dir = [
       \]
 '''
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-imap <expr><tab> pumvisible() ? "\<C-n>" :
-      \ neosnippet#expandable_or_jumpable() ?
-      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
-imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
-'''
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# hook_add = '''
+# let g:deoplete#enable_at_startup = 1
+# imap <expr><tab> pumvisible() ? "\<C-n>" :
+#       \ neosnippet#expandable_or_jumpable() ?
+#       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+# call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+# imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
+# '''
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -348,11 +348,11 @@ depends = [ 'Shougo/deoplete.nvim' ]
 [[plugins]]
 repo = 'mattn/emmet-vim'
 
-# [[plugins]]
-# repo = 'vim-scripts/errormarker.vim'
-# hook_add = '''
-# let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-# '''
+[[plugins]]
+repo = 'vim-scripts/errormarker.vim'
+hook_add = '''
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+'''
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
@@ -369,11 +369,11 @@ let g:racer_cmd = '$HOME/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 '''
 
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-hook_add = '''
-let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
-'''
+# [[plugins]]
+# repo = 'sheerun/vim-polyglot'
+# hook_add = '''
+# let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
+# '''
 
 [[plugins]]
 repo = 'robertbasic/vim-hugo-helper'
@@ -383,6 +383,12 @@ repo = 'elixir-editors/vim-elixir'
 
 [[plugins]]
 repo = 'mattreduce/vim-mix'
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
 
 [[plugins]]
 repo = 'slashmili/alchemist.vim'
@@ -399,9 +405,9 @@ augroup END
 [[plugins]]
 repo = 'tfnico/vim-gradle'
 
-# [[plugins]]
-# repo = 'thinca/vim-ref'
-# [[plugins]]
-# repo = 'yuku-t/vim-ref-ri'
-# depends = ['thinca/vim-ref']
+[[plugins]]
+repo = 'thinca/vim-ref'
+[[plugins]]
+repo = 'yuku-t/vim-ref-ri'
+depends = ['thinca/vim-ref']
 
