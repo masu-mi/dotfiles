@@ -65,6 +65,11 @@ augroup cursor_line
   autocmd WinEnter,BufRead * set nocursorcolumn
 augroup END
 
+augroup filetype_alias
+  autocmd!
+  autocmd BufRead,BufNewfile *.dig set filetype=yaml
+augroup END
+
 " 不可視文字の表示
 set list
 set listchars=tab:>-,trail:_,precedes:<,extends:>
