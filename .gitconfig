@@ -20,8 +20,8 @@
 	p = !git push origin $(git rev-parse --abbrev-ref HEAD)
 	pushset = push --set-upstream
 	cancel = reset --soft HEAD^
-	zip = !git archive --format=zip HEAD > `git symbolic-ref --short HEAD`.zip
-	tgz = !git archive --format=tar.gz HEAD > `git symbolic-ref --short HEAD`.tar.gz
+	zip = !git archive --format=zip HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).zip
+	tgz = !git archive --format=tar.gz HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).tar.gz
 [core]
 	quotepath = false
 	excludesfile = /Users/masumi/.gitignore_global
