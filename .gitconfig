@@ -11,11 +11,13 @@
 	ci = commit
 	cp = cherry-pick
 	st = status -sb
+	b = branch
 	br = branch
 	mg = merge --ff
 	mgnf = merge --no-ff
 	df = diff
 	difff = diff --word-diff
+	p = !git push origin $(git rev-parse --abbrev-ref HEAD)
 	cancel = reset --soft HEAD^
 	zip = !git archive --format=zip HEAD > `git symbolic-ref --short HEAD`.zip
 	tgz = !git archive --format=tar.gz HEAD > `git symbolic-ref --short HEAD`.tar.gz
