@@ -17,7 +17,6 @@ alias cp='cp -v'
 alias mv='mv -i'
 alias rm='rm -i'
 
-alias bc='bc -p'
 alias cal='cal -m3'
 
 alias sc='screen -U -D -RR'
