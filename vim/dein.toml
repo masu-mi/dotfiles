@@ -406,6 +406,9 @@ augroup END
 repo = 'tfnico/vim-gradle'
 
 [[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
 repo = 'thinca/vim-ref'
 [[plugins]]
 repo = 'yuku-t/vim-ref-ri'
