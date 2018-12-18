@@ -39,4 +39,4 @@
 [pull]
 	ff = only
 [ghq]
-	root = /Users/masumi/dev/src
+	root = ~/dev/src
