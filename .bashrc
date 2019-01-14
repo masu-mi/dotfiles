@@ -1,24 +1,8 @@
 [ -f /etc/profile ] && . /etc/profile
 [ -f /etc/bashrc ]  && . /etc/bashrc
-[ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 
-function pathmunge () {
-  case ":${PATH}:" in
-    *:"$1":*)
-      ;;
-    *)
-      if [ "$2" = "after" ] ; then
-        export PATH=$PATH:$1
-      else
-        export PATH=$1:$PATH
-      fi
-  esac
-}
-function add_path {
-  if test -d $1; then
-    pathmunge $1 $2
-  fi
-}
+[ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
+[ -f ~/dotfiles/.bashrc_bootfuncs ] && . ~/dotfiles/.bashrc_bootfuncs
 
 export LANG='ja_JP.UTF-8'
 
@@ -78,7 +62,7 @@ if which virtualenvwrapper.sh >& /dev/null; then
   export VIRTUALENVWRAPPER_PYTHON=$(command \which python3 || command \which python)
   source $(which virtualenvwrapper.sh)
 fi
-add_path "${HOME}/.nodebrew/current/bin"
+
 add_path "${HOME}/.phpenv/bin"
 if which phpenv >& /dev/null; then eval "$(phpenv init -)"; fi
 add_path "${HOME}/.rbenv/bin"
@@ -87,16 +71,25 @@ add_path "${HOME}/pear/bin"
 add_path "${HOME}/.plenv/bin"
 if which plenv >& /dev/null; then eval "$(plenv init -)"; fi
 add_path "${HOME}/.cabal/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+add_path ${HOME}/.nodebrew/current/bin
+
 # for asdf
 if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
 add_path "${HOME}/.asdf/bin/"
+
+if [ "$(uname)" == "Darwin" ]; then
+  #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+  [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi
+
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
 if [ -f $HOME/dotfiles/.fzf.bash -a -d $HOME/.fzf ]; then . $HOME/dotfiles/.fzf.bash; fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 # export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
@@ -113,12 +106,7 @@ add_path "${JAVA_HOME}/bin"
 ## TODO dynamical
 add_path ${HOME}/.apache-maven-3.5.2/bin
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-add_path ${HOME}/.nodebrew/current/bin
-
-export PATH="$HOME/.embulk/bin:$PATH"
+add_path "$HOME/.embulk/bin" after
 
 # TODO delete sentence below
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
