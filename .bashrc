@@ -107,6 +107,7 @@ add_path "${JAVA_HOME}/bin"
 add_path ${HOME}/.apache-maven-3.5.2/bin
 
 add_path "$HOME/.embulk/bin" after
+add_path "/usr/local/opt/postgresql@10/bin" after
 
 # TODO delete sentence below
 export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:/usr/local/include"
