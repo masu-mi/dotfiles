@@ -46,7 +46,7 @@ function sshp() {
     ssh $@ $host
   fi
 }
-function push-src() {
+function psrc() {
   local src=$(ghq list --full-path | peco --query "${LBUFFER}")
   if [ -n "$src" ]; then
     echo -n '[pushd]:'
