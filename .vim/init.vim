@@ -68,6 +68,7 @@ augroup END
 augroup filetype_alias
   autocmd!
   autocmd BufRead,BufNewfile *.dig set filetype=yaml
+  autocmd BufRead,BufNewfile *.avsc set filetype=json
 augroup END
 
 " 不可視文字の表示
