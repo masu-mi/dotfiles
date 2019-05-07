@@ -89,7 +89,7 @@ fi
 
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
-if [ -f $HOME/dotfiles/.fzf.bash -a -d $HOME/.fzf ]; then . $HOME/dotfiles/.fzf.bash; fi
+. $HOME/dotfiles/.fzf.bash
 
 export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/lib"
 # export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
