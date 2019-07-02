@@ -99,6 +99,10 @@ function lsbucket() {
   s3cmdl ls s3://${SRC_BUCKET}/
 }
 
+function select-dp () {
+  docker ps | tail -n -1 | fzf | awk '{print $1}'
+}
+
 function select-stash () {
   git stash list | fzf --preview 'git show --color $(echo {} | awk -F: "{print \$1}")' | awk 'BEGIN{FS=":"}{print $1}'
 }
@@ -108,17 +112,35 @@ loop_date() {
   start=$1
   end=$2
   format=${3:-%Y-%m-%d}
-  step=${4:-1day}
+  default_step=1day
+  if [ "$(uname)" = "Darwin" ]; then
+    default_step=+1d
+  fi
+  step=${4:-"$default_step"}
 
-  idx="$(date -d "$start" "+$format")"
+  load_cmd='date -d '
+  if [ "$(uname)" = "Darwin" ]; then
+    load_cmd='date -j -f %Y-%m-%d '
+  fi
+
   __internal_format='%Y-%m-%d %H:%M:%S'
-  __idx="$(date -d "$start" "+$__internal_format")"
+  if [ "$(uname)" = "Darwin" ]; then
+    instep_cmd() {
+      date -v "$2" -j -f "$__internal_format" "$1" "+$3"
+    }
+  else
+    instep_cmd() {
+      date -d "$1 $2" "+$3"
+    }
+  fi
+  idx="$($load_cmd "$start" "+$format")"
+  __idx="$($load_cmd "$start" "+$__internal_format")"
   if [ "$?" != "0" ];
   then
     echo "invalid format(\$start:$start)" >&2
     return 1
   fi
-  __end="$(date -d "$end" "+$__internal_format")"
+  __end="$($load_cmd "$end" "+$__internal_format")"
   if [ "$?" != "0" ];
   then
     echo "invalid format(\$end:$end)" >&2
@@ -129,8 +151,8 @@ loop_date() {
     if [ "$__idx" = "$__end" ] ; then
       break
     fi
-    idx="$(date -d "$__idx   $step" "+$format")"
-    __idx="$(date -d "$__idx $step" "+$__internal_format")"
+    idx="$(instep_cmd "$__idx" "$step" "$format")"
+    __idx="$(instep_cmd "$__idx" "$step" "$__internal_format")"
   done
 }
 
