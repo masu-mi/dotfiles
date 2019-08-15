@@ -382,6 +382,9 @@ repo = 'robertbasic/vim-hugo-helper'
 repo = 'elixir-editors/vim-elixir'
 
 [[plugins]]
+repo = 'udalov/kotlin-vim'
+
+[[plugins]]
 repo = 'mattreduce/vim-mix'
 
 [[plugins]]
@@ -404,6 +407,9 @@ augroup END
 
 [[plugins]]
 repo = 'tfnico/vim-gradle'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
 repo = 'posva/vim-vue'
