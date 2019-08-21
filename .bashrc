@@ -3,6 +3,7 @@
 
 [ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 [ -f ~/dotfiles/.bashrc_bootfuncs ] && . ~/dotfiles/.bashrc_bootfuncs
+[ -f ~/.config/bashrc_local ] && . ~/.config/bashrc_local
 
 export LANG='ja_JP.UTF-8'
 
