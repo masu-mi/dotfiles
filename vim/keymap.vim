@@ -47,6 +47,8 @@ nmap     t [Tag]
 nnoremap <silent> [Tag]c :tabnew<CR>
 nnoremap <silent> [Tag]n :tabnext<CR>
 nnoremap <silent> [Tag]p :tabprevious<CR>
+nnoremap <silent> [Tag]d :tabclose<CR>
+nnoremap <silent> [Tag]h :tab help 
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor

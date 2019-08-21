@@ -8,7 +8,7 @@ export LANG='ja_JP.UTF-8'
 
 [[ "$(locale -a 2> /dev/null | grep C.UTF-8 | wc -l | awk '{print $1}')" == 1 ]] && export LC_ALL='C.UTF-8' || export LC_ALL='C'
 
-export HISTSIZE=2000
+export HISTSIZE=20000
 export XDG_CONFIG_HOME=$HOME/.config
 
 ## setup bash_prompt
@@ -135,3 +135,5 @@ for file in $(test -d ~/.bashrcs && find ~/.bashrcs -type f);
 do
   . ${file}
 done
+
+complete -C /usr/local/bin/mc mc
