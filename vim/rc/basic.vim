@@ -72,4 +72,3 @@ set tags+=.git/tags,.svn/tags
 call has('python3')
 
 set mouse=a
-set ttymouse=xterm2

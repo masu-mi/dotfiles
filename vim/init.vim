@@ -1,14 +1,21 @@
 scriptencoding utf-8
 
-let mapleader = "\<Space>"
+if has('nvim')
+    let g:vim_home = expand('~/.config/nvim')
+    let g:rc_dir = expand('~/.config/nvim/rc')
+else
+    let g:vim_home = expand('~/.config/vim')
+    let g:rc_dir = expand('~/.config/vim/rc')
+endif
 
-let g:rc_dir = expand('~/dotfiles/vim/rc')
 function! s:source_rc(rc_file_name)
     let rc_file = expand(g:rc_dir . '/' . a:rc_file_name)
     if filereadable(rc_file)
         execute 'source' rc_file
     endif
 endfunction
+
+let mapleader = "\<Space>"
 
 call s:source_rc('encoding.vim')
 call s:source_rc('bundles.vim')
