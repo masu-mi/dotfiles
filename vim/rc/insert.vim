@@ -19,7 +19,6 @@ set noimcmdline
 "### フォールディング設定
 set foldmethod=syntax
 set foldlevel=10
-source ~/dotfiles/vim/complete.vim
 
 "### インデント
 set autoindent
