@@ -125,7 +125,10 @@ nnoremap <silent> <C-u>gl <C-u>:Denite unite:giti/log<CR>
 [[plugins]]
 repo = 'majutsushi/tagbar'
 hook_add = '''
-let g:tagbar_ctags_bin = '~/local/bin/ctags'
+augroup setup-ctag-sbin
+  autocmd!
+  autocmd WinEnter,BufRead,FileType * if &filetype != 'go' | let g:tagbar_ctags_bin = '~/local/bin/ctags' | else | let g:tagbar_ctags_bin = ''  | endif
+augroup END
 let g:tagbar_type_rust = {
     \ 'ctagstype' : 'rust',
     \ 'kinds' : [
