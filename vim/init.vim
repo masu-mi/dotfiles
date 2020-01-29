@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let &runtimepath = '~/dotfiles/vim' .",". &runtimepath
+
 if has('nvim')
     let g:vim_home = expand('~/.config/nvim')
     let g:rc_dir = expand('~/.config/nvim/rc')
@@ -22,7 +24,7 @@ call s:source_rc('bundles.vim')
 call s:source_rc('basic.vim')
 call s:source_rc('keymap.vim')
 call s:source_rc('insert.vim')
-call s:source_rc('complete')
+call s:source_rc('complete.vim')
 
 " 基本カラーリング関連
 syntax on
