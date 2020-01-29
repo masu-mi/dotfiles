@@ -19,8 +19,8 @@ endfunction
 
 let mapleader = "\<Space>"
 
+call s:source_rc('dein.vim')
 call s:source_rc('encoding.vim')
-call s:source_rc('bundles.vim')
 call s:source_rc('basic.vim')
 call s:source_rc('keymap.vim')
 call s:source_rc('insert.vim')
