@@ -231,9 +231,9 @@ let g:ale_echo_msg_error_str   = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
-let g:ale_set_quickfix = 0
+let g:ale_set_quickfix = 1
 let g:ale_linters = {
-      \ 'go': ['gofmt', 'goimports', 'golint', 'go vet', 'gometalinter'],
+      \ 'go': ['gofmt', 'goimports', 'golint', 'gometalinter'],
       \ 'python': ['flake8', 'mypy', 'pylint'],
       \ }
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
@@ -260,6 +260,31 @@ build= 'make'
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 depends = [ 'Shougo/vimproc.vim' ]
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo =  'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo =  'prabirshrestha/asyncomplete-lsp.vim'
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+[[plugins]]
+repo = 'mattn/vim-goimports'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+dir = '~/.fzf'
+build = './install --all'
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+command! FZFFileList call fzf#run(fzf#wrap({
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+            \ 'down': '40%'}))
+'''
 
 [[plugins]]
 repo = 'fatih/vim-go'
