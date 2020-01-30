@@ -69,6 +69,4 @@ nnoremap <F8> :Tagbar<CR>
 nnoremap <C-b> <C-t>
 set tags+=.git/tags,.svn/tags
 
-call has('python3')
-
 set mouse=a
