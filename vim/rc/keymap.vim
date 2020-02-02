@@ -48,11 +48,24 @@ nnoremap <silent> [Tag]c :tabnew<CR>
 nnoremap <silent> [Tag]n :tabnext<CR>
 nnoremap <silent> [Tag]p :tabprevious<CR>
 nnoremap <silent> [Tag]d :tabclose<CR>
-nnoremap <silent> [Tag]h :tab help 
+nnoremap <silent> [Tag]h :tab help
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 
+nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
+nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
+nmap <buffer><nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
+" nmap <buffer><nowait> <Leader>i <Plug>(go-info)
+" nmap <buffer><nowait> <Leader>db <Plug>(go-doc-browser)
+
+" nmap <buffer><nowait> <Leader>r <Plug>(go-run)
+" nmap <buffer><nowait> <Leader>b <Plug>(go-build)
+" nmap <buffer><nowait> <Leader>t <Plug>(go-test)
+" nmap <buffer><nowait> <Leader>c <Plug>(go-coverage)
+
+" nmap <buffer><nowait> <Leader>a :GoAddTags<Space>
+" nmap <buffer><nowait> <Leader>p :GoImport<Space>
 
 """ "for gnu global
 """ set tags=./tags,../tags,~/tags

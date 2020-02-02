@@ -24,7 +24,6 @@ call s:source_rc('encoding.vim')
 call s:source_rc('basic.vim')
 call s:source_rc('keymap.vim')
 call s:source_rc('insert.vim')
-call s:source_rc('complete.vim')
 
 " 基本カラーリング関連
 syntax on

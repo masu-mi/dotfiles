@@ -123,59 +123,9 @@ nnoremap <silent> <C-u>gl <C-u>:Denite unite:giti/log<CR>
 '''
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-hook_add = '''
-augroup setup-ctag-sbin
-  autocmd!
-  autocmd WinEnter,BufRead,FileType * if &filetype != 'go' | let g:tagbar_ctags_bin = '~/local/bin/ctags' | else | let g:tagbar_ctags_bin = ''  | endif
-augroup END
-let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'rust',
-    \ 'kinds' : [
-        \'T:types,type definitions',
-        \'f:functions,function definitions',
-        \'g:enum,enumeration names',
-        \'s:structure names',
-        \'m:modules,module names',
-        \'c:consts,static constants',
-        \'t:traits',
-        \'i:impls,trait implementations',
-    \ ]
-    \ }
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records',
-        \ 't:tests'
-    \ ]
-    \ }
-let g:tagbar_type_xml = {
-    \ 'ctagstype' : 'WSDL',
-    \ 'kinds'     : [
-        \ 'n:namespaces',
-        \ 'm:messages',
-        \ 'p:portType',
-        \ 'o:operations',
-        \ 'b:bindings',
-        \ 's:service'
-    \ ]
-    \ }
-'''
-
-[[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 hook_add = '''
-let g:auto_ctags = 1
+let g:auto_ctags = 0
 let g:auto_ctags_directory_list = ['.git','.svn','.']
 let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
 '''
@@ -186,16 +136,16 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 " jellybeans, wombat, molokai
 let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
+  \ 'colorscheme': 'molokai',
   \ 'active': {
   \   'left': [
   \     ['mode', 'paste'],
-  \     ['readonly', 'filename', 'modified', 'ale'],
+  \     ['readonly', 'filename', 'modified', 'method'],
   \   ]
   \ },
   \ 'component_function': {
-  \   'ale': 'ALEGetStatusLine'
-  \ }
+  \   'method': 'NearestMethodOrFunction'
+  \ },
   \ }
 '''
 
@@ -221,20 +171,26 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-l> <Plug>(ale_first)
 nmap <silent> <C-h> <Plug>(ale_last)
 
-let g:ale_enabled = 0
+let g:ale_enabled = 1
 let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error   = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_statusline_format = ['`>>` %d', '`--` %d', '`**` ok']
+let g:ale_sign_warning = '->'
+let g:ale_statusline_format = ['>> %d', '-> %d', '** ok']
 let g:ale_echo_msg_error_str   = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
 let g:ale_linters = {
       \ 'go': ['gofmt', 'goimports', 'golint', 'gometalinter'],
       \ 'python': ['flake8', 'mypy', 'pylint'],
+      \ 'elixir': ['elixir-ls'],
+      \ }
+let g:ale_fixers = {
+      \ 'go': ['gofmt', 'goimports'],
+      \ 'python': ['autopep8', 'black', 'isort'],
+      \ 'elixir': ['mix_format'],
       \ }
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
@@ -287,40 +243,46 @@ command! FZFFileList call fzf#run(fzf#wrap({
 '''
 
 [[plugins]]
+repo = 'liuchengxu/vista.vim'
+hook_add = '''
+let g:vista_executive_for = {
+  \ 'cpp':    'vim_lsp',
+  \ 'php':    'vim_lsp',
+  \ 'go':     'vim_lsp',
+  \ 'elixir': 'vim_lsp',
+  \ }
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+'''
+
+[[plugins]]
 repo = 'fatih/vim-go'
 # on_ft = ['go']
 hook_add = '''
 let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 1
-let g:go_template_file = "hello_world.go"
+let g:go_template_autocreate = 0
 
 let g:go_auto_sameids = 0   " too heavy
 let g:go_auto_type_info = 0 " too heavy
 let g:go_info_mode = 'gocode'
 let g:go_updatetime = 200
 
-let g:go_doc_keywordprg_enabled = 1 "change K(keywordprg) to :GoDoc
+let g:go_doc_keywordprg_enabled = 0 "change K(keywordprg) to :GoDoc
 let g:go_doc_max_height = 20
-let g:go_autodetect_gopath = 1 " 迷ってる, _vendor, vendor共に対応できるか検証してから
+let g:go_autodetect_gopath = 0 " 迷ってる, _vendor, vendor共に対応できるか検証してから
 
 let g:go_list_type = "quickfix"
-let g:go_fmt_autosave = 1
-let g:go_fmt_command = 'goimports'
+let g:go_fmt_autosave = 0
+" let g:go_fmt_command = 'goimports'
 let g:go_metalinter_autosave = 0
 
 let g:go_addtags_transform = 'snakecase'
 " let g:go_snippet_engine = "neosnippet"
 
-let g:go_textobj_enabled = 1
-let g:go_textobj_include_function_doc = 1
-'''
-
-[[plugins]]
-repo = 'dgryski/vim-godef'
-on_ft = ['go']
-hook_source = '''
-let g:godef_split=1
-let g:godef_same_file_in_same_window=0
+let g:go_textobj_enabled = 0
+let g:go_textobj_include_function_doc = 0
 '''
 
 [[plugins]]
@@ -332,17 +294,6 @@ let g:sonictemplate_vim_template_dir = [
       \ '$HOME/.vim/template',
       \]
 '''
-
-# [[plugins]]
-# repo = 'Shougo/deoplete.nvim'
-# hook_add = '''
-# let g:deoplete#enable_at_startup = 1
-# imap <expr><tab> pumvisible() ? "\<C-n>" :
-#       \ neosnippet#expandable_or_jumpable() ?
-#       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-# call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
-# imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
-# '''
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'

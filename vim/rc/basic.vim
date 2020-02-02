@@ -27,7 +27,6 @@ set title
 let g:netrw_liststyle=1
 set foldmethod=syntax
 set foldlevel=10
-set ambiwidth=double
 
 set ignorecase
 set smartcase
@@ -64,7 +63,7 @@ match ZenkakuSpace /　/
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
-nnoremap <F8> :Tagbar<CR>
+nnoremap <F8> :Vista!!<CR>
 
 nnoremap <C-b> <C-t>
 set tags+=.git/tags,.svn/tags
