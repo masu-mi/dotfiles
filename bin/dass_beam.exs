@@ -1,6 +1,5 @@
 #! /usr/bin/env elixir
 
-
 defmodule Disassemble do
   @moduledoc false
   @command __ENV__.file |> Path.basename()
@@ -27,6 +26,5 @@ if 0 < length(System.argv()) do
   |> to_charlist()
   |> Disassemble.run()
 else
-    IO.puts(Disassemble.usage())
+  IO.puts(Disassemble.usage())
 end
-

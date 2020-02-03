@@ -2,45 +2,54 @@
 repo = 'tomasr/molokai'
 
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+" jellybeans, wombat, molokai
+let g:lightline = {
+  \ 'colorscheme': 'molokai',
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['readonly', 'filename', 'modified', 'method'],
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'method': 'NearestMethodOrFunction'
+  \ },
+  \ }
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+nnoremap <Leader><C-e> :NERDTreeToggle<CR>
+nnoremap <Leader>ff    :NERDTreeToggle<CR>
+map <C-\> :NERDTreeFind<CR>
+'''
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+
+[[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
 let g:indent_guides_enable_on_vim_startup = 1
 '''
-
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 depents = ['Shougo/context_filetype.vim']
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_add = '''
-call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-
-nnoremap <silent> <C-u>f :<C-u>DeniteBufferDir file_rec<CR>
-nnoremap <silent> <C-u>F :<C-u>Denite file_rec<CR>
-nnoremap <silent> <C-u>b :<C-u>Denite buffer<CR>
-nnoremap <silent> <C-u>w :<C-u>Denite line<CR>
-nnoremap <silent> <C-u>c :<C-u>DeniteCursorWord line<CR>
-nnoremap <silent> <C-u>gr :<C-u>Denite grep<CR>
-nnoremap <silent> <C-u>gg :<C-u>DeniteBufferDir grep<CR>
-nnoremap <silent> <C-u>l :<C-u>DeniteCursorWord grep<CR>
-'''
-
-[[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/unite-outline'
-depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
-hook_add = '''
-nnoremap <silent> <C-u>o :<C-u>Denite unite:outline<CR>
-'''
-
-[[plugins]]
-repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'jacquesbh/vim-showmarks'
@@ -92,25 +101,50 @@ nnoremap <silent>[Mark]d :MarksDelete<CR>
 '''
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
+repo = 'vim-scripts/errormarker.vim'
 hook_add = '''
-nnoremap <silent> <Leader>gf   :Gfetch<CR>
-nnoremap <silent> <Leader>diff :Gdiff<CR>
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 '''
 
 [[plugins]]
-repo = 'ekalinin/Dockerfile.vim'
+repo = 'tpope/vim-surround'
+[[plugins]]
+repo = 'godlygeek/tabular'
+
 
 [[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'Shougo/denite.nvim'
 hook_add = '''
-nnoremap <Leader><C-e> :NERDTreeToggle<CR>
-nnoremap <Leader>ff    :NERDTreeToggle<CR>
-map <C-\> :NERDTreeFind<CR>
+call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+
+nnoremap <silent> <C-u>f :<C-u>DeniteBufferDir file_rec<CR>
+nnoremap <silent> <C-u>F :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-u>b :<C-u>Denite buffer<CR>
+nnoremap <silent> <C-u>w :<C-u>Denite line<CR>
+nnoremap <silent> <C-u>c :<C-u>DeniteCursorWord line<CR>
+nnoremap <silent> <C-u>gr :<C-u>Denite grep<CR>
+nnoremap <silent> <C-u>gg :<C-u>DeniteBufferDir grep<CR>
+nnoremap <silent> <C-u>l :<C-u>DeniteCursorWord grep<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
+hook_add = '''
+nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
+let g:sonictemplate_vim_template_dir = [
+      \ '$HOME/.vim/template',
+      \]
+'''
+[[plugins]]
+repo = 'Shougo/unite-outline'
+depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
+hook_add = '''
+nnoremap <silent> <C-u>o :<C-u>Denite unite:outline<CR>
 '''
 
 [[plugins]]
@@ -123,43 +157,48 @@ nnoremap <silent> <C-u>gl <C-u>:Denite unite:giti/log<CR>
 '''
 
 [[plugins]]
+repo = 'junegunn/fzf'
+dir = '~/.fzf'
+build = './install --all'
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+command! FZFFileList call fzf#run(fzf#wrap({
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+            \ 'down': '40%'}))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo =  'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo =  'prabirshrestha/asyncomplete-lsp.vim'
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+hook_add = '''
+let g:vista_executive_for = {
+  \ 'cpp':    'vim_lsp',
+  \ 'php':    'vim_lsp',
+  \ 'go':     'vim_lsp',
+  \ 'elixir': 'vim_lsp',
+  \ }
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+'''
+
+[[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 hook_add = '''
 let g:auto_ctags = 0
 let g:auto_ctags_directory_list = ['.git','.svn','.']
 let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
-'''
-
-
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-" jellybeans, wombat, molokai
-let g:lightline = {
-  \ 'colorscheme': 'molokai',
-  \ 'active': {
-  \   'left': [
-  \     ['mode', 'paste'],
-  \     ['readonly', 'filename', 'modified', 'method'],
-  \   ]
-  \ },
-  \ 'component_function': {
-  \   'method': 'NearestMethodOrFunction'
-  \ },
-  \ }
-'''
-
-[[plugins]]
-repo = 'kana/vim-submode'
-hook_add = '''
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
 
 [[plugins]]
@@ -195,20 +234,14 @@ let g:ale_fixers = {
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
-# [[plugins]]
-# repo = 'Shougo/neosnippet-snippets'
-
-# [[plugins]]
-# repo = 'Shougo/neosnippet'
-# hook_add = '''
-# imap <C-k> <Plug>(neosnippet_expand_or_jump)
-# smap <C-k> <Plug>(neosnippet_expand_or_jump)
-# xmap <C-k> <Plug>(neosnippet_expand_target)
-# if has('conceal')
-#   set conceallevel=2 concealcursor=niv
-# endif
-# '''
-# depends = [ 'neosnippet-snippets' ]
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+[[plugins]]
+repo = 'janko-m/vim-test'
+depends = ['vim-dispatch']
+hook_add = '''
+let g:test#strategy = 'dispatch'
+'''
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -217,45 +250,19 @@ build= 'make'
 repo = 'Shougo/vimshell.vim'
 depends = [ 'Shougo/vimproc.vim' ]
 
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
-[[plugins]]
-repo =  'prabirshrestha/asyncomplete.vim'
-[[plugins]]
-repo =  'prabirshrestha/asyncomplete-lsp.vim'
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
-[[plugins]]
-repo = 'mattn/vim-goimports'
+# For specific languages
+
+# [[plugins]]
+# repo = 'sheerun/vim-polyglot'
+# hook_add = '''
+# let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
+# '''
 
 [[plugins]]
-repo = 'junegunn/fzf'
-dir = '~/.fzf'
-build = './install --all'
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-hook_add = '''
-command! FZFFileList call fzf#run(fzf#wrap({
-            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
-            \ 'down': '40%'}))
-'''
+repo = 'mattreduce/vim-mix'
 
 [[plugins]]
-repo = 'liuchengxu/vista.vim'
-hook_add = '''
-let g:vista_executive_for = {
-  \ 'cpp':    'vim_lsp',
-  \ 'php':    'vim_lsp',
-  \ 'go':     'vim_lsp',
-  \ 'elixir': 'vim_lsp',
-  \ }
-
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-'''
+repo = 'slashmili/alchemist.vim'
 
 [[plugins]]
 repo = 'fatih/vim-go'
@@ -283,16 +290,6 @@ let g:go_addtags_transform = 'snakecase'
 
 let g:go_textobj_enabled = 0
 let g:go_textobj_include_function_doc = 0
-'''
-
-[[plugins]]
-repo = 'mattn/sonictemplate-vim'
-depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
-hook_add = '''
-nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
-let g:sonictemplate_vim_template_dir = [
-      \ '$HOME/.vim/template',
-      \]
 '''
 
 [[plugins]]
@@ -327,12 +324,6 @@ depends = [ 'Shougo/deoplete.nvim' ]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
-repo = 'vim-scripts/errormarker.vim'
-hook_add = '''
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-'''
-
-[[plugins]]
 repo = 'rust-lang/rust.vim'
 hook_add = '''
 let g:rustfmt_autosave = 1
@@ -347,12 +338,6 @@ let g:racer_cmd = '$HOME/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 '''
 
-# [[plugins]]
-# repo = 'sheerun/vim-polyglot'
-# hook_add = '''
-# let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
-# '''
-
 [[plugins]]
 repo = 'robertbasic/vim-hugo-helper'
 
@@ -360,28 +345,16 @@ repo = 'robertbasic/vim-hugo-helper'
 repo = 'elixir-editors/vim-elixir'
 
 [[plugins]]
+repo = 'ekalinin/Dockerfile.vim'
+[[plugins]]
+
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
 repo = 'udalov/kotlin-vim'
-
-[[plugins]]
-repo = 'mattreduce/vim-mix'
-
-[[plugins]]
-repo = 'godlygeek/tabular'
-
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
-
-[[plugins]]
-repo = 'slashmili/alchemist.vim'
-
-[[plugins]]
-repo = 'vim-utils/vim-man'
-hook_add = '''
-augroup cursor_man
-  autocmd!
-  autocmd WinEnter,BufRead,FileType * if &filetype == 'man' | IndentGuidesDisable | else | IndentGuidesEnable | endif
-augroup END
-'''
 
 [[plugins]]
 repo = 'tfnico/vim-gradle'
@@ -393,8 +366,27 @@ repo = 'leafgarland/typescript-vim'
 repo = 'posva/vim-vue'
 
 [[plugins]]
-repo = 'thinca/vim-ref'
+repo = 'mattn/vim-goimports'
+
 [[plugins]]
-repo = 'yuku-t/vim-ref-ri'
-depends = ['thinca/vim-ref']
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+nnoremap <silent> <Leader>gf   :Gfetch<CR>
+nnoremap <silent> <Leader>diff :Gdiff<CR>
+'''
+
+[[plugins]]
+repo = 'vim-utils/vim-man'
+hook_add = '''
+augroup cursor_man
+  autocmd!
+  autocmd WinEnter,BufRead,FileType * if &filetype == 'man' | IndentGuidesDisable | else | IndentGuidesEnable | endif
+augroup END
+'''
+
+[[plugins]]
+repo = 'mhinz/vim-rfc'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
 
