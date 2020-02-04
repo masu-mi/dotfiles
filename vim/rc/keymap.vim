@@ -1,18 +1,16 @@
 scriptencoding utf-8
 
-" 検索ハイライト消去
 noremap <Leader><Leader> :nohlsearch<CR><ESC>
-" for NVIM v0.2.0(?) 本来とは逆の挙動をしている気がする
-noremap <Leader>p :set nopaste<CR>
-noremap <Leader>n :set paste<CR>
-noremap <Leader>i :a!<CR>
 
-noremap <Leader>rmsp :%s/\s\+$//ge<CR>
+noremap <Leader>n :set nopaste<CR>
+noremap <Leader>p :set paste<CR>
+noremap <Leader>i :insert!<CR>
+noremap <Leader>a :append!<CR>
 
-noremap <C-i>  :<C-u>help<Space>
-noremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+noremap <Leader>rts :%s/\s\+$//ge<CR>
 
-source ${VIMRUNTIME}/macros/matchit.vim
+noremap <C-h>  :<C-u>help<Space>
+noremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Enter>
 
 " for window, buffer
 nnoremap <silent> s <Nop>
@@ -48,10 +46,12 @@ nnoremap <silent> [Tag]c :tabnew<CR>
 nnoremap <silent> [Tag]n :tabnext<CR>
 nnoremap <silent> [Tag]p :tabprevious<CR>
 nnoremap <silent> [Tag]d :tabclose<CR>
-nnoremap <silent> [Tag]h :tab help
+nnoremap <silent> [Tag]h :tab help 
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
+
+packadd matchit
 
 nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
