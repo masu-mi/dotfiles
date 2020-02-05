@@ -34,7 +34,7 @@ add_path "${HOME}/.cargo/bin"
 ### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
-# add_path "${HOME}/anaconda3/bin"
+add_path "${HOME}/dotfiles/bin"
 
 ### specific langages
 if [ -d "/usr/local/go" ]; then
