@@ -30,14 +30,34 @@ map <C-\> :NERDTreeFind<CR>
 [[plugins]]
 repo = 'kana/vim-submode'
 hook_add = '''
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+call submode#enter_with('winsize', 'n', '', 's>', '<C-w>>')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+
+call submode#enter_with('winsize', 'n', '', 's<', '<C-w><')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+
+call submode#enter_with('winsize', 'n', '', 's+', '<C-w>+')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+
+call submode#enter_with('winsize', 'n', '', 's-', '<C-w>-')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
+call submode#enter_with('localmove', 'n', '', '<C-l>j', ':lnext<CR>')
+call submode#map('localmove', 'n', '', 'j', ':lnext<CR>')
+ 
+call submode#enter_with('localmove', 'n', '', '<C-l>k', ':lprevious<CR>')
+call submode#map('localmove', 'n', '', 'k', ':lprevious<CR>')
+
+call submode#enter_with('quickmove', 'n', '', '<C-c>j', ':cnext<CR>')
+call submode#map('quickmove', 'n', '', 'j', ':cnext<CR>')
+
+call submode#enter_with('quickmove', 'n', '', '<C-c>k', ':cprevious<CR>')
+call submode#map('quickmove', 'n', '', 'k', ':cprevious<CR>')
+
+call submode#enter_with('movetab', 'n', '', 'tn', ':tabnext<CR>')
+call submode#enter_with('movetab', 'n', '', 'tp', ':tabprevious<CR>')
+call submode#map('movetab', 'n', '', 'n', ':tabnext<CR>')
+call submode#map('movetab', 'n', '', 'p', ':tabprevious<CR>')
 '''
 
 [[plugins]]
@@ -215,14 +235,13 @@ let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error   = '>>'
 let g:ale_sign_warning = '->'
-let g:ale_statusline_format = ['>> %d', '-> %d', '** ok']
 let g:ale_echo_msg_error_str   = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%]%code%: %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 0
 let g:ale_linters = {
-      \ 'go': ['gofmt', 'goimports', 'golint', 'gometalinter'],
+      \ 'go': ['golangserver', 'gometalinter'],
       \ 'python': ['flake8', 'mypy', 'pylint'],
       \ 'elixir': ['elixir-ls'],
       \ }
@@ -266,25 +285,21 @@ repo = 'slashmili/alchemist.vim'
 
 [[plugins]]
 repo = 'fatih/vim-go'
-# on_ft = ['go']
 hook_add = '''
 let g:go_def_mapping_enabled = 0
 let g:go_template_autocreate = 0
-
 let g:go_auto_sameids = 0   " too heavy
 let g:go_auto_type_info = 0 " too heavy
-let g:go_info_mode = 'gocode'
+let g:go_info_mode = 'gopls'
 let g:go_updatetime = 200
 
 let g:go_doc_keywordprg_enabled = 0 "change K(keywordprg) to :GoDoc
 let g:go_doc_max_height = 20
 let g:go_autodetect_gopath = 0 " 迷ってる, _vendor, vendor共に対応できるか検証してから
-
 let g:go_list_type = "quickfix"
 let g:go_fmt_autosave = 0
 " let g:go_fmt_command = 'goimports'
 let g:go_metalinter_autosave = 0
-
 let g:go_addtags_transform = 'snakecase'
 " let g:go_snippet_engine = "neosnippet"
 
@@ -300,21 +315,9 @@ on_if = ''' !has('nvim') '''
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = ''' !has('nvim') '''
 
-[[plugins]]
-repo = 'zchee/deoplete-go'
-build = 'make'
-depends = [ 'Shougo/deoplete.nvim' ]
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-depends = [ 'Shougo/deoplete.nvim' ]
 
 [[plugins]]
 repo = 'fs111/pydoc.vim'
-
-[[plugins]]
-repo = 'fishbullet/deoplete-ruby'
-depends = [ 'Shougo/deoplete.nvim' ]
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
@@ -365,8 +368,8 @@ repo = 'leafgarland/typescript-vim'
 [[plugins]]
 repo = 'posva/vim-vue'
 
-[[plugins]]
-repo = 'mattn/vim-goimports'
+# [[plugins]]
+# repo = 'mattn/vim-goimports'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'

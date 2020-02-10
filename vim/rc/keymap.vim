@@ -56,6 +56,15 @@ packadd matchit
 nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
+
+nmap <buffer><nowait> <Leader>cf :sp<CR>:LspDocumentFormatSync<CR>
+augroup code_fix
+  autocmd!
+  autocmd BufWrite * :LspDocumentFormat
+augroup END
+
+nmap <buffer><nowait> <F9> :TestFile<CR>
+
 " nmap <buffer><nowait> <Leader>i <Plug>(go-info)
 " nmap <buffer><nowait> <Leader>db <Plug>(go-doc-browser)
 
