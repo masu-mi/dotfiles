@@ -8,8 +8,8 @@ scriptencoding utf-8
 " 
 " nmap <buffer><nowait> <Leader>r <Plug>(go-run)
 " nmap <buffer><nowait> <Leader>b <Plug>(go-build)
-nmap <buffer><nowait> <Leader>t <Plug>(go-test)
-nmap <buffer><nowait> <Leader>c :GoCoverageToggle<CR>
+" nmap <buffer><nowait> <Leader>gt <Plug>(go-test)
+" nmap <buffer><nowait> <Leader>gc :GoCoverageToggle<CR>
 " 
 " nmap <buffer><nowait> <Leader>a :GoAddTags<Space>
 " nmap <buffer><nowait> <Leader>p :GoImport<Space>

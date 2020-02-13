@@ -174,7 +174,7 @@ depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
 hook_add = '''
 nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
 let g:sonictemplate_vim_template_dir = [
-      \ '$HOME/.vim/template',
+      \ '$HOME/dotfiles/vim/template',
       \]
 '''
 [[plugins]]
@@ -248,7 +248,8 @@ nmap <silent> <C-l> <Plug>(ale_first)
 nmap <silent> <C-h> <Plug>(ale_last)
 
 let g:ale_enabled = 1
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error   = '>>'
 let g:ale_sign_warning = '->'
@@ -258,16 +259,16 @@ let g:ale_echo_msg_format = '[%linter%]%code%: %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 0
 let g:ale_linters = {
-      \ 'go': ['golangserver', 'gometalinter'],
+      \ 'go': ['golint'],
       \ 'python': ['flake8', 'mypy', 'pylint'],
-      \ 'elixir': ['elixir-ls'],
+      \ 'elixir': ['mix_format'],
       \ }
 let g:ale_fixers = {
-      \ 'go': ['gofmt', 'goimports'],
+      \ 'go': ['goimports'],
       \ 'python': ['autopep8', 'black', 'isort'],
       \ 'elixir': ['mix_format'],
       \ }
-let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+" let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
 [[plugins]]
@@ -300,29 +301,27 @@ repo = 'mattreduce/vim-mix'
 [[plugins]]
 repo = 'slashmili/alchemist.vim'
 
-[[plugins]]
-repo = 'fatih/vim-go'
-hook_add = '''
-let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 0
-let g:go_auto_sameids = 0   " too heavy
-let g:go_auto_type_info = 0 " too heavy
-let g:go_info_mode = 'gopls'
-let g:go_updatetime = 200
-
-let g:go_doc_keywordprg_enabled = 0 "change K(keywordprg) to :GoDoc
-let g:go_doc_max_height = 20
-let g:go_autodetect_gopath = 0 " 迷ってる, _vendor, vendor共に対応できるか検証してから
-let g:go_list_type = "quickfix"
-let g:go_fmt_autosave = 0
-" let g:go_fmt_command = 'goimports'
-let g:go_metalinter_autosave = 0
-let g:go_addtags_transform = 'snakecase'
-" let g:go_snippet_engine = "neosnippet"
-
-let g:go_textobj_enabled = 0
-let g:go_textobj_include_function_doc = 0
-'''
+# [[plugins]]
+# repo = 'fatih/vim-go'
+# hook_add = '''
+# let g:go_def_mapping_enabled = 0
+# let g:go_template_autocreate = 0
+# let g:go_auto_sameids = 0   " too heavy
+# let g:go_auto_type_info = 0 " too heavy
+# let g:go_info_mode = 'gopls'
+# let g:go_updatetime = 200
+# 
+# let g:go_doc_keywordprg_enabled = 0 "change K(keywordprg) to :GoDoc
+# let g:go_doc_max_height = 20
+# let g:go_autodetect_gopath = 0 " 迷ってる, _vendor, vendor共に対応できるか検証してから
+# let g:go_list_type = "quickfix"
+# let g:go_fmt_autosave = 0
+# let g:go_fmt_command= "goimports"
+# let g:go_metalinter_autosave = 0
+# let g:go_addtags_transform = 'snakecase'
+# let g:go_textobj_enabled = 0
+# let g:go_textobj_include_function_doc = 0
+# '''
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -388,8 +387,8 @@ repo = 'leafgarland/typescript-vim'
 [[plugins]]
 repo = 'posva/vim-vue'
 
-# [[plugins]]
-# repo = 'mattn/vim-goimports'
+[[plugins]]
+repo = 'mattn/vim-goimports'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'

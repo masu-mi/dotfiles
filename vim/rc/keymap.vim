@@ -57,10 +57,13 @@ nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
 
-nmap <buffer><nowait> <Leader>cf :sp<CR>:LspDocumentFormatSync<CR>
+nmap <buffer><nowait> <Leader>fix :ALEFix<CR>:LspDocumentFormatSync<CR>
+nmap <buffer><nowait> <Leader>ren :LspRename<CR>
+nmap <buffer><nowait> <C-m> :LspDocumentDiagnostics<CR>
+
 augroup code_fix
   autocmd!
-  autocmd BufWrite * :LspDocumentFormat
+  autocmd BufWritePre * :LspDocumentFormat
 augroup END
 
 nmap <buffer><nowait> <F9> :TestFile<CR>
