@@ -31,33 +31,30 @@ map <C-\> :NERDTreeFind<CR>
 repo = 'kana/vim-submode'
 hook_add = '''
 call submode#enter_with('winsize', 'n', '', 's>', '<C-w>>')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-
 call submode#enter_with('winsize', 'n', '', 's<', '<C-w><')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-
 call submode#enter_with('winsize', 'n', '', 's+', '<C-w>+')
-call submode#map('winsize', 'n', '', '+', '<C-w>+')
-
 call submode#enter_with('winsize', 'n', '', 's-', '<C-w>-')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
-
-call submode#enter_with('localmove', 'n', '', '<C-l>j', ':lnext<CR>')
-call submode#map('localmove', 'n', '', 'j', ':lnext<CR>')
- 
-call submode#enter_with('localmove', 'n', '', '<C-l>k', ':lprevious<CR>')
-call submode#map('localmove', 'n', '', 'k', ':lprevious<CR>')
-
-call submode#enter_with('quickmove', 'n', '', '<C-c>j', ':cnext<CR>')
-call submode#map('quickmove', 'n', '', 'j', ':cnext<CR>')
-
-call submode#enter_with('quickmove', 'n', '', '<C-c>k', ':cprevious<CR>')
-call submode#map('quickmove', 'n', '', 'k', ':cprevious<CR>')
 
 call submode#enter_with('movetab', 'n', '', 'tn', ':tabnext<CR>')
 call submode#enter_with('movetab', 'n', '', 'tp', ':tabprevious<CR>')
 call submode#map('movetab', 'n', '', 'n', ':tabnext<CR>')
 call submode#map('movetab', 'n', '', 'p', ':tabprevious<CR>')
+
+call submode#enter_with('localmove', 'n', '', '<C-l>f', ':lfirst<CR>')
+call submode#enter_with('localmove', 'n', '', '<C-l>l', ':llast<CR>')
+call submode#enter_with('localmove', 'n', '', '<C-l>j', ':lnext<CR>')
+call submode#enter_with('localmove', 'n', '', '<C-l>k', ':lprevious<CR>')
+call submode#map('localmove', 'n', '', 'j', ':lnext<CR>')
+call submode#map('localmove', 'n', '', 'k', ':lprevious<CR>')
+
+call submode#enter_with('quickmove', 'n', '', '<C-c>j', ':cnext<CR>')
+call submode#enter_with('quickmove', 'n', '', '<C-c>k', ':cprevious<CR>')
+call submode#map('quickmove', 'n', '', 'j', ':cnext<CR>')
+call submode#map('quickmove', 'n', '', 'k', ':cprevious<CR>')
 '''
 
 [[plugins]]
@@ -249,7 +246,7 @@ nmap <silent> <C-h> <Plug>(ale_last)
 
 let g:ale_enabled = 1
 let g:ale_lint_on_save = 0
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_sign_column_always = 1
 let g:ale_sign_error   = '>>'
 let g:ale_sign_warning = '->'
