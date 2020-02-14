@@ -28,9 +28,8 @@ nnoremap <silent> sL <C-w>L
 nnoremap <silent> sr <C-w>r
 
 " close
-nnoremap sq :q
-nnoremap sQ :bd
-nnoremap <C-d> :bd<CR>
+nnoremap sq :q<CR>
+nnoremap sQ :bd<CR>
 
 " サイズ調整
 nnoremap so <C-w>_
@@ -53,6 +52,7 @@ endfor
 
 packadd matchit
 
+nmap <buffer><nowait> <C-d> :LspHover<CR>
 nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
 nmap <buffer><nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
