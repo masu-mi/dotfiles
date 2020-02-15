@@ -125,8 +125,49 @@ let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
 [[plugins]]
-repo = 'godlygeek/tabular'
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+on_if = ''' !has('nvim') '''
+hook_add = '''
+let g:python3_host_prog = 'python3.7'
+'''
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+on_if = ''' !has('nvim') '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = [ 'Shougo/deoplete.nvim' ]
+hook_add = '''
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+set completeopt+=preview
+let g:neosnippet#snippets_directory = '~/dotfiles/vim/snippets'
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
 
 
 [[plugins]]
@@ -174,6 +215,7 @@ let g:sonictemplate_vim_template_dir = [
       \ '$HOME/dotfiles/vim/template',
       \]
 '''
+
 [[plugins]]
 repo = 'Shougo/unite-outline'
 depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
@@ -228,14 +270,6 @@ endfunction
 '''
 
 [[plugins]]
-repo = 'soramugi/auto-ctags.vim'
-hook_add = '''
-let g:auto_ctags = 0
-let g:auto_ctags_directory_list = ['.git','.svn','.']
-let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
-'''
-
-[[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
 nmap <silent> <C-n> <Plug>(ale_toggle)
@@ -269,6 +303,14 @@ let g:ale_fixers = {
 '''
 
 [[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+hook_add = '''
+let g:auto_ctags = 0
+let g:auto_ctags_directory_list = ['.git','.svn','.']
+let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
+'''
+
+[[plugins]]
 repo = 'tpope/vim-dispatch'
 [[plugins]]
 repo = 'janko-m/vim-test'
@@ -286,18 +328,24 @@ depends = [ 'Shougo/vimproc.vim' ]
 
 # For specific languages
 
-# [[plugins]]
-# repo = 'sheerun/vim-polyglot'
-# hook_add = '''
-# let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown' ]
-# '''
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown', 'typescript' ]
 
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+'''
+
+[[plugins]]
+repo = 'elixir-editors/vim-elixir'
+[[plugins]]
+repo = 'slashmili/alchemist.vim'
 [[plugins]]
 repo = 'mattreduce/vim-mix'
 
 [[plugins]]
-repo = 'slashmili/alchemist.vim'
-
+repo = 'mattn/vim-goimports'
 # [[plugins]]
 # repo = 'fatih/vim-go'
 # hook_add = '''
@@ -321,35 +369,6 @@ repo = 'slashmili/alchemist.vim'
 # '''
 
 [[plugins]]
-repo = 'roxma/nvim-yarp'
-on_if = ''' !has('nvim') '''
-hook_add = '''
-let g:python3_host_prog = 'python3.7'
-'''
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-on_if = ''' !has('nvim') '''
-
-
-[[plugins]]
-repo = 'fs111/pydoc.vim'
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-depends = [ 'Shougo/deoplete.nvim' ]
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-hook_add = '''
-let g:rustfmt_autosave = 1
-let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
-'''
-
-[[plugins]]
 repo = 'racer-rust/vim-racer'
 hook_add = '''
 set hidden
@@ -358,34 +377,17 @@ let g:racer_experimental_completer = 1
 '''
 
 [[plugins]]
-repo = 'robertbasic/vim-hugo-helper'
-
-[[plugins]]
-repo = 'elixir-editors/vim-elixir'
-
-[[plugins]]
-repo = 'ekalinin/Dockerfile.vim'
-[[plugins]]
-
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
-
-[[plugins]]
-repo = 'udalov/kotlin-vim'
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-
-[[plugins]]
-repo = 'tfnico/vim-gradle'
-
-[[plugins]]
 repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
-repo = 'posva/vim-vue'
+repo = 'mattn/emmet-vim'
+[[plugins]]
+repo = 'robertbasic/vim-hugo-helper'
 
 [[plugins]]
-repo = 'mattn/vim-goimports'
+repo = 'plasticboy/vim-markdown'
+[[plugins]]
+repo = 'godlygeek/tabular'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -408,4 +410,11 @@ repo = 'mhinz/vim-rfc'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'fs111/pydoc.vim'
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+depends = [ 'Shougo/deoplete.nvim' ]
 
