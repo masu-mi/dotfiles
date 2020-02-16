@@ -8,14 +8,14 @@ type {{_input_:type}} struct {
 	childs []int
 }
 
-func newUnifonFind(size int) *{{_input_:type}} {
+func newUnifonFind(card int) *{{_input_:type}} {
 	uf := &{{_input_:type}}{
-		card:   size,
-		parent: make([]int, size),
-		rank:   make([]int, size),
-		childs: make([]int, size),
+		card:   card,
+		parent: make([]int, card),
+		rank:   make([]int, card),
+		childs: make([]int, card),
 	}
-	for i := 0; i < size; i++ {
+	for i := 0; i < card; i++ {
 		uf.parent[i] = i
 	}
 	return uf
