@@ -1,3 +1,6 @@
 snippet scan_int
   ${1:sc}.Scan()
   ${2}, _ = strconv.Atoi($1.Text())
+snippet copy_slice
+  ${1:dst} := make(${2:[]int}, len(${3:src}))
+  copy($1, $3)
