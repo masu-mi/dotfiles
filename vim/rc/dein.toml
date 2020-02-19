@@ -331,15 +331,13 @@ depends = [ 'Shougo/vimproc.vim' ]
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
-let g:polyglot_disabled = ['go', 'rust', 'elixir', 'python', 'python-compiler', 'python-ident', 'markdown', 'typescript' ]
+let g:polyglot_disabled = ['go', 'rust', 'python', 'python-compiler', 'python-ident', 'markdown', 'typescript' ]
 
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
 let g:vim_markdown_conceal = 0
 '''
 
-[[plugins]]
-repo = 'elixir-editors/vim-elixir'
 [[plugins]]
 repo = 'slashmili/alchemist.vim'
 [[plugins]]
