@@ -210,7 +210,7 @@ repo = 'Shougo/unite.vim'
 repo = 'mattn/sonictemplate-vim'
 depends = [ 'Shougo/unite.vim', 'Shougo/denite.nvim' ]
 hook_add = '''
-nnoremap <silent> <C-u>t :<C-u>Denite unite:sonictemplate<CR>
+nnoremap <silent> <C-u>t :call fzf#sonictemplate#run()<CR>
 let g:sonictemplate_vim_template_dir = [
       \ '$HOME/dotfiles/vim/template',
       \]
@@ -240,8 +240,8 @@ build = './install --all'
 repo = 'junegunn/fzf.vim'
 hook_add = '''
 command! FZFFileList call fzf#run(fzf#wrap({
-            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
-            \ 'down': '40%'}))
+      \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+      \ 'down': '40%'}))
 '''
 
 [[plugins]]
@@ -258,11 +258,11 @@ repo = 'mattn/vim-lsp-settings'
 repo = 'liuchengxu/vista.vim'
 hook_add = '''
 let g:vista_executive_for = {
-  \ 'cpp':    'vim_lsp',
-  \ 'php':    'vim_lsp',
-  \ 'go':     'vim_lsp',
-  \ 'elixir': 'vim_lsp',
-  \ }
+      \ 'cpp':    'vim_lsp',
+      \ 'php':    'vim_lsp',
+      \ 'go':     'vim_lsp',
+      \ 'elixir': 'vim_lsp',
+      \ }
 
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
