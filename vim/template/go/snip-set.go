@@ -14,6 +14,10 @@ func (s {{_input_:set_type}}) doesContain(item {{_input_:item_type}}) bool {
 	return ok
 }
 
+func (s {{_input_:set_type}}) size() int {
+	return len(s)
+}
+
 var mark none
 
 type none struct{}
