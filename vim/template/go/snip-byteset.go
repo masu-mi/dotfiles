@@ -23,6 +23,10 @@ func (s byteSet) doesContain(item byte) bool {
 	return ok
 }
 
+func (s byteSet) size() int {
+	return len(s)
+}
+
 var mark none
 
 type none struct{}
