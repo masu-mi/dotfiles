@@ -7,8 +7,7 @@ import (
 )
 
 func main() {
-	n := parseProblem(os.Stdin)
-	fmt.Printf("%d\n", resolve(n))
+	fmt.Printf("%d\n", resolve(parseProblem(os.Stdin)))
 }
 
 func parseProblem(r io.Reader) int {
