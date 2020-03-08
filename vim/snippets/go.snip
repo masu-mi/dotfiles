@@ -4,3 +4,7 @@ snippet scan_int
 snippet copy_slice
   ${1:dst} := make(${2:[]int}, len(${3:src}))
   copy($1, $3)
+
+snippet buffer
+  ${1:buf} := bytes.NewBufferString("")
+  ${2:str} := $1.String()
