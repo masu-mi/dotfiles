@@ -1,5 +1,5 @@
 {{_cursor_}}
-func moduloAdd(a, b, modulo int64) int64 {
+func moduloAdd(a, b, modulo int) int {
 	result := a%modulo + b%modulo
 	if result < 0 {
 		result += modulo
@@ -7,7 +7,7 @@ func moduloAdd(a, b, modulo int64) int64 {
 	return result % modulo
 }
 
-func moduloSub(a, b, modulo int64) int64 {
+func moduloSub(a, b, modulo int) int {
 	result := a%modulo - b%modulo
 	if result < 0 {
 		result += modulo
@@ -15,17 +15,17 @@ func moduloSub(a, b, modulo int64) int64 {
 	return result % modulo
 }
 
-func moduloMul(a, b, modulo int64) int64 {
+func moduloMul(a, b, modulo int) int {
 	return a % modulo * b % modulo
 }
 
-func moduloDiv(a, b, modulo int64) int64 {
+func moduloDiv(a, b, modulo int) int {
 	return a % moduloInv(b, modulo) % modulo
 }
 
-func moduloInv(a, modulo int64) int64 {
+func moduloInv(a, modulo int) int {
 	b := modulo
-	u, v := int64(1), int64(0)
+	u, v := 1, 0
 	for b > 0 {
 		t := a / b
 		a, b = b, a-t*b
@@ -38,8 +38,8 @@ func moduloInv(a, modulo int64) int64 {
 	return u
 }
 
-func moduloPow(a, b, modulo int64) int64 {
-	res := int64(1)
+func moduloPow(a, b, modulo int) int {
+	res := 1
 	for b > 0 {
 		if b&1 == 1 {
 			res = res * a % modulo
@@ -53,15 +53,15 @@ func moduloPow(a, b, modulo int64) int64 {
 const length = 510000
 
 var (
-	_fac  = map[int64][]int64{}
-	_finv = map[int64][]int64{}
-	_inv  = map[int64][]int64{}
+	_fac  = map[int][]int{}
+	_finv = map[int][]int{}
+	_inv  = map[int][]int{}
 )
 
-func moduloCombiInit(modulo int64) {
-	fac := make([]int64, length)
-	finv := make([]int64, length)
-	inv := make([]int64, length)
+func moduloCombiInit(modulo int) {
+	fac := make([]int, length)
+	finv := make([]int, length)
+	inv := make([]int, length)
 
 	defer func() {
 		_fac[modulo] = fac
@@ -72,14 +72,14 @@ func moduloCombiInit(modulo int64) {
 	fac[0], fac[1] = 1, 1
 	finv[0], finv[1] = 1, 1
 	inv[1] = 1
-	for i := int64(2); i < length; i++ {
+	for i := 2; i < length; i++ {
 		fac[i] = fac[i-1] * i % modulo
 		inv[i] = modulo - inv[modulo%i]*(modulo/i)%modulo
 		finv[i] = finv[i-1] * inv[i] % modulo
 	}
 }
 
-func moduloCombi(n, k, modulo int64) int64 {
+func moduloCombi(n, k, modulo int) int {
 	if n < k {
 		return 0
 	}
@@ -87,4 +87,31 @@ func moduloCombi(n, k, modulo int64) int64 {
 		return 0
 	}
 	return _fac[modulo][n] * (_finv[modulo][k] * _finv[modulo][n-k] % modulo) % modulo
+}
+
+func moduloLog(a, b, modulo int) int {
+	a %= modulo
+	b %= modulo
+	m := int(math.Sqrt(float64(modulo)))
+
+	// basy step
+	values := map[int]int{}
+	val := 1
+	for i := 0; i < m+2; i++ {
+		if _, ok := values[val]; !ok {
+			values[val] = i
+		}
+		val = moduloMul(val, a, modulo)
+	}
+
+	// giant step
+	compound := moduloInv(moduloPow(a, m, modulo), modulo)
+	val = b
+	for i := 0; i < m+2; i++ {
+		if l, ok := values[val]; ok {
+			return l
+		}
+		val = moduloMul(val, compound, modulo)
+	}
+	return -1
 }
