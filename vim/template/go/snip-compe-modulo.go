@@ -90,6 +90,7 @@ func moduloCombi(n, k, modulo int) int {
 }
 
 func moduloLog(a, b, modulo int) int {
+	// log_a(b)
 	a %= modulo
 	b %= modulo
 	m := int(math.Sqrt(float64(modulo)))
@@ -109,7 +110,7 @@ func moduloLog(a, b, modulo int) int {
 	val = b
 	for i := 0; i < m+2; i++ {
 		if l, ok := values[val]; ok {
-			return l
+			return (i*m%modulo + l) % modulo
 		}
 		val = moduloMul(val, compound, modulo)
 	}
