@@ -335,7 +335,6 @@ let g:polyglot_disabled = ['go', 'rust', 'python', 'python-compiler', 'python-id
 
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
-let g:vim_markdown_conceal = 0
 '''
 
 [[plugins]]
@@ -385,6 +384,11 @@ repo = 'robertbasic/vim-hugo-helper'
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+'''
 [[plugins]]
 repo = 'godlygeek/tabular'
 
