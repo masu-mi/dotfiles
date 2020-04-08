@@ -1,6 +1,8 @@
 NAME := {{_input_:name}}
 VERSION := v0.0.1
+ifeq ($(COMMIT),)
 COMMIT := $(shell git rev-parse HEAD)
+endif
 DATE := $(shell date "+%Y-%m-%dT%H:%M:%S%z")
 
 SRCS     := $(shell find . -type f -name '*.go')
@@ -38,24 +40,18 @@ cross-build:
 
 dist/linux-amd64/$(NAME): cross-build
 
-DOCKER_REPOSITORY := {{_input_:repository}}
+DOCKER_REPOSITORY := docker.io
 ifeq ($(DOCKER_REPOSITORY),)
 DOCKER_IMAGE_NAME := {{_input_:image_name}}
 else
-	DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/{{_input_:image_name}}
+DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/{{_input_:image_name}}
 endif
-
 DOCKER_IMAGE_TAG  ?= latest
 DOCKER_IMAGE      := $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
 .PHONY: docker-build
-docker-build: dist/linux-amd64/$(NAME)
-ifeq ($(findstring ELF 64-bit LSB,$(shell file dist/linux-amd64/$(NAME) 2> /dev/null)),)
-	@echo $(findstring ELF 64-bit LSB,$(shell file dist/linux-amd64/$(NAME) 2> /dev/null))
-	@echo "dist/linux-amd64/$(NAME) is not a Linux 64bit binary."
-	@exit 1
-endif
-	docker build -t $(DOCKER_IMAGE) .
+docker-build:
+	docker build --build-arg COMMIT=$(COMMIT) -t $(DOCKER_IMAGE) .
 
 .PHONY: install
 install:
