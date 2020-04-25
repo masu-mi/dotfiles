@@ -14,8 +14,20 @@ func onesCount(x uint64) (num int) {
 	return int(x) & (1<<7 - 1)
 }
 
-func ltz(bits uint64) (num int) {
+func ntz(bits uint64) (num int) {
+  // number of trailing zero
 	return onesCount(bits&(-bits) - 1)
+}
+
+func nlz(bits uint64) (num int) {
+	// number of leading zero
+	bits = bits | (bits >> 1)
+	bits = bits | (bits >> 2)
+	bits = bits | (bits >> 4)
+	bits = bits | (bits >> 8)
+	bits = bits | (bits >> 16)
+	bits = bits | (bits >> 32)
+	return onesCount(^bits)
 }
 
 func refBit(i uint64, b uint) int {
