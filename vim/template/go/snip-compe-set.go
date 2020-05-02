@@ -18,6 +18,13 @@ func (s {{_input_:set_type}}) size() int {
 	return len(s)
 }
 
+func (s {{_input_:set_type}}) members() (l []{{_input_:item_type}}) {
+	for k := range s {
+		l = append(l, k)
+	}
+	return l
+}
+
 var mark none
 
 type none struct{}
