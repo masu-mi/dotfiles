@@ -393,6 +393,7 @@ repo = 'godlygeek/tabular'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
+nnoremap <silent> <Leader>gb   :Gblame<CR>
 nnoremap <silent> <Leader>gf   :Gfetch<CR>
 nnoremap <silent> <Leader>diff :Gdiff<CR>
 '''
