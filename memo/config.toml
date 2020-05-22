@@ -1,0 +1,12 @@
+memodir = "~/Dropbox/memo/_posts"
+editor = "vim"
+column = 20
+width = 0
+selectcmd = "fzf"
+grepcmd = "grep -nH ${PATTERN} ${FILES}"
+memotemplate = "~/.config/memo/templates/memo.txt"
+assetsdir = "~/.config/memo/assets"
+pluginsdir = "~/.config/memo/plugins"
+templatedirfile = ""
+# templatebodyfile = ""
+templatebodyfile = "~/.config/memo/templates/serve-page.html"
