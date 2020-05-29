@@ -90,12 +90,11 @@ func moduloCombi(n, k, modulo int) int {
 }
 
 func moduloLog(a, b, modulo int) int {
-	// log_a(b)
+
 	a %= modulo
 	b %= modulo
 	m := int(math.Sqrt(float64(modulo)))
 
-	// basy step
 	values := map[int]int{}
 	val := 1
 	for i := 0; i < m+2; i++ {
@@ -105,7 +104,6 @@ func moduloLog(a, b, modulo int) int {
 		val = moduloMul(val, a, modulo)
 	}
 
-	// giant step
 	compound := moduloInv(moduloPow(a, m, modulo), modulo)
 	val = b
 	for i := 0; i < m+2; i++ {

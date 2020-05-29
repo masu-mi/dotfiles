@@ -41,7 +41,7 @@ func bitCombinationsWithSize(num, size int) chan uint {
 }
 
 func nextBitCombination(cur uint) uint {
-	x := cur & -cur // rightest bit only         '10100' -> '00100'
-	y := cur + x    // carry at rightest 1-block '10111' -> '11000'
+	x := cur & -cur
+	y := cur + x
 	return (((cur & ^y) / x) >> 1) | y
 }

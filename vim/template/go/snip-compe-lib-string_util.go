@@ -1,5 +1,4 @@
 {{_cursor_}}
-
 func reverseString(str string) string {
 	buf := bytes.NewBufferString("")
 	writeReverse(buf, str)

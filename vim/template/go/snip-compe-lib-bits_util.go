@@ -1,8 +1,8 @@
 {{_cursor_}}
 func onesCount(x uint64) (num int) {
-	const m0 = 0x5555555555555555 // 01010101 ...
-	const m1 = 0x3333333333333333 // 00110011 ...
-	const m2 = 0x0f0f0f0f0f0f0f0f // 00001111 ...
+	const m0 = 0x5555555555555555
+	const m1 = 0x3333333333333333
+	const m2 = 0x0f0f0f0f0f0f0f0f
 
 	const m = 1<<64 - 1
 	x = x>>1&(m0&m) + x&(m0&m)
@@ -15,12 +15,12 @@ func onesCount(x uint64) (num int) {
 }
 
 func ntz(bits uint64) (num int) {
-  // number of trailing zero
+
 	return onesCount(bits&(-bits) - 1)
 }
 
 func nlz(bits uint64) (num int) {
-	// number of leading zero
+
 	bits = bits | (bits >> 1)
 	bits = bits | (bits >> 2)
 	bits = bits | (bits >> 4)
