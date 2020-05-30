@@ -1,8 +1,4 @@
 {{_cursor_}}
-type none struct{}
-
-var mark none
-
 type intSet map[int]none
 
 func newIntSet() intSet {
@@ -41,3 +37,7 @@ func (s intSet) members() chan int {
 	}()
 	return ch
 }
+
+type none struct{}
+
+var mark none
