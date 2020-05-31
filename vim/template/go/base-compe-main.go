@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("%d\n", resolve(parseProblem(os.Stdin)))
+	fmt.Println(resolve(parseProblem(os.Stdin)))
 }
 
 func parseProblem(r io.Reader) int {
