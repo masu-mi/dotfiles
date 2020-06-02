@@ -1,7 +1,8 @@
 {{_cursor_}}
 type weightedLinkedList struct {
 	size, deg int
-	edges     []map[int]int
+
+	edges []map[int]int
 }
 
 func newWeightedLinkedList(size int) *weightedLinkedList {
