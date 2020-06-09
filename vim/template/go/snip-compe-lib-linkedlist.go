@@ -104,3 +104,12 @@ func nextString(sc *bufio.Scanner) string {
 	sc.Scan()
 	return sc.Text()
 }
+
+func nextIntSlice(sc *bufio.Scanner, n int) (a []int) {
+
+	a = make([]int, n)
+	for i := 0; i < n; i++ {
+		a[i] = nextInt(sc)
+	}
+	return a
+}
