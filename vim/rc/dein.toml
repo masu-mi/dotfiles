@@ -135,9 +135,6 @@ let g:deoplete#enable_at_startup = 1
 [[plugins]]
 repo = 'roxma/nvim-yarp'
 on_if = ''' !has('nvim') '''
-hook_add = '''
-let g:python3_host_prog = 'python3.7'
-'''
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
