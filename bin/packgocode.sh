@@ -2,5 +2,4 @@
 
 goone pack $1 \
   --package main \
-  --template=fullcode.go \
-  | pbcopy
+  --template=fullcode.go
