@@ -15,11 +15,6 @@ set noimdisable
 set iminsert=0 imsearch=0
 set noimcmdline
 
-"### 補完
-"### フォールディング設定
-set foldmethod=syntax
-set foldlevel=10
-
 "### インデント
 set autoindent
 set cindent

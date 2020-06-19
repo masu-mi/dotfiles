@@ -52,14 +52,15 @@ endfor
 
 packadd matchit
 
-nmap <buffer><nowait> <C-d> :LspHover<CR>
-nmap <buffer><nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
-nmap <buffer><nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
-nmap <buffer><nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
+nmap <nowait> <C-d> :LspHover<CR>
+nmap <nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
+nmap <nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
+nmap <nowait> <Leader>dt :sp<CR>:LspDefinition<CR>:tabnew<CR>
 
-nmap <buffer><nowait> <Leader>fix :call FixCurrentBuffer()<CR>
-nmap <buffer><nowait> <Leader>ren :LspRename<CR>
-nmap <buffer><nowait> <C-m> :LspDocumentDiagnostics<CR>
+nmap <nowait> <Leader>fix :call FixCurrentBuffer()<CR>
+nmap <nowait> <Leader>ren :LspRename<CR>
+nmap <nowait> <C-m> :LspDocumentDiagnostics<CR>
+nmap <nowait> zz za<CR>
 
 augroup code_fix
   autocmd!

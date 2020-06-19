@@ -249,6 +249,13 @@ repo =  'prabirshrestha/asyncomplete.vim'
 repo =  'prabirshrestha/asyncomplete-lsp.vim'
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+
+hook_add = '''
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
+'''
+
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 [[plugins]]
