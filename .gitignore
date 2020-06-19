@@ -2,3 +2,4 @@
 .vim/plugin/*.vim
 *.swp
 .vim/view
+.mypy_cache
