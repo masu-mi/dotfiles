@@ -16,8 +16,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 . $HOME/dotfiles/.bashrc_prompt
 
 ## basic tools
-export EDITOR=vim
-export SVN_EDITOR=vim
+export EDITOR=nvim
+export SVN_EDITOR=nvim
 export RSYNC_RSH=ssh
 export LESSCHARSET=utf-8
 if [ -x less ]; then

@@ -70,4 +70,4 @@ set tags+=.git/tags,.svn/tags
 
 set mouse=a
 
-let g:python3_host_prog = 'python3.8'
+let g:python3_host_prog = 'python3.7'

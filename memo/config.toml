@@ -1,5 +1,5 @@
 memodir = "~/Dropbox/memo/_posts"
-editor = "vim"
+editor = "nvim"
 column = 20
 width = 0
 selectcmd = "fzf"
