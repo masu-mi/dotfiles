@@ -27,6 +27,37 @@ func createWall(w int) string {
 	}
 	return buf.String()
 }
+
+func newBooleanGrid(h, w int) (r [][]bool) {
+	r = make([][]bool, h+2)
+	for i := range r {
+		r[i] = make([]bool, w+2)
+	}
+	return r
+}
+
+func getByte(g []string, p pos) byte {
+	return g[p.x][p.y]
+}
+
+type pos struct{ x, y int }
+
+func findBytes(g []string, str string) map[byte]pos {
+	targets := map[byte]struct{}{}
+	result := map[byte]pos{}
+	for i := range str {
+		targets[str[i]] = struct{}{}
+	}
+	for i := 1; i < len(g); i++ {
+		for j := 1; j < len(g[i]); j++ {
+			b := g[i][j]
+			if _, ok := targets[b]; ok {
+				result[b] = pos{i, j}
+			}
+		}
+	}
+	return result
+}
 func nextInt(sc *bufio.Scanner) int {
 	sc.Scan()
 	a, _ := strconv.Atoi(sc.Text())
