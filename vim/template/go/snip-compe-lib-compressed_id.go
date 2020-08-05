@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/compressed_id.go] with goone.
+
 type compressedID struct {
 	idx map[int]int
 	l   []int

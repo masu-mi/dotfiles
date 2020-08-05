@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/int_util.go] with goone.
+
 func pow(n, i int) (res int) {
 	res = 1
 	for i > 0 {

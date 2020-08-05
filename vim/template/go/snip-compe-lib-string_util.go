@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/string_util.go] with goone.
+
 func reverseString(str string) string {
 	buf := bytes.NewBufferString("")
 	writeReverse(buf, str)

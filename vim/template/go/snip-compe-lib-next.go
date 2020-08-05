@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/next.go] with goone.
+
 func nextInt(sc *bufio.Scanner) int {
 	sc.Scan()
 	a, _ := strconv.Atoi(sc.Text())

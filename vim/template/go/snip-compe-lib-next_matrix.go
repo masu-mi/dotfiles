@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/next_matrix.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/next.go] with goone.
+
 func nextMatrix(n, m int, sc *bufio.Scanner) (matrix [][]int) {
 	matrix = make([][]int, n)
 	for i := 0; i < n; i++ {

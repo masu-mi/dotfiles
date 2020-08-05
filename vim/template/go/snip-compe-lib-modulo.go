@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/modulo.go] with goone.
+
 func moduloAdd(a, b, modulo int) int {
 	result := a%modulo + b%modulo
 	if result < 0 {

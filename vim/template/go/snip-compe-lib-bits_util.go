@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/bits_util.go] with goone.
+
 func onesCount(x uint64) (num int) {
 	const m0 = 0x5555555555555555
 	const m1 = 0x3333333333333333

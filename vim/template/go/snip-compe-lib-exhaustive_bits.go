@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/exhaustive_bits.go] with goone.
+
 func bitCombinations(num int) chan uint {
 	ch := make(chan uint)
 	go func() {

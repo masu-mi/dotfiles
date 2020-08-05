@@ -1,7 +1,7 @@
-{{_cursor_}}
-type none struct{}
 
-var mark none
+{{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/set.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/none.go] with goone.
 
 type intSet map[int]none
 
@@ -41,3 +41,7 @@ func (s intSet) members() chan int {
 	}()
 	return ch
 }
+
+type none struct{}
+
+var mark none

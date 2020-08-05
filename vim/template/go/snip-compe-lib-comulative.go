@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/comulative.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/next.go] with goone.
+
 func getComulative(a []int) (z []int) {
 	z = make([]int, len(a)+1)
 	(&reducer{}).reduce(&z, a)

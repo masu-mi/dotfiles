@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/lcm.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/gcd.go] with goone.
+
 func lcm(a, b int) int {
 	return a * b / gcd(a, b)
 }

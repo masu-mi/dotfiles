@@ -1,4 +1,8 @@
+
 {{_cursor_}}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/prime.go] with goone.
+
 func isPrime(n int) bool {
 	for i := 2; i*i <= n; i++ {
 		if n%i == 0 {

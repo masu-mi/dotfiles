@@ -1,23 +1,7 @@
+
 {{_cursor_}}
-func nextInt(sc *bufio.Scanner) int {
-	sc.Scan()
-	a, _ := strconv.Atoi(sc.Text())
-	return int(a)
-}
-
-func nextString(sc *bufio.Scanner) string {
-	sc.Scan()
-	return sc.Text()
-}
-
-func nextIntSlice(sc *bufio.Scanner, n int) (a []int) {
-
-	a = make([]int, n)
-	for i := 0; i < n; i++ {
-		a[i] = nextInt(sc)
-	}
-	return a
-}
+// package: gocom
+// packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/linkedlist.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/set.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/none.go /Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/next.go] with goone.
 
 type basicLinkedList struct {
 	size, deg int
@@ -47,25 +31,25 @@ func (ll *basicLinkedList) exists(a, b int) bool {
 	return ll.edges[a].doesContain(b)
 }
 
-func nextLinkedList(n, m int, sc *bufio.Scanner) *basicLinkedList {
+func nextLinkedList(n, m, offset int, sc *bufio.Scanner) *basicLinkedList {
 	ll := newLinkedList(n)
-	for i := 0; i < n; i++ {
+	for i := 0; i < m; i++ {
 		x, y := nextInt(sc), nextInt(sc)
 
-		x--
-		y--
+		x -= offset
+		y -= offset
 		ll.addEdge(x, y)
 	}
 	return ll
 }
 
-func nextDirectedLinkedList(n, m int, sc *bufio.Scanner) *basicLinkedList {
+func nextDirectedLinkedList(n, m, offset int, sc *bufio.Scanner) *basicLinkedList {
 	ll := newLinkedList(n)
-	for i := 0; i < n; i++ {
+	for i := 0; i < m; i++ {
 		x, y := nextInt(sc), nextInt(sc)
 
-		x--
-		y--
+		x -= offset
+		y -= offset
 		ll.addDirectedEdge(x, y)
 	}
 	return ll
@@ -113,3 +97,23 @@ func (s intSet) members() chan int {
 type none struct{}
 
 var mark none
+
+func nextInt(sc *bufio.Scanner) int {
+	sc.Scan()
+	a, _ := strconv.Atoi(sc.Text())
+	return int(a)
+}
+
+func nextString(sc *bufio.Scanner) string {
+	sc.Scan()
+	return sc.Text()
+}
+
+func nextIntSlice(sc *bufio.Scanner, n int) (a []int) {
+
+	a = make([]int, n)
+	for i := 0; i < n; i++ {
+		a[i] = nextInt(sc)
+	}
+	return a
+}
