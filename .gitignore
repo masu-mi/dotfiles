@@ -3,3 +3,4 @@
 *.swp
 .vim/view
 .mypy_cache
+*.DS_store

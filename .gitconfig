@@ -24,7 +24,7 @@
 	tgz = !git archive --format=tar.gz HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).tar.gz
 [core]
 	quotepath = false
-	excludesfile = /Users/masumi/.gitignore_global
+	excludesfile = /Users/masumi/dotfiles/global.gitignore
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
