@@ -64,7 +64,7 @@ nmap <nowait> zz za<CR>
 
 augroup code_fix
   autocmd!
-  autocmd BufWritePre * call FixCurrentBuffer()
+  autocmd BufWritePre go call FixCurrentBuffer()
 augroup END
 
 function FixCurrentBuffer()

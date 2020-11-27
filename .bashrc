@@ -138,3 +138,6 @@ do
 done
 
 complete -C /usr/local/bin/mc mc
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+add_path "$WASMTIME_HOME/bin:$PATH"

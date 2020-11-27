@@ -8,4 +8,4 @@ if [ "$browser" = "" ]; then
   browser='Vivaldi'
 fi
 
-open $1 -a $browser
+open "$1" -a $browser
