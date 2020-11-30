@@ -23,7 +23,3 @@ set smartindent
 "### タブ関連
 set tabstop=2 shiftwidth=2 softtabstop=0
 set expandtab
-
-augroup filetypedetect
-        au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
-augroup END
