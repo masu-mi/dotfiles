@@ -1,0 +1,8 @@
+snippet virtualbox_provider
+  host.vm.provider "virtualbox" do |${1:v}|
+    $1.customize ["modifyvm", :id, "--uart1", "0x3f8", "4"]
+    # ref. https://www.virtualbox.org/manual/ch03.html#serialports
+    $1.customize ["modifyvm", :id, "--uartmode1", "server", "/tmp/#{node.vm.hostname}_com"]
+    $1.memory = 4096
+  end
+
