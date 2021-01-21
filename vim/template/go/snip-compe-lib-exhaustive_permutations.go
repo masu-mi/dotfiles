@@ -3,10 +3,10 @@
 // package: gocom
 // packed src of [/Users/masumi/dev/src/github.com/masu-mi/gamemo/lib/gocom/exhaustive_permutations.go] with goone.
 
-func permutations(l int) chan []int {
+func permutations(l, offset int) chan []int {
 	ch := make(chan []int)
 	go func() {
-		dfsPermutations(0, make([]bool, l), []int{}, func(perm []int) bool {
+		dfsPermutations(0, offset, make([]bool, l), []int{}, func(perm []int) bool {
 			ch <- perm
 			return false
 		})
@@ -15,7 +15,7 @@ func permutations(l int) chan []int {
 	return ch
 }
 
-func dfsPermutations(pos int, used []bool, perm []int, atLeaf func(perm []int) (halt bool)) (halt bool) {
+func dfsPermutations(pos, off int, used []bool, perm []int, atLeaf func(perm []int) (halt bool)) (halt bool) {
 	l := len(used)
 	if pos == l {
 		p := append(perm[:0:0], perm...)
@@ -27,7 +27,7 @@ func dfsPermutations(pos int, used []bool, perm []int, atLeaf func(perm []int) (
 			continue
 		}
 		used[i] = true
-		if dfsPermutations(pos+1, used, append(perm, i), atLeaf) {
+		if dfsPermutations(pos+1, off, used, append(perm, i+off), atLeaf) {
 			return true
 		}
 		used[i] = false
