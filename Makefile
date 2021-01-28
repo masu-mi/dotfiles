@@ -3,7 +3,8 @@ CONFIG_ROOT  ?= $(PWD)
 
 DIRS := local/bin local/lib local/doc \
 	.backup/vim .config \
-	.bashrcs works
+	.bashrcs works \
+	.config/vim .config/nvim
 TARGET_DIR := $(addprefix $(TARGET_HOME)/, $(DIRS))
 
 CONF_FILES := .ackrc .bashrc .bash_profile .ctags.d .gitconfig \
