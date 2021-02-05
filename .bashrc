@@ -57,6 +57,8 @@ if [ "${GOPATH}" != "" ]; then
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
 fi
 
+add_path "${HOME}/.poetry/bin"
+
 if which virtualenvwrapper.sh >& /dev/null; then
   export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_RESPECT_VIRTUALENV=true
