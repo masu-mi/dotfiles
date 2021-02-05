@@ -40,3 +40,5 @@
 	ff = only
 [ghq]
 	root = ~/dev/src
+[include]
+	path = ~/local/config/gitconfig

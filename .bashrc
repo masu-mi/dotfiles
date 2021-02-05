@@ -138,10 +138,9 @@ if [ -f "$HOME/.bashrc.bak" ]; then
   . "$HOME/.bashrc.bak"
 fi
 
-for file in $(test -d ~/.bashrcs && find ~/.bashrcs -type f);
-do
-  . ${file}
-done
+if [ -f "$HOME/local/config/bashrcs" ]; then
+  . "$HOME/local/config/bashrcs"
+fi
 
 complete -C /usr/local/bin/mc mc
 

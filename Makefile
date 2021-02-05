@@ -1,9 +1,9 @@
 TARGET_HOME ?= $(HOME)
 CONFIG_ROOT  ?= $(PWD)
 
-DIRS := local/bin local/lib local/doc \
+DIRS := local/bin local/lib local/doc local/config \
 	.backup/vim .config \
-	.bashrcs works \
+	works \
 	.config/vim .config/nvim
 TARGET_DIR := $(addprefix $(TARGET_HOME)/, $(DIRS))
 
