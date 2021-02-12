@@ -4,6 +4,7 @@
 [ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 [ -f ~/dotfiles/.bashrc_bootfuncs ] && . ~/dotfiles/.bashrc_bootfuncs
 [ -f ~/.config/bashrc_local ] && . ~/.config/bashrc_local
+[ -f "$HOME/local/config/bashrc" ] && . "$HOME/local/config/bashrc"
 
 export LANG='ja_JP.UTF-8'
 LC_ALL='ja_JP.UTF-8'
@@ -136,10 +137,6 @@ add_path "/usr/local/heroku/bin"
 
 if [ -f "$HOME/.bashrc.bak" ]; then
   . "$HOME/.bashrc.bak"
-fi
-
-if [ -f "$HOME/local/config/bashrcs" ]; then
-  . "$HOME/local/config/bashrcs"
 fi
 
 complete -C /usr/local/bin/mc mc
