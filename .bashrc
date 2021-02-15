@@ -1,5 +1,6 @@
 [ -f /etc/profile ] && . /etc/profile
 [ -f /etc/bashrc ]  && . /etc/bashrc
+[ -f "$HOME/.bashrc.bak" ] && . "$HOME/.bashrc.bak"
 
 [ -f ~/dotfiles/.bashrc_aliases ] && . ~/dotfiles/.bashrc_aliases
 [ -f ~/dotfiles/.bashrc_bootfuncs ] && . ~/dotfiles/.bashrc_bootfuncs
@@ -135,9 +136,6 @@ add_path "/usr/local/heroku/bin"
 # for different option
 . ~/dotfiles/.bashrc.$(uname)
 
-if [ -f "$HOME/.bashrc.bak" ]; then
-  . "$HOME/.bashrc.bak"
-fi
 
 complete -C /usr/local/bin/mc mc
 
