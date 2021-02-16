@@ -17,15 +17,10 @@ function! s:source_rc(rc_file_name)
     endif
 endfunction
 
-let mapleader = "\<Space>"
-
 call s:source_rc('dein.vim')
 call s:source_rc('encoding.vim')
 call s:source_rc('basic.vim')
 call s:source_rc('keymap.vim')
 call s:source_rc('insert.vim')
-
-" 基本カラーリング関連
-syntax on
-let g:molokai_original=1
-colorscheme molokai
+call s:source_rc('color.vim')
+call s:source_rc('dev-utils.vim')

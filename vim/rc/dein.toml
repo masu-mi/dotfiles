@@ -306,13 +306,13 @@ let g:ale_fixers = {
 " let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 '''
 
-[[plugins]]
-repo = 'soramugi/auto-ctags.vim'
-hook_add = '''
-let g:auto_ctags = 0
-let g:auto_ctags_directory_list = ['.git','.svn','.']
-let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
-'''
+# [[plugins]]
+# repo = 'soramugi/auto-ctags.vim'
+# hook_add = '''
+# let g:auto_ctags = 0
+# let g:auto_ctags_directory_list = ['.git','.svn','.']
+# let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
+# '''
 
 [[plugins]]
 repo = 'tpope/vim-dispatch'

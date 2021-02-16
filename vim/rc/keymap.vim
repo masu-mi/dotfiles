@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let mapleader = "\<Space>"
+
 noremap <Leader><Leader> :nohlsearch<CR><ESC>
 
 noremap <Leader>n :set nopaste<CR>
@@ -50,7 +52,7 @@ for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 
-packadd matchit
+" packadd matchit
 
 nmap <nowait> <C-d> :LspHover<CR>
 nmap <nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
