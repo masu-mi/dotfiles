@@ -54,6 +54,8 @@ endfor
 
 " packadd matchit
 
+nmap <nowait> <C-a> :LspCodeAction<CR>
+nmap <nowait> <C-i> :LspDocumentFormat<CR>
 nmap <nowait> <C-d> :LspHover<CR>
 nmap <nowait> <Leader>ds :sp<CR>:LspDefinition<CR>
 nmap <nowait> <Leader>dv :vs<CR>:LspDefinition<CR>
