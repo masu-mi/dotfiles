@@ -60,6 +60,7 @@ if [ "${GOPATH}" != "" ]; then
   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
 fi
 
+add_path "${HOME}/.pyenv/bin"
 add_path "${HOME}/.poetry/bin"
 
 if which virtualenvwrapper.sh >& /dev/null; then
