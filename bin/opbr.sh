@@ -5,7 +5,7 @@ if [ "$browser" = "" ]; then
   browser=$BROWSER
 fi
 if [ "$browser" = "" ]; then
-  browser='Vivaldi'
+  browser='Google Chrome.app'
 fi
 
-open "$1" -a $browser
+open "$1" -a "$browser"
