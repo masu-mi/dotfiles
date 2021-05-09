@@ -37,6 +37,7 @@ add_path "${HOME}/.cargo/bin"
 ### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
+add_path "${HOME}/.local/bin"
 add_path "${HOME}/dotfiles/bin"
 
 ### specific langages
@@ -89,10 +90,6 @@ if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
 add_path "${HOME}/.asdf/bin/"
 
-if [ "$(uname)" == "Darwin" ]; then
-  #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-  [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-fi
 
 if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
@@ -143,3 +140,6 @@ complete -C /usr/local/bin/mc mc
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 add_path "$WASMTIME_HOME/bin"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
