@@ -71,4 +71,4 @@ set tags+=.git/tags,.svn/tags
 
 set mouse=a
 
-let g:python3_host_prog = system('which python3 || which python')
+let g:python3_host_prog = substitute(system('which python3 || which python'), "\n", "", "g")
