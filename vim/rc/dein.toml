@@ -353,27 +353,6 @@ repo = 'mattreduce/vim-mix'
 
 [[plugins]]
 repo = 'mattn/vim-goimports'
-# [[plugins]]
-# repo = 'fatih/vim-go'
-# hook_add = '''
-# let g:go_def_mapping_enabled = 0
-# let g:go_template_autocreate = 0
-# let g:go_auto_sameids = 0   " too heavy
-# let g:go_auto_type_info = 0 " too heavy
-# let g:go_info_mode = 'gopls'
-# let g:go_updatetime = 200
-# 
-# let g:go_doc_keywordprg_enabled = 0 "change K(keywordprg) to :GoDoc
-# let g:go_doc_max_height = 20
-# let g:go_autodetect_gopath = 0 " 迷ってる, _vendor, vendor共に対応できるか検証してから
-# let g:go_list_type = "quickfix"
-# let g:go_fmt_autosave = 0
-# let g:go_fmt_command= "goimports"
-# let g:go_metalinter_autosave = 0
-# let g:go_addtags_transform = 'snakecase'
-# let g:go_textobj_enabled = 0
-# let g:go_textobj_include_function_doc = 0
-# '''
 
 [[plugins]]
 repo = 'racer-rust/vim-racer'

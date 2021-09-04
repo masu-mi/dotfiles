@@ -77,34 +77,3 @@ function FixCurrentBuffer()
 endfunction
 
 nmap <buffer><nowait> <F9> :TestFile<CR>
-
-" nmap <buffer><nowait> <Leader>i <Plug>(go-info)
-" nmap <buffer><nowait> <Leader>db <Plug>(go-doc-browser)
-
-" nmap <buffer><nowait> <Leader>r <Plug>(go-run)
-" nmap <buffer><nowait> <Leader>b <Plug>(go-build)
-" nmap <buffer><nowait> <Leader>t <Plug>(go-test)
-" nmap <buffer><nowait> <Leader>c <Plug>(go-coverage)
-
-" nmap <buffer><nowait> <Leader>a :GoAddTags<Space>
-" nmap <buffer><nowait> <Leader>p :GoImport<Space>
-
-""" "for gnu global
-""" set tags=./tags,../tags,~/tags
-""" nnoremap <Leader>gd :Gtags<Space>
-""" nnoremap <Leader>gr :Gtags -r
-""" nnoremap <Leader>gf :Gtags -f
-""" nnoremap <Leader>gg :Gtags -g
-""" nnoremap <Leader>gc :GtagsCursor<Enter>
-""" nnoremap <Leader>gu :GtagsUpdate<Enter>
-
-""" " shell
-""" nnoremap <Leader>vs :VimShell<Enter>
-""" nnoremap <Leader>vf :VimFilerExplorer<Enter>
-
-""" " カーソル下の呼び出し元一覧を出力
-""" nnoremap <silent> <Leader>tr  :<C-u>Unite gtags/ref:<CR>
-""" " カーソル下の定義元を出力
-""" nnoremap <silent> <Leader>td  :<C-u>Unite gtags/def:<CR>
-""" " タグファイル内grep
-""" nnoremap <silent> <Leader>tg  :<C-u>Unite gtags/grep:<CR>
