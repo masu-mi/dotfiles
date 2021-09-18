@@ -133,6 +133,9 @@ let g:deoplete#enable_at_startup = 1
 '''
 
 [[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+
+[[plugins]]
 repo = 'roxma/nvim-yarp'
 on_if = ''' !has('nvim') '''
 
@@ -230,11 +233,9 @@ nnoremap <silent> <C-u>gl <C-u>:Denite unite:giti/log<CR>
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf'
+repo = 'junegunn/fzf.vim'
 dir = '~/.fzf'
 build = './install --all'
-[[plugins]]
-repo = 'junegunn/fzf.vim'
 hook_add = '''
 command! FZFFileList call fzf#run(fzf#wrap({
       \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
@@ -245,8 +246,11 @@ command! FZFFileList call fzf#run(fzf#wrap({
 repo = 'prabirshrestha/async.vim'
 [[plugins]]
 repo =  'prabirshrestha/asyncomplete.vim'
+
 [[plugins]]
 repo =  'prabirshrestha/asyncomplete-lsp.vim'
+
+
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 
@@ -258,6 +262,21 @@ set foldmethod=expr
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+" Enable flake8
+let g:lsp_settings = {
+\  'pylsp-all': {
+\    'workspace_config': {
+\      'pylsp': {
+\        'configurationSources': ['flake8'],
+\        'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},
+\      }
+\    }
+\  }
+\}
+'''
+
+
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
 hook_add = '''
@@ -266,6 +285,7 @@ let g:vista_executive_for = {
       \ 'php':    'vim_lsp',
       \ 'go':     'vim_lsp',
       \ 'elixir': 'vim_lsp',
+      \ 'python': 'vim_lsp',
       \ }
 
 function! NearestMethodOrFunction() abort
@@ -274,48 +294,8 @@ endfunction
 '''
 
 [[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-nmap <silent> <C-n> <Plug>(ale_toggle)
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-l> <Plug>(ale_first)
-nmap <silent> <C-h> <Plug>(ale_last)
-
-let g:ale_enabled = 1
-let g:ale_lint_on_save = 0
-let g:ale_fix_on_save = 0
-let g:ale_sign_column_always = 1
-let g:ale_sign_error   = '>>'
-let g:ale_sign_warning = '->'
-let g:ale_echo_msg_error_str   = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%]%code%: %s [%severity%]'
-let g:ale_open_list = 1
-let g:ale_set_quickfix = 0
-let g:ale_linters = {
-      \ 'go': ['golint'],
-      \ 'python': ['flake8', 'mypy', 'pylint'],
-      \ 'elixir': ['mix_format'],
-      \ }
-let g:ale_fixers = {
-      \ 'go': ['goimports'],
-      \ 'python': ['autopep8', 'black', 'isort'],
-      \ 'elixir': ['mix_format'],
-      \ }
-" let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
-'''
-
-# [[plugins]]
-# repo = 'soramugi/auto-ctags.vim'
-# hook_add = '''
-# let g:auto_ctags = 0
-# let g:auto_ctags_directory_list = ['.git','.svn','.']
-# let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes --languages=-JSON'
-# '''
-
-[[plugins]]
 repo = 'tpope/vim-dispatch'
+
 [[plugins]]
 repo = 'janko-m/vim-test'
 depends = ['vim-dispatch']
@@ -402,4 +382,6 @@ repo = 'fs111/pydoc.vim'
 [[plugins]]
 repo = 'Shougo/neco-vim'
 depends = [ 'Shougo/deoplete.nvim' ]
-
+[[plugins]]
+repo = 'Shougo/neco-vim'
+depends = [ 'lighttiger2505/deoplete-vim-lsp' ]
