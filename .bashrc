@@ -34,6 +34,7 @@ add_path "/usr/local/sbin"
 add_path "/usr/local/bin"
 add_path "/usr/share/colorgcc"
 add_path "${HOME}/.cargo/bin"
+add_path "${HOME}/.deno/bin"
 ### local
 add_path "${HOME}/bin"
 add_path "${HOME}/local/bin"
