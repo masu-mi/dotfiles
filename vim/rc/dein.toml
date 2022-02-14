@@ -284,6 +284,7 @@ let g:vista_executive_for = {
       \ 'cpp':    'vim_lsp',
       \ 'php':    'vim_lsp',
       \ 'go':     'vim_lsp',
+      \ 'rust':   'vim_lsp',
       \ 'elixir': 'vim_lsp',
       \ 'python': 'vim_lsp',
       \ }
