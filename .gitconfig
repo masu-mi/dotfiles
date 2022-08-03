@@ -18,6 +18,7 @@
 	df = diff
 	difff = diff --word-diff
 	p = !git push origin $(git rev-parse --abbrev-ref HEAD)
+	onsen = !git remote prune origin && git gc && echo ♨️
 	pushset = push --set-upstream
 	cancel = reset --soft HEAD^
 	zip = !git archive --format=zip HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).zip

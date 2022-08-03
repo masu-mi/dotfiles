@@ -5,5 +5,5 @@ if [ "$(uname)" == "Linux" ]; then
   [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 fi
 
+. ~/.bashrc
 exec ssh-agent $SHELL
-# . ~/.bashrc
