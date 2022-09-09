@@ -276,6 +276,9 @@ let g:lsp_settings = {
 \}
 '''
 
+[[plugins]]
+repo = 'sebdah/vim-delve'
+
 
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
