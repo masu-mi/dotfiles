@@ -39,7 +39,7 @@ function sshp() {
   local host=$(
     grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config |\
       xargs -n 1 | grep -v Host | sort -u | \
-      xargs -I{} echo 'Host {}' | peco | \
+      xargs -I{} echo 'Host {}' | fzf | \
       awk '{print $2}'
   )
   if [ -n "$host" ]; then
@@ -48,14 +48,14 @@ function sshp() {
   fi
 }
 function psrc() {
-  local src=$(ghq list --full-path | peco --query "${LBUFFER}")
+  local src=$(ghq list --full-path | fzf)
   if [ -n "$src" ]; then
     echo -n '[pushd]:'
     pushd $src
   fi
 }
-alias gco='git checkout $(git branch | peco)'
-alias grmb='g br -d $(g br | peco)'
+alias gco='git checkout $(git branch | fzf)'
+alias grmb='g br -d $(g br | fzf)'
 
 alias pdots='pushd ~/dotfiles'
 alias lsdrafts='head -n 1 `ls drafts/*.rst`| awk '\''!/^$/{print $0}'\'
@@ -103,6 +103,8 @@ function lsbucket() {
 function select-dp () {
   docker ps | tail -n -1 | fzf | awk '{print $1}'
 }
+
+alias docker-braddr='docker network inspect bridge | jq -r .[0].IPAM.Config[0].Gateway'
 
 function select-stash () {
   git stash list | fzf --preview 'git show --color $(echo {} | awk -F: "{print \$1}")' | awk 'BEGIN{FS=":"}{print $1}'
