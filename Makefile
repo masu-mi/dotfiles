@@ -25,7 +25,9 @@ TARGET_MEMO := $(TARGET_HOME)/.config/memo
 
 all: $(TARGET_DIR) \
 	$(TARGET_CONF_FILES) $(TARGET_MEMO) \
-	$(TARGET_VIM_LINKS) $(TARGET_VIM_INIT) $(TARGET_NVIM_LINKS)
+	$(TARGET_VIM_LINKS) $(TARGET_VIM_INIT) $(TARGET_NVIM_LINKS) \
+	submodule_init
+
 
 $(TARGET_DIR):
 	mkdir -p $@
@@ -41,3 +43,8 @@ $(TARGET_VIM_INIT):
 
 $(TARGET_MEMO):
 	ln -s $(CONFIG_ROOT)/memo $@
+
+
+.PHONY: submodule_init
+submodule_init:
+	git submodule update --init --recursive
