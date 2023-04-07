@@ -88,12 +88,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 add_path ${HOME}/.nodebrew/current/bin
 
-if which direnv >& /dev/null; then eval "$(direnv hook bash)"; fi
 
 # for asdf
 if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
 add_path "${HOME}/.asdf/bin/"
+
+if [ ! $(which asdf >& /dev/null) -a $(which direnv >& /dev/null) ]; then
+  eval "$(direnv hook bash)";
+fi
 
 
 . $HOME/dotfiles/.fzf.bash
