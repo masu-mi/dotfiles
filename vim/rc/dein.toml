@@ -389,3 +389,6 @@ depends = [ 'Shougo/deoplete.nvim' ]
 [[plugins]]
 repo = 'Shougo/neco-vim'
 depends = [ 'lighttiger2505/deoplete-vim-lsp' ]
+
+[[plugins]]
+repo = 'github/copilot.vim'
