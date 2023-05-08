@@ -89,6 +89,9 @@ export NVM_DIR="$HOME/.nvm"
 add_path ${HOME}/.nodebrew/current/bin
 
 
+zig_path=$(find ~/local/ -name 'zig-*' | head)
+if [ -f "${zig_path}/zig" ]; then add_path $zig_path; fi
+
 # for asdf
 if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
@@ -97,7 +100,7 @@ add_path "${HOME}/.asdf/bin/"
 if [ ! $(which asdf >& /dev/null) -a $(which direnv >& /dev/null) ]; then
   eval "$(direnv hook bash)";
 fi
-
+eval "$(direnv hook bash)";
 
 . $HOME/dotfiles/.fzf.bash
 
