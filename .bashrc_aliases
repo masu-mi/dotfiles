@@ -37,7 +37,7 @@ function stvim {
 }
 function sshp() {
   local host=$(
-    grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config |\
+    grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config ~/.ssh/hosts/* |\
       xargs -n 1 | grep -v Host | sort -u | \
       xargs -I{} echo 'Host {}' | fzf | \
       awk '{print $2}'
