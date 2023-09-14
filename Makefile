@@ -1,50 +1,87 @@
-TARGET_HOME ?= $(HOME)
-CONFIG_ROOT  ?= $(PWD)
+TARGET_HOME    ?= $(HOME)
+CONFIG_ROOT    ?= $(PWD)
+CONFIG_VIM_DIR := $(CONFIG_ROOT)/vim
 
-DIRS := local/bin local/lib local/doc local/config \
-	.backup/vim .config \
-	works \
-	.config/vim .config/nvim
-TARGET_DIR := $(addprefix $(TARGET_HOME)/, $(DIRS))
+SRC_HOME_CONF_BASE := $(notdir $(shell ls ./home))
+DST_HOME_CONF      := $(addprefix $(TARGET_HOME)/., $(SRC_HOME_CONF_BASE))
 
-CONF_FILES := .ackrc .bashrc .bash_profile .ctags.d .gitconfig \
-	.inputrc .screenrc .tmux.conf .zshrc .sqliterc
-TARGET_CONF_FILES := $(addprefix $(TARGET_HOME)/, $(CONF_FILES))
+SRC_NVIM_CONF_BASE := rc init.vim
+DST_NVIM_CONF      := $(addprefix $(TARGET_HOME)/.config/nvim/, $(SRC_NVIM_CONF_BASE))
+SRC_VIM_CONF_BASE  := rc
+DST_VIM_CONF       := $(addprefix $(TARGET_HOME)/.config/vim/, $(SRC_VIM_CONF_BASE))
+DST_VIMS_CONF      := $(DST_NVIM_CONF) $(DST_VIM_CONF)
+DST_HOME_VIM_CONF  := $(TARGET_HOME)/.vimrc
 
-NVIM_LINKS := rc init.vim
-TARGET_NVIM_LINKS := $(addprefix $(TARGET_HOME)/.config/nvim/, $(NVIM_LINKS))
+.PHONY: help
+help:
 
-VIM_LINKS := rc
-TARGET_VIM_LINKS := $(addprefix $(TARGET_HOME)/.config/vim/, $(VIM_LINKS))
-
-TARGET_VIM_INIT := $(TARGET_HOME)/.vimrc
-
-TARGET_MEMO := $(TARGET_HOME)/.config/memo
+## Setup
+.PHONY: init
+init: all ## Initialize all settings
 
 .PHONY: all
-
-all: $(TARGET_DIR) \
-	$(TARGET_CONF_FILES) $(TARGET_MEMO) \
-	$(TARGET_VIM_LINKS) $(TARGET_VIM_INIT) $(TARGET_NVIM_LINKS) \
+all: $(DST_VIMS_CONF) $(DST_HOME_VIM_CONF) \
+	$(DST_HOME_CONF) \
+	$(DST_DIR) \
 	submodule_init
-
-
-$(TARGET_DIR):
-	mkdir -p $@
-
-$(TARGET_CONF_FILES):
-	ln -s $(CONFIG_ROOT)/$(notdir $@) $@
-
-$(TARGET_NVIM_LINKS) $(TARGET_VIM_LINKS):
-	ln -s $(CONFIG_ROOT)/vim/$(notdir $@) $@
-
-$(TARGET_VIM_INIT):
-	ln -s $(CONFIG_ROOT)/vim/init.vim $@
-
-$(TARGET_MEMO):
-	ln -s $(CONFIG_ROOT)/memo $@
-
 
 .PHONY: submodule_init
 submodule_init:
 	git submodule update --init --recursive
+
+.PHONY: link_home_conf
+link_home_conf: $(DST_HOME_CONF) ## Make link files under $HOME/
+
+## Clean
+.PHONE: clean
+clean: rm_vims_conf rm_home_conf ## Remove all links
+
+.PHONY: rm_vims_conf
+rm_vims_conf: ## Remove links to vim config
+	rm $(DST_HOME_VIM_CONF) $(DST_VIMS_CONF)
+
+.PHONY: rm_home_conf
+rm_home_conf: ## Remove config file links don't related to (n)vim
+	rm $(DST_HOME_CONF)
+
+define uniq =
+  $(eval seen :=)
+  $(foreach _,$1,$(if $(filter $_,${seen}),,$(eval seen += $_)))
+  ${seen}
+endef
+
+VIMS_CONF_DIR := $(dir $(DST_VIMS_CONF))
+LOCAL_DIR     := $(addprefix $(TARGET_HOME)/local/, bin lib doc config)
+DST_DIR := $(call uniq, $(TARGET_HOME)/works $(VIMS_CONF_DIR) $(LOCAL_DIR))
+
+$(DST_HOME_CONF):
+	$(eval BASE := $(notdir $@))
+	$(eval SRC := $(addprefix $(CONFIG_ROOT)/home/, $(BASE:.%=%)))
+	ln -s $(SRC) $@
+
+$(DST_DIR):
+	mkdir -p $@
+
+$(DST_VIMS_CONF): $(VIMS_CONF_DIR)
+	ln -s $(CONFIG_VIM_DIR)/$(notdir $@) $@
+
+$(DST_HOME_VIM_CONF): $(CONFIG_VIM_DIR)/init.vim
+	ln -s $< $@
+
+## Help:
+
+.PHONY: show_dirs
+show_dirs: ## Show directories to be created
+	@echo $(DST_DIR)
+
+help: ## Show this help.
+	@echo ''
+	@echo 'Usage:'
+	@echo '  ${YELLOW}make${RESET} ${GREEN}<target>${RESET}'
+	@echo ''
+	@echo 'Targets:'
+	@awk 'BEGIN {FS = ":.*?## "} { \
+		if (/^[a-zA-Z0-9_-]+:.*?##.*$$/) {printf "    ${YELLOW}%-20s${GREEN}%s${RESET}\n", $$1, $$2} \
+		else if (/^## .*$$/) {printf "  ${CYAN}%s${RESET}\n", substr($$1,4)} \
+		}' $(MAKEFILE_LIST)
+
