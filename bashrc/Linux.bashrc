@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 alias tomorrow='date -d1day'
 alias yesterday='date -d1day+ago'
 

@@ -1,4 +1,4 @@
-. $HOME/dotfiles/.bashrc_color
+[ -f ${BASHRC_DIR}/color.bashrc ] && . ${BASHRC_DIR}/color.bashrc
 
 export CH_COLOR_RED="\[${COLOR_RED}\]"
 export CH_COLOR_GREEN="\[${COLOR_GREEN}\]"
@@ -31,9 +31,14 @@ if [ -n "${TMUX_PANE}" ] ; then
     PS_TMUX="(${CH_COLOR_CYAN}${TMUX_PANE}${CH_COLOR_DEFAULT})"
 fi
 if [ -n "${SSH_CLIENT}" ] ; then
-    PS_SSH="(${CH_COLOR_MAGENTA}`echo ${SSH_CLIENT} | sed 's/ [0-9]\+ [0-9]\+$//g'`\[\e[0m\])"
+    PS_SSH="(${CH_COLOR_MAGENTA}`echo ${SSH_CLIENT} | sed 's/ [0-9]\+ [0-9]\+$//g'`${CH_COLOR_DEFAULT})"
 fi
-export PS1="[${PS_USER}${PS_SCREEN}${PS_TMUX}@${PS_HOST}${PS_SSH} $PS_WORK]\$ "
 
-# for termi
-# export PS1="🌈\[\e[33m\] \W \[\e[0m\]\$ "
+function set_default_promt() {
+    export PS1="[${PS_USER}${PS_SCREEN}${PS_TMUX}@${PS_HOST}${PS_SSH} $PS_WORK]\$ "
+}
+function set_capture_promt() {
+    export PS1="🌈${CH_COLOR_YELLOW} \W ${CH_COLOR_DEFAULT} "
+}
+
+set_default_promt

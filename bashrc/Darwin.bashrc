@@ -13,3 +13,12 @@ function ls_appcli () {
 alias vim=nvim
 alias openc='open $(pwd)'
 alias opc='open $(pwd)'
+
+alias tomorrow='date -v+1d'
+alias yesterday='date -v-1d'
+
+# w flag is for Garbled characters.
+alias ls='ls -w'
+alias ll='ls -lw'
+alias la='ls -aw'
+alias lla='ls -law'
