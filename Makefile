@@ -12,6 +12,9 @@ DST_VIM_CONF       := $(addprefix $(TARGET_HOME)/.config/vim/, $(SRC_VIM_CONF_BA
 DST_VIMS_CONF      := $(DST_NVIM_CONF) $(DST_VIM_CONF)
 DST_HOME_VIM_CONF  := $(TARGET_HOME)/.vimrc
 
+DST_DIR := $(call uniq, $(TARGET_HOME)/works $(VIMS_CONF_DIR) $(LOCAL_DIR))
+DST_PROMPT_REPO := $(addprefix $(TARGET_HOME)/, tmux-powerline powerlevel10k)
+
 .PHONY: help
 help:
 
@@ -23,6 +26,7 @@ init: all ## Initialize all settings
 all: $(DST_VIMS_CONF) $(DST_HOME_VIM_CONF) \
 	$(DST_HOME_CONF) \
 	$(DST_DIR) \
+	$(DST_PROMPT_REPO) \
 	submodule_init
 
 .PHONY: submodule_init
@@ -52,7 +56,6 @@ endef
 
 VIMS_CONF_DIR := $(dir $(DST_VIMS_CONF))
 LOCAL_DIR     := $(addprefix $(TARGET_HOME)/local/, bin lib doc config)
-DST_DIR := $(call uniq, $(TARGET_HOME)/works $(VIMS_CONF_DIR) $(LOCAL_DIR))
 
 $(DST_HOME_CONF):
 	$(eval BASE := $(notdir $@))
@@ -67,6 +70,12 @@ $(DST_VIMS_CONF): $(VIMS_CONF_DIR)
 
 $(DST_HOME_VIM_CONF): $(CONFIG_VIM_DIR)/init.vim
 	ln -s $< $@
+
+$(TARGET_HOME)/tmux-powerline:
+	git clone https://github.com/jedipunkz/tmux-powerline.git $@
+
+$(TARGET_HOME)/powerlevel10k:
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $@
 
 ## Help:
 
