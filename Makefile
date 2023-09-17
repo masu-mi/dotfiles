@@ -12,6 +12,7 @@ DST_VIM_CONF       := $(addprefix $(TARGET_HOME)/.config/vim/, $(SRC_VIM_CONF_BA
 DST_VIMS_CONF      := $(DST_NVIM_CONF) $(DST_VIM_CONF)
 DST_HOME_VIM_CONF  := $(TARGET_HOME)/.vimrc
 
+LOCAL_DIR     := $(addprefix $(TARGET_HOME)/local/, bin lib doc config)
 DST_DIR := $(call uniq, $(TARGET_HOME)/works $(VIMS_CONF_DIR) $(LOCAL_DIR))
 DST_PROMPT_REPO := $(addprefix $(TARGET_HOME)/, tmux-powerline powerlevel10k)
 
@@ -20,21 +21,30 @@ help:
 
 ## Setup
 .PHONY: init
-init: all ## Initialize all settings
+init: install_prompt_plugins \
+	install_pip_pkgs \
+	submodule_init \
+	all ## Initialize all settings
 
 .PHONY: all
 all: $(DST_VIMS_CONF) $(DST_HOME_VIM_CONF) \
 	$(DST_HOME_CONF) \
 	$(DST_DIR) \
-	$(DST_PROMPT_REPO) \
-	submodule_init
+	$(TARGET_HOME)/local/config/powerline.conf
 
 .PHONY: submodule_init
-submodule_init:
+submodule_init: ## currently nothing to do
 	git submodule update --init --recursive
 
 .PHONY: link_home_conf
 link_home_conf: $(DST_HOME_CONF) ## Make link files under $HOME/
+
+.PHONY: install_prompt_plugins
+install_prompt_plugins: $(DST_PROMPT_REPO) ## install some plugins for prompts
+
+.PHONY: install_pip_pkgs
+install_pip_pkgs: ## install pip3 pkgs
+	pip3 install -r $(CONFIG_ROOT)/requirements.txt
 
 ## Clean
 .PHONE: clean
@@ -55,9 +65,8 @@ define uniq =
 endef
 
 VIMS_CONF_DIR := $(dir $(DST_VIMS_CONF))
-LOCAL_DIR     := $(addprefix $(TARGET_HOME)/local/, bin lib doc config)
 
-$(DST_HOME_CONF):
+$(DST_HOME_CONF): $(addprefix $(CONFIG_ROOT)/home/, $(BASE:.%=%))
 	$(eval BASE := $(notdir $@))
 	$(eval SRC := $(addprefix $(CONFIG_ROOT)/home/, $(BASE:.%=%)))
 	ln -s $(SRC) $@
@@ -70,6 +79,12 @@ $(DST_VIMS_CONF): $(VIMS_CONF_DIR)
 
 $(DST_HOME_VIM_CONF): $(CONFIG_VIM_DIR)/init.vim
 	ln -s $< $@
+
+$(TARGET_HOME)/local/config/powerline.conf:
+	$(eval SRC_PREFIX := $(shell pip3 show powerline-status | awk '/^Location/{print $$2 }' ))
+	$(eval SRC := $(SRC_PREFIX)/powerline/bindings/tmux/powerline.conf)
+	ln -s $(SRC) $@
+
 
 $(TARGET_HOME)/tmux-powerline:
 	git clone https://github.com/jedipunkz/tmux-powerline.git $@
