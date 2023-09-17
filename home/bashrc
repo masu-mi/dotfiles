@@ -1,48 +1,20 @@
+SH_DIR=${HOME}/dotfiles/sh
+[ -f ${SH_DIR}/bootfuncs.bashrc ] && . ${SH_DIR}/bootfuncs.bashrc
 
-[ -f /etc/profile ] && . /etc/profile
-[ -f /etc/bashrc ]  && . /etc/bashrc
-[ -f $HOME/.bashrc.bak ] && . $HOME/.bashrc.bak
+load_optional /etc/profile
+load_optional /etc/bashrc
+load_optional $HOME/.bashrc.bak
 
-export LANG='C.UTF-8'
-LC_ALL='C.UTF-8'
-[[ "$(locale -a 2> /dev/null | grep ${LC_ALL} | wc -l | awk '{print $1}')" == 1 ]] && export LC_ALL || export LC_ALL='C'
+. ${SH_DIR}/main.bashrc
 
-export HISTSIZE=20000
-export XDG_CONFIG_HOME=$HOME/.config
-
-BASHRC_DIR=${HOME}/dotfiles/bashrc
-
-[ -f ${BASHRC_DIR}/aliases.bashrc ] && . ${BASHRC_DIR}/aliases.bashrc
-[ -f ${BASHRC_DIR}/bootfuncs.bashrc ] && . ${BASHRC_DIR}/bootfuncs.bashrc
-[ -f ${BASHRC_DIR}/prompt.bashrc ] && . ${BASHRC_DIR}/prompt.bashrc
-
-## basic tools
-export EDITOR=nvim
-export SVN_EDITOR=nvim
-export RSYNC_RSH=ssh
-export LESSCHARSET=utf-8
-if [ -x less ]; then
-  export PAGER='less -R'
-fi
-
-## add paths
-add_path "/sbin"
-add_path "/usr/local/opt/llvm/bin"
-add_path "/opt/X11/bin"
-add_path "/usr/local/sbin"
-add_path "/usr/local/bin"
-add_path "/usr/share/colorgcc"
-
-add_path "${HOME}/bin"
-add_path "${HOME}/dotfiles/bin"
-add_path "${HOME}/local/nvim/bin"
-add_path "${HOME}/local/protoc/bin"
-
-. ${BASHRC_DIR}/lang.bashrc
+BASHRC_DIR=${HOME}/dotfiles/bash
+. ${BASHRC_DIR}/prompt.bashrc
 
 . $HOME/dotfiles/.fzf.bash
 
-. ${BASHRC_DIR}/$(uname).bashrc
-. ${BASHRC_DIR}/local.bashrc
+load_optional ${BASHRC_DIR}/$(uname).bashrc
+load_optional ${BASHRC_DIR}/local.bashrc
+
+alias reload='. ~/.bashrc'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -1,9 +1,3 @@
-#!/usr/bin/env bash
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
 function ls_appcli () {
   base=${1:-/usr/local/bin/}
   ls -la  ${base} | \

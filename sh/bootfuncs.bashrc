@@ -15,3 +15,6 @@ function add_path {
     pathmunge $1 $2
   fi
 }
+function load_optional {
+  [ -f ${1} ] && . ${1}
+}

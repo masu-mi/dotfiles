@@ -1,7 +1,5 @@
 # for different option
 
-alias reload='. ~/.bashrc'
-
 alias g='git'
 
 alias f='pushd'

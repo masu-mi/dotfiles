@@ -1,11 +1,16 @@
+SH_DIR=${HOME}/dotfiles/sh
+[ -f ${SH_DIR}/bootfuncs.bashrc ] && . ${SH_DIR}/bootfuncs.bashrc
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/masumi/.sdkman"
-[[ -s "/home/masumi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/masumi/.sdkman/bin/sdkman-init.sh"
+. ${SH_DIR}/main.bashrc
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/mc mc
+bindkey -e
 
+alias reload='. ~/.zshrc'
+
+load_optional $HOME/dotfiles/.fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
