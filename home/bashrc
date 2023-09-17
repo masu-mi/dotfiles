@@ -7,6 +7,16 @@ load_optional $HOME/.bashrc.bak
 
 . ${SH_DIR}/main.bashrc
 
+eval "$(rtx activate bash)"
+# # for asdf
+# if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
+# if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
+
+if [ ! $(which asdf >& /dev/null) -a $(which direnv >& /dev/null) ]; then
+  eval "$(direnv hook bash)";
+fi
+eval "$(direnv hook bash)";
+
 BASHRC_DIR=${HOME}/dotfiles/bash
 . ${BASHRC_DIR}/prompt.bashrc
 

@@ -5,6 +5,16 @@ load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
 . ${SH_DIR}/main.bashrc
 
+eval "$(rtx activate zsh)"
+# # for asdf
+# if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
+# if [ -f $HOME/.asdf/completions/asdf.zsh ]; then . $HOME/.asdf/completions/asdf.zsh; fi
+
+if [ ! $(which asdf >& /dev/null) -a $(which direnv >& /dev/null) ]; then
+  eval "$(direnv hook zsh)";
+fi
+eval "$(direnv hook zsh)";
+
 bindkey -e
 
 alias reload='. ~/.zshrc'

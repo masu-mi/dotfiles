@@ -21,10 +21,10 @@ help:
 
 ## Setup
 .PHONY: init
-init: install_prompt_plugins \
+init: install_prompt_plugins \ ## Initialize all settings
 	install_pip_pkgs \
 	submodule_init \
-	all ## Initialize all settings
+	all
 
 .PHONY: all
 all: $(DST_VIMS_CONF) $(DST_HOME_VIM_CONF) \
