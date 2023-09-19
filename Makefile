@@ -21,7 +21,8 @@ help:
 
 ## Setup
 .PHONY: init
-init: install_prompt_plugins \ ## Initialize all settings
+init: ## Initialize all settings
+init: install_prompt_plugins \
 	install_pip_pkgs \
 	submodule_init \
 	all

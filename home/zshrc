@@ -17,8 +17,11 @@ eval "$(direnv hook zsh)";
 
 bindkey -e
 
-alias reload='. ~/.zshrc'
+ZSHRC_DIR=${HOME}/dotfiles/zsh
+load_optional ${ZSHRC_DIR}/$(uname).zsh
+load_optional ${ZSHRC_DIR}/local.zsh
 
+alias reload='. ~/.zshrc'
 load_optional $HOME/dotfiles/.fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

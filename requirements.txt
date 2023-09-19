@@ -1,3 +1,12 @@
+distlib==0.3.7
+filelock==3.12.4
+greenlet==2.0.2
+msgpack==1.0.5
+pbr==5.11.1
+platformdirs==3.10.0
 powerline-status==2.7
+pynvim==0.4.3
+stevedore==5.1.0
 virtualenv==20.24.2
+virtualenv-clone==0.5.7
 virtualenvwrapper==4.8.4
