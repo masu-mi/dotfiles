@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 SH_DIR=${HOME}/dotfiles/sh
 [ -f ${SH_DIR}/bootfuncs.bashrc ] && . ${SH_DIR}/bootfuncs.bashrc
 
@@ -6,16 +13,13 @@ load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 . ${SH_DIR}/main.bashrc
 
 eval "$(rtx activate zsh)"
-# # for asdf
+# for asdf
 # if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 # if [ -f $HOME/.asdf/completions/asdf.zsh ]; then . $HOME/.asdf/completions/asdf.zsh; fi
-
-if [ ! $(which asdf >& /dev/null) -a $(which direnv >& /dev/null) ]; then
-  eval "$(direnv hook zsh)";
-fi
 eval "$(direnv hook zsh)";
 
 bindkey -e
+autoload -U compinit
 
 ZSHRC_DIR=${HOME}/dotfiles/zsh
 load_optional ${ZSHRC_DIR}/$(uname).zsh
@@ -23,7 +27,10 @@ load_optional ${ZSHRC_DIR}/local.zsh
 
 alias reload='. ~/.zshrc'
 load_optional $HOME/dotfiles/.fzf.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+load_optional ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+load_optional ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

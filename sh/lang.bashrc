@@ -45,10 +45,9 @@ add_path ${HOME}/.nodebrew/current/bin
 add_path "${HOME}/.deno/bin"
 
 ## Zig
-zig_path=$(find ~/local/ -name 'zig-*' | head)
-if [ -f "${zig_path}/zig" ]; then add_path $zig_path; fi
+# zig_path=$(find ~/local/ -name 'zig-*' | head)
+# if [ -f "${zig_path}/zig" ]; then add_path $zig_path; fi
 
 ## JVM
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && export SDKMAN_DIR="${HOME}/.sdkman" && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
