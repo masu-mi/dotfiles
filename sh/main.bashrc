@@ -1,8 +1,5 @@
 
-
-export LANG='ja_JP.UTF-8'
-LC_ALL='ja_JP.UTF-8'
-[[ "$(locale -a 2> /dev/null | grep ${LC_ALL} | wc -l | awk '{print $1}')" == 1 ]] && export LC_ALL || export LC_ALL='C'
+export LANG='C.UTF-8'
 
 export HISTSIZE=20000
 export XDG_CONFIG_HOME=$HOME/.config

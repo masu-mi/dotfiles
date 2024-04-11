@@ -1,4 +1,7 @@
+.DEFAULT_GOAL := help
+
 ## Help:
+.PHONY: help
 help: ## Show this help.
 	@echo ''
 	@echo 'Usage:'

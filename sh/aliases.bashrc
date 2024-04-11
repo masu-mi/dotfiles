@@ -1,18 +1,9 @@
 # for different option
 
 alias g='git'
-
-alias f='pushd'
-alias b='popd'
 alias cd-='cd -'
 alias cdwork='cd ${HOME}/works'
 alias cd..='cd ..'
-alias realcwd='cd -P .'
-
-alias md='mkdir'
-alias cp='cp -v'
-alias mv='mv -i'
-alias rm='rm -i'
 
 alias cal='cal -m3'
 
@@ -63,14 +54,11 @@ alias vitmux='vim ~/.tmux.conf'
 alias vibashrc='vim ~/.bashrc'
 alias vialiases='vim ~/.bash_aliases'
 
-## to make easy check php script
-alias lphp='php -d open_basedir=`pwd`'
-alias fphp='php -d open_basedir=/'
 ## change java's output encoding
-alias java='java -Dfile.encoding=utf-8'
-alias javac='javac -J-Dfile.encoding=utf-8'
-alias jar='jar -J-Dfile.encoding=utf-8'
-alias jdb='jdb -J-Dfile.encoding=utf-8'
+alias java-utf8='java -Dfile.encoding=utf-8'
+alias javac-utf8='javac -J-Dfile.encoding=utf-8'
+alias jar-utf8='jar -J-Dfile.encoding=utf-8'
+alias jdb-utf8='jdb -J-Dfile.encoding=utf-8'
 
 function s3cmdl() {
   s3cmd -c ./.s3cfg $@
