@@ -7,6 +7,6 @@ platformdirs==3.10.0
 powerline-status==2.7
 pynvim==0.4.3
 stevedore==5.1.0
-virtualenv==20.24.2
+virtualenv==20.26.6
 virtualenv-clone==0.5.7
 virtualenvwrapper==4.8.4
