@@ -64,9 +64,10 @@ let g:indent_guides_enable_on_vim_startup = 1
 '''
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
-depents = ['Shougo/context_filetype.vim']
+depends = ['Shougo/context_filetype.vim']
 
 [[plugins]]
 repo = 'jacquesbh/vim-showmarks'
@@ -385,13 +386,27 @@ repo = 'fs111/pydoc.vim'
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
-depends = [ 'Shougo/deoplete.nvim' ]
-[[plugins]]
-repo = 'Shougo/neco-vim'
-depends = [ 'lighttiger2505/deoplete-vim-lsp' ]
+depends = [ 'Shougo/deoplete.nvim', 'lighttiger2505/deoplete-vim-lsp' ]
+
 
 [[plugins]]
 repo = 'github/copilot.vim'
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'CopilotC-Nvim/CopilotChat.nvim'
+depends = ['github/copilot.vim', 'nvim-lua/plenary.nvim']
+
+hook_add = '''
+lua << EOF
+require('CopilotChat').setup({
+  debug = true
+})
+EOF
+'''
+
 
 [[plugins]]
 repo = 'tsandall/vim-rego'

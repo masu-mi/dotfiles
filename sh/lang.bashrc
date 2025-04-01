@@ -2,14 +2,14 @@ add_path ${HOME}/.local/share/rtx/bin
 # add_path "${HOME}/.asdf/bin/"
 
 ## Go
-if [ -d "/usr/local/go" ]; then
-  export GOROOT="/usr/local/go"
-elif [ -d "${HOME}/go" ]; then
-  export GOROOT="${HOME}/go"
-fi
-if [ "${GOROOT}" != "" ]; then
-  add_path "${GOROOT}/bin"
-fi
+# if [ -d "/usr/local/go" ]; then
+#   export GOROOT="/usr/local/go"
+# elif [ -d "${HOME}/go" ]; then
+#   export GOROOT="${HOME}/go"
+# fi
+# if [ "${GOROOT}" != "" ]; then
+#   add_path "${GOROOT}/bin"
+# fi
 
 if [ -d "${HOME}/dev" ]; then
   export GOPATH="${HOME}/dev"

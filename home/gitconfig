@@ -44,3 +44,28 @@
 	root = ~/dev/src
 [include]
 	path = ~/local/config/gitconfig
+[safe]
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+	directory = /home/ubuntu/works/test-bcc/bcc
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
+	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
+	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
