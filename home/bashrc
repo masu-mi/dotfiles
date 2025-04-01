@@ -7,7 +7,7 @@ load_optional $HOME/.bashrc.bak
 
 . ${SH_DIR}/main.bashrc
 
-eval "$(rtx activate bash)"
+eval "$(mise activate bash --shims)"
 # # for asdf
 # if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 # if [ -f $HOME/.asdf/completions/asdf.bash ]; then . $HOME/.asdf/completions/asdf.bash; fi
@@ -28,4 +28,3 @@ load_optional ${BASHRC_DIR}/local.bashrc
 alias reload='. ~/.bashrc'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "$(~/.local/bin/mise activate bash)"

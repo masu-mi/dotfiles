@@ -1,6 +1,6 @@
 [user]
 	name = Masumi Kanai
-	email = masumi.net@gmail.com
+	email = m-kanai@bbsakura.net
 [color]
 	ui = auto
 [alias]
@@ -44,6 +44,7 @@
 	root = ~/dev/src
 [include]
 	path = ~/local/config/gitconfig
+
 [safe]
 	directory = /home/ubuntu/works/test-bcc/bcc
 	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
@@ -69,3 +70,9 @@
 	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/blazesym
 	directory = /home/ubuntu/works/test-bcc/bcc/src/cc/libbpf
 	directory = /home/ubuntu/works/test-bcc/bcc/libbpf-tools/bpftool
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

@@ -81,7 +81,7 @@ $(DST_VIMS_CONF): $(VIMS_CONF_DIR)
 $(DST_HOME_VIM_CONF): $(CONFIG_VIM_DIR)/init.vim
 	ln -s $< $@
 
-$(TARGET_HOME)/local/config/powerline.conf:
+$(TARGET_HOME)/local/config/powerline.conf: $(DST_DIR)
 	$(eval SRC_PREFIX := $(shell pip3 show powerline-status | awk '/^Location/{print $$2 }' ))
 	$(eval SRC := $(SRC_PREFIX)/powerline/bindings/tmux/powerline.conf)
 	ln -s $(SRC) $@

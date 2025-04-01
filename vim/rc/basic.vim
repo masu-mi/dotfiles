@@ -71,4 +71,5 @@ set tags+=.git/tags,.svn/tags
 
 set mouse=a
 
-let g:python3_host_prog = substitute(system('which python3 || which python'), "\n", "", "g")
+" let g:python3_host_prog = substitute(system('which python3 || which python'), "\n", "", "g")
+let g:python3_host_prog = '~/.local/share/mise/installs/python/3.13.2/bin/python'

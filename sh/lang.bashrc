@@ -11,16 +11,16 @@ add_path ${HOME}/.local/share/rtx/bin
 #   add_path "${GOROOT}/bin"
 # fi
 
-if [ -d "${HOME}/dev" ]; then
-  export GOPATH="${HOME}/dev"
-elif [ -d "${HOME}/go" -a "$GOROOT" != "${HOME}/go" ]; then
-  export GOPATH="${HOME}/go"
-fi
-if [ "${GOPATH}" != "" ]; then
-  add_path "${GOPATH}/bin"
-  alias gohome="pushd $GOPATH/src/github.com/masu-mi"
-  alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
-fi
+# if [ -d "${HOME}/dev" ]; then
+#   export GOPATH="${HOME}/dev"
+# elif [ -d "${HOME}/go" -a "$GOROOT" != "${HOME}/go" ]; then
+#   export GOPATH="${HOME}/go"
+# fi
+# if [ "${GOPATH}" != "" ]; then
+#   add_path "${GOPATH}/bin"
+#   alias gohome="pushd $GOPATH/src/github.com/masu-mi"
+#   alias gobit="$GOPATH/src/bitbucket.org/masu_mi"
+# fi
 
 ## Python
 add_path "${HOME}/.pyenv/bin"
