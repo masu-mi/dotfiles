@@ -28,4 +28,5 @@ endif
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
+let g:dein#install_github_api_token = $GITHUB_TOKEN
 " }}}

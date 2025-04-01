@@ -27,6 +27,7 @@ add_path "${HOME}/bin"
 add_path "${HOME}/dotfiles/bin"
 add_path "${HOME}/local/nvim/bin"
 add_path "${HOME}/local/protoc/bin"
+add_path "${HOME}/.local/bin"
 
 
 . ${SH_DIR}/lang.bashrc

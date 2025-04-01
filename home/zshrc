@@ -12,11 +12,8 @@ load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
 . ${SH_DIR}/main.bashrc
 
-# for asdf
-# if [ -f $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
-# if [ -f $HOME/.asdf/completions/asdf.zsh ]; then . $HOME/.asdf/completions/asdf.zsh; fi
+eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)";
-eval "$(mise activate zsh --shims)"
 
 bindkey -e
 autoload -U compinit
@@ -29,8 +26,5 @@ alias reload='. ~/.zshrc'
 load_optional $HOME/dotfiles/.fzf.zsh
 load_optional ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-load_optional ~/.p10k.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# load_optional ~/.p10k.zsh
