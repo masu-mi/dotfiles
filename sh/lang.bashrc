@@ -26,12 +26,12 @@ add_path ${HOME}/.local/share/rtx/bin
 add_path "${HOME}/.pyenv/bin"
 add_path "${HOME}/.poetry/bin"
 
-if which virtualenvwrapper.sh >& /dev/null; then
-  export WORKON_HOME=${HOME}/.virtualenvs
-  export PIP_RESPECT_VIRTUALENV=true
-  export VIRTUALENVWRAPPER_PYTHON=$(command \which python3 || command \which python)
-  source $(which virtualenvwrapper.sh)
-fi
+# if which virtualenvwrapper.sh >& /dev/null; then
+#   export WORKON_HOME=${HOME}/.virtualenvs
+#   export PIP_RESPECT_VIRTUALENV=true
+#   export VIRTUALENVWRAPPER_PYTHON=$(command \which python3 || command \which python)
+#   source $(which virtualenvwrapper.sh)
+# fi
 
 ## Rust
 add_path "${HOME}/.cabal/bin"
