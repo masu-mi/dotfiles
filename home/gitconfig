@@ -6,8 +6,8 @@
 [alias]
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	co = checkout
-	cob= !git checkout  $(git branch | peco)
-	rmb= !git branch -d $(git branch | peco)
+	cob= !git checkout  $(git branch | fzf)
+	rmb= !git branch -d $(git branch | fzf)
 	ci = commit
 	cp = cherry-pick
 	st = status -sb
