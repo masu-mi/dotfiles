@@ -4,7 +4,6 @@ function ls_appcli () {
     grep Applications | \
     awk '{printf "%32s -> %s\n",$9,$11}'
 }
-alias vim=nvim
 alias openc='open $(pwd)'
 alias opc='open $(pwd)'
 
