@@ -51,7 +51,7 @@ rm_vims_conf: ## Remove links to vim config
 ## Handle mise
 $(target)/.config/mise:
 	mkdir -p $@
-$(target)/.config/mise/config.toml: $(src_root)/mise.global.toml $(target)/.config/mise
+$(target)/.config/mise/config.toml: $(src_root)/mise.toml $(target)/.config/mise
 	ln -s $< $@
 
 .PHONY: ln_mise

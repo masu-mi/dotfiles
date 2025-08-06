@@ -17,3 +17,6 @@ if [ -f "$HOME/.bashrc" -a ! -L "$HOME/.bashrc" ]; then
 fi
 
 mise exec --env boot -- make init
+mise install
+
+$top/scripts/install-gotools.sh
