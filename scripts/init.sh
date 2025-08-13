@@ -8,7 +8,7 @@ sudo apt install make
 git submodule update --init --recursive
 
 curl https://mise.run | sh
-echo "eval \"\$(/home/masumikanai.linux/.local/bin/mise activate bash)\"" >> ~/.bashrc
+echo "eval \"\$(${HOME}/.local/bin/mise activate bash)\"" >> ~/.bashrc
 . ~/.bashrc
 
 if [ -f "$HOME/.bashrc" -a ! -L "$HOME/.bashrc" ]; then
@@ -16,7 +16,9 @@ if [ -f "$HOME/.bashrc" -a ! -L "$HOME/.bashrc" ]; then
   mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
 fi
 
+echo [INFO] mise exec --env boot -- make init
 mise exec --env boot -- make init
+echo [INFO] mise install
 mise install
 
 $top/scripts/install-gotools.sh

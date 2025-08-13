@@ -104,7 +104,7 @@ all: $(DST_NVIM_CONF) $(DST_VIM_CONF) $(DST_HOME_VIM_CONF) \
 	$(target)/local/config/powerline.conf
 
 .PHONE: clean
-clean: rm_vims_conf rm_home_conf rm_powerline ## Remove all links
+clean: rm_vims_conf rm_home_conf rm_powerline rm_mise ## Remove all links
 
 ## Help:
 .PHONY: show_dirs

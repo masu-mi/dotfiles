@@ -21,4 +21,3 @@ load_optional ${BASHRC_DIR}/local.bashrc
 alias reload='. ~/.bashrc'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "$(/home/masumikanai.linux/.local/bin/mise activate bash)"
