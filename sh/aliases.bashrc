@@ -213,7 +213,10 @@ function get_currrent_github_url() {
 }
 
 run-difit() {
-  npx difit --host "$(hostname -i| awk '{print $1}')"
+  npx difit --host "$(hostname -i| awk '{print $1}')" $@
+}
+run-repomix() {
+  npx repomix@latest
 }
 
 alias dcqlsh='docker run -it -v $(pwd)/:/tmp/work --network bridge --rm cassandra cqlsh'
