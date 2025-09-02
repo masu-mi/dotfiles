@@ -212,5 +212,9 @@ function get_currrent_github_url() {
   git config remote.origin.url | tr ':' '/' | sed 's|^git@|https://|g'|sed 's/\.git$//g'
 }
 
+run-difit() {
+  npx difit --host "$(hostname -i| awk '{print $1}')"
+}
+
 alias dcqlsh='docker run -it -v $(pwd)/:/tmp/work --network bridge --rm cassandra cqlsh'
 alias opgh='opbr.sh $(get_currrent_github_url)'
