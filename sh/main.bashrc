@@ -33,6 +33,8 @@ add_path "${HOME}/dotfiles/bin"
 add_path "${HOME}/local/nvim/bin"
 add_path "${HOME}/local/protoc/bin"
 add_path "${HOME}/.local/bin"
+add_path /opt/homebrew/opt/pcsc-lite/bin
+add_path /opt/homebrew/opt/pcsc-lite/sbin
 
 
 . ${SH_DIR}/lang.bashrc
