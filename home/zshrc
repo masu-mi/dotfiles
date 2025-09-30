@@ -15,6 +15,8 @@ load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)";
 
+. ${SH_DIR}/editor.sh
+
 bindkey -e
 autoload -U compinit
 

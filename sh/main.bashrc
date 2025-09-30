@@ -6,20 +6,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 load_optional ${SH_DIR}/aliases.bashrc
 
-## basic tools
-if [ -x nvim ]; then
-  export EDITOR=nvim
-  export SVN_EDITOR=nvim
-elif [ -x vim ]; then
-  export EDITOR=vim
-  export SVN_EDITOR=vim
-fi
-export RSYNC_RSH=ssh
-export LESSCHARSET=utf-8
-if [ -x less ]; then
-  export PAGER='less -R'
-fi
-
 ## add paths
 add_path "/sbin"
 add_path "/usr/local/opt/llvm/bin"

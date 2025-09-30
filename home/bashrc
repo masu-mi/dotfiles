@@ -10,6 +10,8 @@ load_optional $HOME/.bashrc.bak
 eval "$(mise activate bash)"
 eval "$(direnv hook bash)";
 
+. ${SH_DIR}/editor.sh
+
 BASHRC_DIR=${HOME}/dotfiles/bash
 . ${BASHRC_DIR}/prompt.bashrc
 

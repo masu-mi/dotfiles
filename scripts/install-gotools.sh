@@ -6,6 +6,7 @@ TOOLS=(
   "github.com/evilmartians/lefthook@latest"
   "github.com/x-motemen/ghq@latest"
   "golang.org/x/tools/cmd/goimports@latest"
+  "golang.org/x/vuln/cmd/govulncheck@latest"
   "github.com/go-delve/delve/cmd/dlv@latest"
 )
 
