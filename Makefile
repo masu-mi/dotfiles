@@ -8,8 +8,6 @@ src_vim_conf := $(src_root)/vim
 ## Handle $HOME/.*
 local_dir := $(addprefix $(target)/local/, bin lib doc config)
 target_dirs   := $(target)/works $(target)/.local $(local_dir)
-$(target_dirs):
-	mkdir -p $@
 
 src_home_config_base := $(notdir $(shell ls ./home))
 dst_home_conf      := $(addprefix $(target)/., $(src_home_config_base))
@@ -31,6 +29,9 @@ target_dirs += $(dst_nvim)
 dst_vim := $(target)/.config/vim/
 target_dirs += $(dst_vim)
 
+$(target_dirs):
+	mkdir -p $@
+
 DST_NVIM_CONF      := $(addprefix $(dst_nvim), rc init.vim)
 $(DST_NVIM_CONF): $(dst_nvim)
 	ln -s $(src_vim_conf)/$(notdir $@) $@
@@ -51,6 +52,7 @@ rm_vims_conf: ## Remove links to vim config
 ## Handle mise
 $(target)/.config/mise:
 	mkdir -p $@
+
 $(target)/.config/mise/config.toml: $(src_root)/mise.toml $(target)/.config/mise
 	ln -s $< $@
 

@@ -1,0 +1,5 @@
+#comments
+make
+build-essential
+bison
+libncurses-dev

@@ -5,6 +5,7 @@ go = "1.24.5"
 neovim = "0.11.4"
 node = "24.4.1"
 python = "3.13.3"
+tmux = "3.5"
 
 [settings]
 idiomatic_version_file_enable_tools = []
