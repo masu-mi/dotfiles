@@ -1,7 +1,3 @@
-function reload_rc() {
-  . ~/.bashrc
-}
-
 function install_apt_package_set() {
   group=$1
 

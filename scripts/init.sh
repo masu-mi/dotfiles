@@ -8,22 +8,24 @@ echo "[INFO] Start init script, pwd: $(pwd)"
 git submodule update --init --recursive
 
 install_apt_package_set init
-curl https://mise.run | sh
-echo "eval \"\$(${HOME}/.local/bin/mise activate bash)\"" >> ~/.bashrc
 
-reload_rc
+MISE_DIR=${HOME}/.local/bin
+
+curl https://mise.run | sh
+echo "eval \"\$(${MISE_DIR}/mise activate bash)\"" >> ${HOME}/.bashrc
+
+. ${HOME}/.bashrc
 if [ -f "$HOME/.bashrc" -a ! -L "$HOME/.bashrc" ]; then
   echo mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
   mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
 fi
 
-reload_rc
 echo [INFO] mise exec --env boot -- make init
-mise exec --env boot -- make init
+${MISE_DIR}/mise exec --env boot -- make init
 
-reload_rc
+. ~/.bashrc
 echo [INFO] mise install
 mise install
 
-reload_rc
+. ~/.bashrc
 $top/scripts/install-gotools.sh
