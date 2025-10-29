@@ -3,5 +3,10 @@ function install_apt_package_set() {
 
   # premise: called from ./dotfiles
   pkg_dir=./scripts/pkgs/
-  sudo apt install $(eval echo $(cat $pkg_dir${group}.txt  | grep -v '#'))
+  install_apt_from_file $pkg_dir${group}.txt
+}
+
+function install_apt_from_file() {
+  list_file=$1
+  sudo apt install $(eval echo $(cat ${list_file}  | grep -v '#'))
 }

@@ -29,3 +29,4 @@ mise install
 
 . ~/.bashrc
 $top/scripts/install-gotools.sh
+$top/scripts/install-npmtools.sh
