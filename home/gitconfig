@@ -23,7 +23,7 @@
 	cancel = reset --soft HEAD^
 	zip = !git archive --format=zip HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).zip
 	tgz = !git archive --format=tar.gz HEAD > $(basename $(git rev-parse --show-toplevel)-$(git rev-parse --short HEAD)).tar.gz
-	oreshika = !git checkout -b oreshika/$(git config user.name | awk '{print tolower($1)}')-working-$(date '+%Y%m%d') && git commit -a -m working && git push -f origin $(git rev-parse --abbrev-ref HEAD)
+	oreshika = !git checkout -b oreshika/$(git config user.name | awk '{print tolower($1)}')-working-$(date '+%Y%m%d') && git commit -a -m working --no-verify && git push -f origin $(git rev-parse --abbrev-ref HEAD)
 [core]
 	quotepath = false
 	excludesfile = /Users/masumi/dotfiles/global.gitignore
