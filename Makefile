@@ -1,126 +1,122 @@
+target    ?= $(HOME)
+src_root  ?= $(PWD)
+src_vim   := $(src_root)/vim
+
+# default target -> help
 .PHONY: help
 help:
 
-target    ?= $(HOME)
-src_root    ?= $(PWD)
-src_vim_conf := $(src_root)/vim
+# Directories
+local_dirs  := $(addprefix $(target)/local/, bin lib doc config)
+target_dirs := $(target)/works $(target)/.local \
+               $(local_dirs) \
+               $(target)/.config/nvim/ \
+               $(target)/.config/vim/
 
-## Handle $HOME/.*
-local_dir := $(addprefix $(target)/local/, bin lib doc config)
-target_dirs   := $(target)/works $(target)/.local $(local_dir)
+# Home dotfiles: $(HOME)/.foo -> home/foo
+home_files  := $(sort $(notdir $(wildcard $(src_root)/home/*)))
+dst_home    := $(addprefix $(target)/., $(home_files))
 
-src_home_config_base := $(notdir $(shell ls ./home))
-dst_home_conf      := $(addprefix $(target)/., $(src_home_config_base))
+# Vim / Neovim
+DST_NVIM    := $(addprefix $(target)/.config/nvim/, rc init.vim)
+DST_VIM     := $(addprefix $(target)/.config/vim/, rc)
+DST_VIMRC   := $(target)/.vimrc
 
-$(dst_home_conf): $(addprefix $(src_root)/home/, $(BASE:.%=%))
-	$(eval BASE := $(notdir $@))
-	$(eval SRC := $(addprefix $(src_root)/home/, $(BASE:.%=%)))
-	ln -s $(SRC) $@
+# Prompt plugin repos
+DST_REPO    := $(addprefix $(target)/, tmux-powerline powerlevel10k)
 
-.PHONY: link_home_conf
-link_home_conf: $(dst_home_conf) ## Make link files under $HOME/
-.PHONY: rm_home_conf
-rm_home_conf: ## Remove config file links don't related to (n)vim
-	rm -f $(dst_home_conf)
+## Setup
+.PHONY: init
+init: ## Initialize all settings
+init: install_prompt_plugins install_pip_pkgs submodule_init \
+      ln_mise all
 
-## Handle vim/nvim conf
-dst_nvim := $(target)/.config/nvim/
-target_dirs += $(dst_nvim)
-dst_vim := $(target)/.config/vim/
-target_dirs += $(dst_vim)
+.PHONY: all
+all: $(DST_NVIM) $(DST_VIM) $(DST_VIMRC) \
+     $(dst_home) \
+     $(target)/local/config/powerline.conf
+all: $(target_dirs)
 
 $(target_dirs):
 	mkdir -p $@
 
-DST_NVIM_CONF      := $(addprefix $(dst_nvim), rc init.vim)
-$(DST_NVIM_CONF): $(dst_nvim)
-	ln -s $(src_vim_conf)/$(notdir $@) $@
-
-DST_VIM_CONF       := $(addprefix $(dst_vim), rc)
-$(DST_VIM_CONF): $(dst_vim)
-	ln -s $(src_vim_conf)/$(notdir $@) $@
-
-DST_HOME_VIM_CONF  := $(target)/.vimrc
-$(DST_HOME_VIM_CONF): $(src_vim_conf)/init.vim
+$(dst_home): $(target)/.%: $(src_root)/home/%
 	ln -s $< $@
 
-.PHONY: rm_vims_conf
-rm_vims_conf: ## Remove links to vim config
-	rm -f $(DST_HOME_VIM_CONF) $(DST_NVIM_CONF) $(DST_VIM_CONF)
+.PHONY: link_home
+link_home: $(dst_home) ## Symlink all home dotfiles
 
+.PHONY: rm_home
+rm_home: # Remove all home dotfile symlinks
+	rm -f $(dst_home)
 
-## Handle mise
+$(DST_NVIM): | $(target)/.config/nvim/
+	ln -sfn $(src_vim)/$(notdir $@) $@
+
+$(DST_VIM): | $(target)/.config/vim/
+	ln -sfn $(src_vim)/$(notdir $@) $@
+
+$(DST_VIMRC): $(src_vim)/init.vim
+	ln -s $< $@
+
+.PHONY: rm_vim
+rm_vim: # Remove vim/nvim config symlinks
+	rm -f $(DST_VIMRC) $(DST_NVIM) $(DST_VIM)
+
+$(target)/.config/mise/config.toml: $(src_root)/mise.toml | $(target)/.config/mise
+	ln -s $< $@
+
 $(target)/.config/mise:
 	mkdir -p $@
-
-$(target)/.config/mise/config.toml: $(src_root)/mise.toml $(target)/.config/mise
-	ln -s $< $@
 
 .PHONY: ln_mise
 ln_mise: $(target)/.config/mise/config.toml
 
 .PHONY: rm_mise
-rm_mise: ## remove mise conf
+rm_mise: # Remove mise config symlink
 	rm -f $(target)/.config/mise/config.toml
 
-## Handle plugins
+$(target)/local/config/powerline.conf: | install_pip_pkgs
+	mkdir -p $(dir $@)
+	ln -s $$(pip3 show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
+
+.PHONY: rm_powerline
+rm_powerline: # Remove powerline config symlink
+	rm -f $(target)/local/config/powerline.conf
+
+$(DST_REPO):
+	test -d $@ || git clone \
+	    $(if $(findstring powerlevel10k,$@),--depth=1 https://github.com/romkatv/powerlevel10k.git,https://github.com/jedipunkz/tmux-powerline.git) $@
+
+.PHONY: install_prompt_plugins
+install_prompt_plugins: $(DST_REPO) ## Clone prompt plugin repos
+
+
 .PHONY: submodule_init
-submodule_init: ## currently nothing to do
+submodule_init: ## Init git submodules
 	git submodule update --init --recursive
 
 .PHONY: install_pip_pkgs
-install_pip_pkgs: ## install pip3 pkgs
+install_pip_pkgs: ## Install pip packages
 	pip3 install -r $(src_root)/requirements.txt
 
-DST_PROMPT_REPO := $(addprefix $(target)/, tmux-powerline powerlevel10k)
-.PHONY: install_prompt_plugins
-install_prompt_plugins: $(DST_PROMPT_REPO) ## install some plugins for prompts
 
-$(target)/local/config/powerline.conf: $(target)/local/config
-	$(eval SRC_PREFIX := $(shell pip3 show powerline-status | awk '/^Location/{print $$2 }' ))
-	$(eval SRC := $(SRC_PREFIX)/powerline/bindings/tmux/powerline.conf)
-	ln -s $(SRC) $@
-.PHONE: rm_powerline
-rm_powerline:
-	rm -f $(target)/local/config/powerline.conf
+## Clean
+.PHONY: clean
+clean: rm_vim rm_home rm_powerline rm_mise ## Remove all symlinks
 
-$(target)/tmux-powerline:
-	git clone https://github.com/jedipunkz/tmux-powerline.git $@
+## Help
+help: ## Show this help
+	@echo ''
+	@echo 'Usage:  make <target>'
+	@echo ''
+	@awk 'BEGIN {FS = ":.*?## "} \
+		/^[a-zA-Z0-9_-]+:.*?## / {printf "    %-20s%s\n", $$1, $$2} \
+		/^## / {printf "  %s\n", substr($$1, 4)}' \
+		$(MAKEFILE_LIST)
+	@echo ''
 
-$(target)/powerlevel10k:
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $@
 
-## Main
-.PHONY: init
-init: ## Initialize all settings
-init: install_prompt_plugins \
-	install_pip_pkgs \
-	submodule_init \
-	ln_mise \
-	all
-
-.PHONY: all
-all: $(DST_NVIM_CONF) $(DST_VIM_CONF) $(DST_HOME_VIM_CONF) \
-	$(dst_home_conf) \
-	$(target_dirs) \
-	$(target)/local/config/powerline.conf
-
-.PHONE: clean
-clean: rm_vims_conf rm_home_conf rm_powerline rm_mise ## Remove all links
-
-## Help:
 .PHONY: show_dirs
 show_dirs: ## Show directories to be created
 	@echo $(target_dirs)
-
-help: ## Show this help.
-	@echo ''
-	@echo 'Usage:'
-	@echo '  ${YELLOW}make${RESET} ${GREEN}<target>${RESET}'
-	@echo ''
-	@echo 'Targets:'
-	@awk 'BEGIN {FS = ":.*?## "} { \
-		if (/^[a-zA-Z0-9_-]+:.*?##.*$$/) {printf "    ${YELLOW}%-20s${GREEN}%s${RESET}\n", $$1, $$2} \
-		else if (/^## .*$$/) {printf "  ${CYAN}%s${RESET}\n", substr($$1,4)} \
-		}' $(MAKEFILE_LIST)
-
