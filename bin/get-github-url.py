@@ -24,9 +24,9 @@ commit_hash = get_stdout_as_str('git rev-parse HEAD')
 url_str = get_stdout_as_str('git remote get-url origin')
 
 url = urlparse(url_str)
-print("{}://{}{}/blob/{}/{}{}".format(url.scheme,
+print("{}://{}{}/blob/{}/{}{}".format('https',
                          url.netloc.split('@')[-1],
-                         url.path,
+                         url.path.rstrip('.git'),
                          commit_hash,
                          prefix,
                          file_name))
