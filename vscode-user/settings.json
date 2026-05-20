@@ -1,0 +1,34 @@
+{
+    "mssql.enableRichExperiences": true,
+    "makefile.configureOnOpen": true,
+    "workbench.startupEditor": "none",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
+    "mssql.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "ROOT"
+        }
+    ],
+    "mssql.connections": [],
+    "workbench.colorTheme": "Light Modern",
+    "git.autofetch": true,
+    "claudeCode.preferredLocation": "sidebar",
+    "github.copilot.chat.githubMcpServer.enabled": true,
+    "chat.mcp.serverSampling": {
+        
+
+    },
+    "chat.mcp.gallery.enabled": true,
+    "chat.mcp.assisted.nuget.enabled": true,
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.agent.autoFix": true,
+    "github.copilot.chat.switchAgent.enabled": true,
+    "lldb.suppressUpdateNotifications": true,
+    "extensions.autoCheckUpdates": false
+}

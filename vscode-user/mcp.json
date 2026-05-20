@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"3gpp": {
+			"command": "3gpp-mcp",
+			"args": [
+				"serve",
+				"--db",
+				"~/works/3gpp-mcp/data/3gpp.db"
+			]
+		}
+	},
+	"inputs": []
+}

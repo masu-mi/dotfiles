@@ -5,3 +5,6 @@
 .mypy_cache
 *.DS_store
 *.orig
+vscode-user/History
+vscode-user/globalStorage
+vscode-user/workspaceStorage
