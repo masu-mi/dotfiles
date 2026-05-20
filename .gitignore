@@ -9,3 +9,6 @@ vscode-user/History
 vscode-user/globalStorage
 vscode-user/workspaceStorage
 vscode-user/sync
+home/pi/agent/bin
+home/pi/agent/auth.json
+home/pi/agent/sessions

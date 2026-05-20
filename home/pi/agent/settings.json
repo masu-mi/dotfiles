@@ -1,0 +1,5 @@
+{
+  "lastChangelogVersion": "0.74.0"
+  "defaultProvider": "ollama",
+  "defaultModel": "lukaspetrik/gemma3-tools:4b"
+}

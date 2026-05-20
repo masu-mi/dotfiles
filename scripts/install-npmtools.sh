@@ -3,10 +3,8 @@
 set -ue
 
 TOOLS=(
-  "@anthropic-ai/claude-code"
-  "@google/gemini-cli"
-  "@openai/codex"
-  "@github/copilot"
+  "@mariozechner/pi-coding-agent"
+  "opencode-ai"
 )
 
 for tool in "${TOOLS[@]}"; do
