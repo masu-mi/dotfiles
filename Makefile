@@ -2,6 +2,8 @@ target    ?= $(HOME)
 src_root  ?= $(PWD)
 src_vim   := $(src_root)/vim
 src_vscode := $(src_root)/vscode-user
+src_claude := $(src_root)/claude
+src_opencode := $(src_root)/opencode
 
 # default target -> help
 .PHONY: help
@@ -30,7 +32,7 @@ DST_REPO    := $(addprefix $(target)/, tmux-powerline powerlevel10k)
 .PHONY: init
 init: ## Initialize all settings
 init: install_prompt_plugins install_pip_pkgs submodule_init \
-      ln_mise ln_vscode all
+      ln_mise ln_vscode ln_claude ln_opencode all
 
 .PHONY: all
 all: $(DST_NVIM) $(DST_VIM) $(DST_VIMRC) \
@@ -119,6 +121,48 @@ rm_vscode: ## Remove VSCode config symlink
 		rm -f "$$vscode_dir"; \
 	fi
 
+# Claude Code
+claude_dir   := $(target)/.claude
+claude_links := skills agents
+
+.PHONY: ln_claude
+ln_claude: ## Symlink claude/skills and claude/agents into ~/.claude
+	@mkdir -p "$(claude_dir)"; \
+	for name in $(claude_links); do \
+		ln -sfn "$(src_claude)/$$name" "$(claude_dir)/$$name"; \
+		echo "  [LINK] $(claude_dir)/$$name -> $(src_claude)/$$name"; \
+	done
+
+.PHONY: rm_claude
+rm_claude: ## Remove ~/.claude/skills and ~/.claude/agents symlinks
+	@for name in $(claude_links); do \
+		if [ -L "$(claude_dir)/$$name" ]; then \
+			rm -f "$(claude_dir)/$$name"; \
+			echo "  [UNLINK] $(claude_dir)/$$name"; \
+		fi; \
+	done
+
+# OpenCode
+opencode_dir   := $(target)/.config/opencode
+opencode_links := skills agents tools
+
+.PHONY: ln_opencode
+ln_opencode: ## Symlink opencode/skills, agents, tools into ~/.config/opencode
+	@mkdir -p "$(opencode_dir)"; \
+	for name in $(opencode_links); do \
+		ln -sfn "$(src_opencode)/$$name" "$(opencode_dir)/$$name"; \
+		echo "  [LINK] $(opencode_dir)/$$name -> $(src_opencode)/$$name"; \
+	done
+
+.PHONY: rm_opencode
+rm_opencode: ## Remove ~/.config/opencode/skills, agents, tools symlinks
+	@for name in $(opencode_links); do \
+		if [ -L "$(opencode_dir)/$$name" ]; then \
+			rm -f "$(opencode_dir)/$$name"; \
+			echo "  [UNLINK] $(opencode_dir)/$$name"; \
+		fi; \
+	done
+
 $(target)/local/config/powerline.conf: | install_pip_pkgs
 	mkdir -p $(dir $@)
 	ln -s $$(pip3 show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
@@ -146,7 +190,7 @@ install_pip_pkgs: ## Install pip packages
 
 ## Clean
 .PHONY: clean
-clean: rm_vim rm_home rm_powerline rm_mise rm_vscode ## Remove all symlinks
+clean: rm_vim rm_home rm_powerline rm_mise rm_vscode rm_claude rm_opencode ## Remove all symlinks
 
 ## Help
 help: ## Show this help
