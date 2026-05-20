@@ -1,6 +1,7 @@
 target    ?= $(HOME)
 src_root  ?= $(PWD)
 src_vim   := $(src_root)/vim
+src_vscode := $(src_root)/vscode-user
 
 # default target -> help
 .PHONY: help
@@ -29,7 +30,7 @@ DST_REPO    := $(addprefix $(target)/, tmux-powerline powerlevel10k)
 .PHONY: init
 init: ## Initialize all settings
 init: install_prompt_plugins install_pip_pkgs submodule_init \
-      ln_mise all
+      ln_mise ln_vscode all
 
 .PHONY: all
 all: $(DST_NVIM) $(DST_VIM) $(DST_VIMRC) \
@@ -76,6 +77,48 @@ ln_mise: $(target)/.config/mise/config.toml
 rm_mise: # Remove mise config symlink
 	rm -f $(target)/.config/mise/config.toml
 
+# VSCode
+.PHONY: ln_vscode
+ln_vscode: ## Symlink vscode-user/ -> Code/User (directory-level)
+	@set -e; \
+	vscode_dir="$(target)/Library/Application Support/Code/User"; \
+	runtime_dirs="History globalStorage snippets sync workspaceStorage"; \
+	if [ -d "$$vscode_dir" ] && [ ! -L "$$vscode_dir" ]; then \
+		echo "  Backing up runtime dirs and moving old config..."; \
+		tmpdir=$$(mktemp -d); \
+		for d in $$runtime_dirs; do \
+			if [ -e "$$vscode_dir/$$d" ]; then \
+				mv "$$vscode_dir/$$d" "$$tmpdir/"; \
+			fi; \
+		done; \
+		bak="$$vscode_dir.bak.$$(date +%Y%m%d%H%M%S)"; \
+		mv "$$vscode_dir" "$$bak"; \
+		echo "  Old config backed up to $$bak"; \
+		ln -sfn "$(src_vscode)" "$$vscode_dir"; \
+		for d in $$runtime_dirs; do \
+			if [ -e "$$tmpdir/$$d" ]; then \
+				mv "$$tmpdir/$$d" "$$vscode_dir/"; \
+			fi; \
+		done; \
+		rm -rf "$$tmpdir"; \
+		echo "  [LINK] $$vscode_dir -> $(src_vscode)"; \
+	elif [ -L "$$vscode_dir" ]; then \
+		ln -sfn "$(src_vscode)" "$$vscode_dir"; \
+		echo "  [LINK] $$vscode_dir -> $(src_vscode)"; \
+	else \
+		mkdir -p "$$(dirname "$$vscode_dir")"; \
+		ln -sfn "$(src_vscode)" "$$vscode_dir"; \
+		echo "  [LINK] $$vscode_dir -> $(src_vscode)"; \
+	fi
+
+.PHONY: rm_vscode
+rm_vscode: ## Remove VSCode config symlink
+	@set -e; \
+	vscode_dir="$(target)/Library/Application Support/Code/User"; \
+	if [ -L "$$vscode_dir" ]; then \
+		rm -f "$$vscode_dir"; \
+	fi
+
 $(target)/local/config/powerline.conf: | install_pip_pkgs
 	mkdir -p $(dir $@)
 	ln -s $$(pip3 show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
@@ -103,7 +146,7 @@ install_pip_pkgs: ## Install pip packages
 
 ## Clean
 .PHONY: clean
-clean: rm_vim rm_home rm_powerline rm_mise ## Remove all symlinks
+clean: rm_vim rm_home rm_powerline rm_mise rm_vscode ## Remove all symlinks
 
 ## Help
 help: ## Show this help
