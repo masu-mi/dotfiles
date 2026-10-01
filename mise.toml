@@ -24,7 +24,7 @@ neovim = "0.11.4"
 node = "24.4.1"
 python = "3.13.3"
 rust = "1.95.0"
-tmux = "3.5"
+tmux = "3.7c"
 uv = "0.8.14"
 
 [settings]
