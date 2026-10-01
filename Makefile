@@ -4,6 +4,7 @@ src_vim   := $(src_root)/vim
 src_vscode := $(src_root)/vscode-user
 src_claude := $(src_root)/claude
 src_opencode := $(src_root)/opencode
+PIP ?= pip3
 
 # default target -> help
 .PHONY: help
@@ -165,7 +166,7 @@ rm_opencode: ## Remove ~/.config/opencode/skills, agents, tools symlinks
 
 $(target)/local/config/powerline.conf: | install_pip_pkgs
 	mkdir -p $(dir $@)
-	ln -s $$(pip3 show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
+	ln -s $$($(PIP) show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
 
 .PHONY: rm_powerline
 rm_powerline: # Remove powerline config symlink
@@ -185,7 +186,7 @@ submodule_init: ## Init git submodules
 
 .PHONY: install_pip_pkgs
 install_pip_pkgs: ## Install pip packages
-	pip3 install -r $(src_root)/requirements.txt
+	$(PIP) install -r $(src_root)/requirements.txt
 
 
 ## Clean
