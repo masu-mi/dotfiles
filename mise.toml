@@ -17,6 +17,7 @@ deno = "2.4.2"
 direnv = "2.37.1"
 gemini = "latest"
 gh = "latest"
+ghc = "9.14.1"
 go = "1.24.5"
 "go:github.com/charmbracelet/glow/v2" = "latest"
 neovim = "0.11.4"
@@ -25,6 +26,9 @@ python = "3.13.3"
 rust = "1.95.0"
 tmux = "3.7c"
 uv = "0.8.14"
+
+[env]
+TMUX_EXTRA_CONFIGURE_OPTIONS = "--disable-utf8proc --disable-jemalloc"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
