@@ -1,0 +1,3 @@
+[user]
+  email = masumi.net@gmail.com
+  signingkey = ~/.ssh/git_signing.ed25519.pub

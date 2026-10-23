@@ -39,6 +39,7 @@
 	ff = only
 [ghq]
 	root = ~/dev/src
+
 [include]
 	path = ~/local/config/gitconfig
 
@@ -60,6 +61,13 @@
 	useConfigOnly = true
 
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
-	path = ~/dotfiles/git/identity/github
+	path = ~/dotfiles/git/identity/priv.gitconfig
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
-	path = ~/dotfiles/git/identity/github
+	path = ~/dotfiles/git/identity/priv.gitconfig
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
