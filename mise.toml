@@ -1,5 +1,5 @@
 [tools]
-claude = { version = "2.1.142", bin = "claude", platforms = """
+claude = { version = "latest", bin = "claude", platforms = """
 [linux-arm64]
 url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/linux-arm64/claude"
 
@@ -21,7 +21,7 @@ ghc = "9.14.1"
 go = "1.24.5"
 "go:github.com/charmbracelet/glow/v2" = "latest"
 neovim = "0.11.4"
-node = "24.4.1"
+node = "26.12.1"
 python = "3.13.3"
 rust = "1.95.0"
 tmux = "3.7c"

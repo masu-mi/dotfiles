@@ -30,5 +30,8 @@
     "github.copilot.chat.agent.autoFix": true,
     "github.copilot.chat.switchAgent.enabled": true,
     "lldb.suppressUpdateNotifications": true,
-    "extensions.autoCheckUpdates": false
+    "extensions.autoCheckUpdates": false,
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": true
+    }
 }
