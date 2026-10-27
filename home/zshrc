@@ -1,3 +1,6 @@
+# ssh-add may ask for passphrases, so this must run before p10k instant prompt
+. ${HOME}/dotfiles/sh/ssh-agent.sh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.

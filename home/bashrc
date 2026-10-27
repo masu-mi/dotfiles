@@ -6,6 +6,7 @@ load_optional /etc/bashrc
 load_optional $HOME/.bashrc.bak
 
 . ${SH_DIR}/main.bashrc
+. ${SH_DIR}/ssh-agent.sh
 
 eval "$(mise activate bash)"
 eval "$(direnv hook bash)";
