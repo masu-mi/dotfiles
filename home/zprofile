@@ -1,0 +1,8 @@
+# /etc/zprofile runs path_helper before this file and moves system dirs to
+# the front of PATH, so PATH is built here rather than in .zshenv
+typeset -U path PATH
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+SH_DIR=${HOME}/dotfiles/sh
+. ${SH_DIR}/bootfuncs.sh
+. ${SH_DIR}/path.sh

@@ -9,7 +9,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 SH_DIR=${HOME}/dotfiles/sh
-[ -f ${SH_DIR}/bootfuncs.sh ] && . ${SH_DIR}/bootfuncs.sh
+. ${SH_DIR}/bootfuncs.sh
+
+# compinit must precede everything that calls compdef, including local rc files
+typeset -U path PATH fpath
+[ -d "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions" ] && \
+  fpath=("${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions" $fpath)
+autoload -Uz compinit && compinit
 
 load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -21,15 +27,15 @@ eval "$(direnv hook zsh)";
 . ${SH_DIR}/editor.sh
 
 bindkey -e
-autoload -U compinit
 
-ZSHRC_DIR=${HOME}/dotfiles/zsh
-load_optional ${ZSHRC_DIR}/$(uname).zsh
-load_optional ${ZSHRC_DIR}/local.zsh
+HISTSIZE=20000
+SAVEHIST=${HISTSIZE}
+setopt share_history hist_ignore_dups hist_ignore_space hist_reduce_blanks
 
-alias reload='. ~/.zshrc'
-load_optional $HOME/dotfiles/.fzf.zsh
-load_optional ~/.fzf.zsh
+command -v fzf >/dev/null && source <(fzf --zsh)
+
+load_optional ${HOME}/dotfiles/zsh/local.zsh
+
+alias reload='exec zsh'
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# load_optional ~/.p10k.zsh
