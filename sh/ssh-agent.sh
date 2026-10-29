@@ -32,7 +32,7 @@ _ssh_add_missing_keys() {
     fi
     case "$loaded" in *"$fp"*) [ -n "$fp" ] && continue ;; esac
     keys+=("$key")
-  done < <(find "$HOME/.ssh" -type f)
+  done < <(find "$HOME/.ssh" -type f ! -name '*.pub' ! -name 'known_hosts*' ! -name config ! -name authorized_keys)
   # one ssh-add call reuses the last passphrase for following keys
   if [ ${#keys[@]} -gt 0 ]; then
     ssh-add "${opts[@]}" "${keys[@]}"
