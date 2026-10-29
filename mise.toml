@@ -28,7 +28,8 @@ tmux = "3.7c"
 uv = "0.8.14"
 
 [env]
-TMUX_EXTRA_CONFIGURE_OPTIONS = "--disable-utf8proc --disable-jemalloc"
+# mise-tmux passes this to configure as a single quoted argument, so it can hold only one option
+TMUX_EXTRA_CONFIGURE_OPTIONS = "{% if os() == 'macos' %}--enable-utf8proc{% else %}--disable-utf8proc{% endif %}"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
