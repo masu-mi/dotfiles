@@ -1,0 +1,5 @@
+#comments
+# git, make, curl, clang come with the Xcode Command Line Tools
+libevent
+pkg-config
+utf8proc

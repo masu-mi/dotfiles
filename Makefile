@@ -44,8 +44,21 @@ all: $(target_dirs)
 $(target_dirs):
 	mkdir -p $@
 
-$(dst_home): $(target)/.%: $(src_root)/home/%
-	ln -s $< $@
+# Move a pre-existing regular file aside, then (re)link. FORCE: make would
+# otherwise skip a destination that already exists and is newer than its source.
+define link_with_backup
+	@if [ -e $@ ] && [ ! -L $@ ]; then \
+		if [ -e $@.bak ]; then echo "[ERROR] $@.bak already exists" >&2; exit 1; fi; \
+		mv $@ $@.bak; echo "  [BACKUP] $@ -> $@.bak"; \
+	fi
+	ln -sfn $< $@
+endef
+
+.PHONY: FORCE
+FORCE:
+
+$(dst_home): $(target)/.%: $(src_root)/home/% FORCE
+	$(link_with_backup)
 
 .PHONY: link_home
 link_home: $(dst_home) ## Symlink all home dotfiles
@@ -60,8 +73,8 @@ $(DST_NVIM): | $(target)/.config/nvim/
 $(DST_VIM): | $(target)/.config/vim/
 	ln -sfn $(src_vim)/$(notdir $@) $@
 
-$(DST_VIMRC): $(src_vim)/init.vim
-	ln -s $< $@
+$(DST_VIMRC): $(src_vim)/init.vim FORCE
+	$(link_with_backup)
 
 .PHONY: rm_vim
 rm_vim: # Remove vim/nvim config symlinks

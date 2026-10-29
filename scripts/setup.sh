@@ -1,34 +1,30 @@
 #!/usr/bin/env bash
 
-top=$(dirname $0)/..
-cd $top
+set -eu
+
+top=$(cd "$(dirname "$0")/.." && pwd)
+cd "$top"
 echo "[INFO] Start init script, pwd: $(pwd)"
 . ./scripts/lib.sh
 
 git submodule update --init --recursive
 
-install_apt_package_set init
+install_package_set init
 
-MISE_DIR=${HOME}/.local/bin
+# ~/.bashrc does not take effect in this non-interactive shell, so set PATH here
+export PATH="${HOME}/.local/bin:${HOME}/.local/share/mise/shims:${PATH}"
+command -v mise >/dev/null || curl https://mise.run | sh
+mise trust "$top/mise.toml" "$top/mise.boot.toml"
 
-curl https://mise.run | sh
-echo "eval \"\$(${MISE_DIR}/mise activate bash)\"" >> ${HOME}/.bashrc
+# make init needs only python (pip); keep mise from installing every tool in mise.toml first
+echo [INFO] make init
+MISE_OVERRIDE_CONFIG_FILENAMES=mise.boot.toml MISE_GLOBAL_CONFIG_FILE="$top/mise.boot.toml" \
+  mise exec -- make init
 
-. ${HOME}/.bashrc
-if [ -f "$HOME/.bashrc" -a ! -L "$HOME/.bashrc" ]; then
-  echo mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
-  mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
-fi
-
-echo [INFO] mise exec --env boot -- make init
-${MISE_DIR}/mise exec --env boot -- make init
-
-. ~/.bashrc
 echo [INFO] mise install
 mise install
 
-. ~/.bashrc
-$top/scripts/install-gotools.sh
-$top/scripts/install-npmtools.sh
+./scripts/install-gotools.sh
+./scripts/install-npmtools.sh
 
 curl -sSL https://aka.ms/apm-unix | sh

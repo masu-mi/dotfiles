@@ -1,23 +1,22 @@
 # masu_mi/dotfiles
 
+## Setup
+
+Clone to `~/dotfiles` (rc files assume this path).
+
 ```sh
-$ make
+git clone https://github.com/masu-mi/dotfiles.git ~/dotfiles
+~/dotfiles/scripts/setup.sh   # pkgs -> mise -> make init -> mise install -> go/npm tools
+```
 
-Usage:
-  make <target>
+Packages come from `scripts/pkgs/*.txt` via apt, or `*.brew.txt` via brew on macOS (needs Homebrew; override with `PKG_MANAGER=apt|brew`).
 
-Targets:
-  Setup
-    init                Initialize all settings
-    submodule_init      currently nothing to do
-    link_home_conf      Make link files under $HOME/
-    install_prompt_pluginsinstall some plugins for prompts
-    install_pip_pkgs    install pip3 pkgs
-  Clean
-    clean               Remove all links
-    rm_vims_conf        Remove links to vim config
-    rm_home_conf        Remove config file links don't related to (n)vim
-  Help:
-    show_dirs           Show directories to be created
-    help                Show this help.
+`make init` symlinks configs into `$HOME`, moving any existing regular file to `*.bak`.
+
+## Make
+
+```sh
+make         # list targets
+make init    # set everything up
+make clean   # remove the symlinks
 ```

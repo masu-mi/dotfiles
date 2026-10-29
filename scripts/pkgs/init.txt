@@ -6,3 +6,6 @@ gcc
 libncurses-dev
 libncurses5-dev
 libncursesw5-dev
+curl
+libevent-dev
+pkg-config

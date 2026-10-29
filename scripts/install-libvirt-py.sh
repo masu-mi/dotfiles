@@ -7,7 +7,7 @@ pushd $top
   echo "[INFO] Start init script, pwd: $(pwd)"
   . ./scripts/lib.sh
 
-  install_apt_package_set libvirt-dev
+  install_package_set libvirt-dev
 popd
 
 ${pkg_mgr_cmd} add libvirt-python
