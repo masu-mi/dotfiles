@@ -17,7 +17,14 @@ alias sjis2euc='iconv -f sjis   -t euc-jp'
 alias sjis2utf='iconv -f sjis   -t utf-8'
 alias utf2euc='iconv -f utf-8  -t euc-jp'
 alias utf2sjis='iconv -f utf-8  -t sjis'
-alias lsf='eval $(declare -F | grep -v "declare -f _"| fzf) | less'
+function lsf() {
+  local f
+  if [ -n "$ZSH_VERSION" ]; then
+    f=$(print -l ${(k)functions} | grep -v '^_' | fzf) && functions "$f" | less
+  else
+    f=$(declare -F | awk '{print $3}' | grep -v '^_' | fzf) && declare -f "$f" | less
+  fi
+}
 
 alias svim='sudo vim -u .vimrc'
 function stvim {
@@ -201,11 +208,7 @@ function cfind() {
 }
 
 function cdp() {
-  set -eu
-  target=$1
-
-  mkdir -p $target
-  cd $target
+  mkdir -p "$1" && cd "$1"
 }
 
 function get_currrent_github_url() {
