@@ -4,7 +4,7 @@ export LANG='C.UTF-8'
 export HISTSIZE=20000
 export XDG_CONFIG_HOME=$HOME/.config
 
-load_optional ${SH_DIR}/aliases.bashrc
+load_optional ${SH_DIR}/aliases.sh
 
 ## add paths
 add_path "/sbin"
@@ -23,5 +23,5 @@ add_path /opt/homebrew/opt/pcsc-lite/bin
 add_path /opt/homebrew/opt/pcsc-lite/sbin
 
 
-. ${SH_DIR}/lang.bashrc
-load_optional ${SH_DIR}/$(uname).bashrc
+. ${SH_DIR}/lang.sh
+load_optional ${SH_DIR}/$(uname).sh

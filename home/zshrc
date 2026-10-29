@@ -9,11 +9,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 SH_DIR=${HOME}/dotfiles/sh
-[ -f ${SH_DIR}/bootfuncs.bashrc ] && . ${SH_DIR}/bootfuncs.bashrc
+[ -f ${SH_DIR}/bootfuncs.sh ] && . ${SH_DIR}/bootfuncs.sh
 
 load_optional $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
-. ${SH_DIR}/main.bashrc
+. ${SH_DIR}/main.sh
 
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)";

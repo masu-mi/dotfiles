@@ -1,11 +1,11 @@
 SH_DIR=${HOME}/dotfiles/sh
-[ -f ${SH_DIR}/bootfuncs.bashrc ] && . ${SH_DIR}/bootfuncs.bashrc
+[ -f ${SH_DIR}/bootfuncs.sh ] && . ${SH_DIR}/bootfuncs.sh
 
 load_optional /etc/profile
 load_optional /etc/bashrc
 load_optional $HOME/.bashrc.bak
 
-. ${SH_DIR}/main.bashrc
+. ${SH_DIR}/main.sh
 . ${SH_DIR}/ssh-agent.sh
 
 eval "$(mise activate bash)"
