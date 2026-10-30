@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -ue
+
+gce_vms() {
+  local sync
+  local sync=0
+  if [ "${1:-}" = "--sync" ]; then sync=1; shift; fi
+  
+  local dir="/tmp/gce_vms-${USER:-$(id -u)}"
+  local ttl="${GCE_CACHE_MIN:-60}"
+  mkdir -p "$dir" && chmod 700 "$dir"
+  
+  local p f
+  for p in "$@"; do
+    f="$dir/$p.tsv"
+    if [ "$sync" -eq 1 ] || [ -z "$(find "$f" -mmin "-$ttl" 2>/dev/null)" ]; then
+      if gcloud compute instances list \
+            --project="$p" \
+            --format="value(name, project(), zone.basename(), networkInterfaces[0].networkIP, status)" \
+            > "$f.tmp.$$"; then
+          mv "$f.tmp.$$" "$f"
+      else
+          rm -f "$f.tmp.$$"
+          [ -f "$f" ] && echo "gce_vms: $p: refresh failed, using stale cache" >&2
+      fi
+    fi
+    [ -f "$f" ] || continue
+    awk -v OFS='\t' '{ print $0 }' "$f"
+  done
+}
+gce_vms $@

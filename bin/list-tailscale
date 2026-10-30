@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -ue
+
+tailscale status --json \
+  | jq -r '.Peer[]
+      | select(.HostName | contains("bastion"))
+      | [.HostName, .TailscaleIPs[0], (if .Online then "online" else "offline" end)]
+      | @tsv'

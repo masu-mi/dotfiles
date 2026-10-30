@@ -30,18 +30,13 @@ alias svim='sudo vim -u .vimrc'
 function stvim {
     vim $(which $1)
 }
+
 function sshp() {
-  local host=$(
-    grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config ~/.ssh/hosts/* |\
-      xargs -n 1 | grep -v Host | sort -u | \
-      xargs -I{} echo 'Host {}' | fzf | \
-      awk '{print $2}'
-  )
-  if [ -n "$host" ]; then
-    echo "[ssh]: $host"
-    ssh $@ $host
-  fi
+  local host
+  host=$(list-sshconf-hosts | fzf) || return
+  ssh "$@" "$host"
 }
+
 function psrc() {
   local src=$(ghq list --full-path | fzf)
   if [ -n "$src" ]; then
