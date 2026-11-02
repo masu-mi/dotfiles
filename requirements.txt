@@ -4,7 +4,6 @@ greenlet==3.1.1
 msgpack==1.0.5
 pbr==5.11.1
 platformdirs==3.10.0
-powerline-status==2.7
 pynvim==0.4.3
 stevedore==5.1.0
 virtualenv==20.36.1
