@@ -177,9 +177,16 @@ rm_opencode: ## Remove ~/.config/opencode/skills, agents, tools symlinks
 		fi; \
 	done
 
-$(target)/local/config/powerline.conf: | install_pip_pkgs
+# powerline lives in its own uv tool venv so project-local mise/python changes cannot break the tmux status line
+POWERLINE_VERSION := 2.7
+
+.PHONY: install_powerline
+install_powerline: ## Install powerline-status as an isolated uv tool
+	uv tool install --force powerline-status==$(POWERLINE_VERSION)
+
+$(target)/local/config/powerline.conf: FORCE | install_powerline
 	mkdir -p $(dir $@)
-	ln -s $$($(PIP) show powerline-status | awk '/^Location/{print $$2}')/powerline/bindings/tmux/powerline.conf $@
+	ln -sfn $$(ls -d $$(uv tool dir)/powerline-status/lib/python*/site-packages | head -1)/powerline/bindings/tmux/powerline.conf $@
 
 .PHONY: rm_powerline
 rm_powerline: # Remove powerline config symlink
