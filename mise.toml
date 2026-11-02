@@ -15,6 +15,7 @@ url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d
 codex = "0.130.0"
 deno = "2.4.2"
 direnv = "2.37.1"
+fzf = "latest"
 gemini = "latest"
 gh = "latest"
 go = "1.24.5"
