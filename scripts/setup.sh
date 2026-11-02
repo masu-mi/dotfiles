@@ -14,6 +14,8 @@ install_package_set init
 # ~/.bashrc does not take effect in this non-interactive shell, so set PATH here
 export PATH="${HOME}/.local/bin:${HOME}/.local/share/mise/shims:${PATH}"
 command -v mise >/dev/null || curl https://mise.run | sh
+# old mise lacks newer aqua registry entries (e.g. tmux-builds); not fatal if it is package-managed
+mise self-update -y || echo "[WARN] mise self-update failed; continuing with $(mise --version)"
 # mise trust takes a single config file per call
 for f in mise.toml mise.boot.toml; do mise trust "$top/$f"; done
 
