@@ -9,3 +9,4 @@ libncursesw5-dev
 curl
 libevent-dev
 pkg-config
+zsh
