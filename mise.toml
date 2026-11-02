@@ -24,7 +24,7 @@ neovim = "0.11.4"
 node = "26.12.1"
 python = "3.13.3"
 rust = "1.95.0"
-"github:tmux/tmux-builds" = "3.7c"
+"aqua:tmux/tmux-builds" = "3.7c"
 uv = "0.8.14"
 
 [env]
