@@ -15,8 +15,11 @@ function install_package_set() {
 
 function install_apt_from_file() {
   list_file=$1
-  sudo apt update
-  sudo apt install $(eval echo $(cat ${list_file}  | grep -v '#'))
+  # non-interactive: no prompts (tzdata, needrestart, conffile) even when stdin is a pipe
+  export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a
+  sudo -E apt-get update </dev/null
+  sudo -E apt-get install -y -o Dpkg::Options::=--force-confold \
+    $(eval echo $(cat ${list_file}  | grep -v '#')) </dev/null
 }
 
 function install_brew_from_file() {
